@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 
 from rest_framework import status
 from django.shortcuts import get_list_or_404, get_object_or_404
-from .serializers import CommentSerializer, MovieSerializer, ArticleListSerializer, ArticleSerializer
+from .serializers import CommentArticleSerializer, MovieSerializer, ArticleListSerializer, ArticleSerializer
 
 from .models import *
 
@@ -100,17 +100,19 @@ def article_detail(request, article_pk):
         article.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
-    
+
+# 게시글 댓글 함수
+
 @api_view(['GET', 'PUT', 'DELETE'])
-def comment_detail(request, comment_pk):
+def comment_article_detail(request, comment_pk):
     comment = get_object_or_404(Comment_article, pk=comment_pk)
     
     if request.method == 'GET':
-        serializer = CommentSerializer(comment)
+        serializer = CommentArticleSerializer(comment)
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        serializer = CommentSerializer(comment, data=request.data)
+        serializer = CommentArticleSerializer(comment, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
@@ -120,9 +122,9 @@ def comment_detail(request, comment_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 @api_view(['POST'])
-def comment_create(request, article_pk):
+def comment_article_create(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
-    serializer = CommentSerializer(data=request.data)
+    serializer = CommentArticleSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(article=article)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
