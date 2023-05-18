@@ -1,16 +1,21 @@
-from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import MovieSerializer
+
+from rest_framework import status
+from django.shortcuts import get_list_or_404, get_object_or_404
+from .serializers import ArticleListSerializer, ArticleSerializer
 
 from .models import *
 
-import requests
-import json
+
 
 # 데이터 파일 제이슨으로 받기
 # 현재는 고정, 업데이트가 필요할 수도 있음
 # 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
+
+import requests
+import json
+
 def get_movie_datas():
     total_data = []
 
@@ -56,7 +61,17 @@ get_movie_datas()
 
 # Create your views here.
 
-# @api_view(['GET'])
-# def movies_list(request):
-#     if request.method == 'GET':   
-#         return
+@api_view(['GET', 'POST'])
+def article_list(request):
+    if request.method == 'GET':   
+        articles = get_list_or_404(Article)
+        serializer = ArticleListSerializer(articles, many=True)
+        return Response(serializer.data)
+    
+    elif request.method == 'POST':
+        serializer = ArticleSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            # serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        

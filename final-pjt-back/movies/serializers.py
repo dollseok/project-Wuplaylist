@@ -6,7 +6,6 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = '__all__'
         
-
 class ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
