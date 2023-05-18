@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 
 from rest_framework import status
 from django.shortcuts import get_list_or_404, get_object_or_404
-from .serializers import ArticleListSerializer, ArticleSerializer
+from .serializers import CommentSerializer, MovieSerializer, ArticleListSerializer, ArticleSerializer
 
 from .models import *
 
@@ -61,6 +61,14 @@ get_movie_datas()
 
 # Create your views here.
 
+@api_view(['GET'])
+def movie_list(request):
+    if request.method == 'GET':
+        movies = get_list_or_404(Movie)
+        serializer = MovieSerializer(movies, many=True)
+        return Response(serializer.data)
+
+
 @api_view(['GET', 'POST'])
 def article_list(request):
     if request.method == 'GET':   
@@ -91,3 +99,30 @@ def article_detail(request, article_pk):
     if request.method == 'DELETE':
         article.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+@api_view(['GET', 'PUT', 'DELETE'])
+def comment_detail(request, comment_pk):
+    comment = get_object_or_404(Comment_article, pk=comment_pk)
+    
+    if request.method == 'GET':
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+        
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['POST'])
+def comment_create(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(article=article)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

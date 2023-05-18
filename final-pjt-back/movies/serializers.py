@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Movie, Article
+from .models import Movie, Article, Comment_article
 
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,6 +10,13 @@ class ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ('id','title','content')
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment_article
+        fields = '__all__'
+        read_only_fields = ('article',)
+
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
