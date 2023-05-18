@@ -1619,24 +1619,6 @@
 		}
 	},
 	{
-		"pk": 667538,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 667538,
-			"title": "트랜스포머: 비스트의 서막",
-			"released_date": "2023-06-07",
-			"poster_path": "/chUZNPNd7EiETSB4xBGykXhuXRr.jpg",
-			"vote_count": 0,
-			"vote_average": 0,
-			"overview": "화려한 액션과 스펙터클로 전 세계를 사로잡은 영화 <트랜스포머> 시리즈의 신작 <트랜스포머: 비스트의 서막>은 1990년대의 지구를 배경으로 벌어지는 오토봇과 디셉티콘의 전투 그리고 새롭게 등장하는 캐릭터들인 맥시멀을 선보일 예정이다.",
-			"genres": [
-				28,
-				12,
-				878
-			]
-		}
-	},
-	{
 		"pk": 635302,
 		"model": "movies.movie",
 		"fields": {
@@ -1670,6 +1652,24 @@
 			"genres": [
 				12,
 				28,
+				878
+			]
+		}
+	},
+	{
+		"pk": 667538,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 667538,
+			"title": "트랜스포머: 비스트의 서막",
+			"released_date": "2023-06-07",
+			"poster_path": "/chUZNPNd7EiETSB4xBGykXhuXRr.jpg",
+			"vote_count": 0,
+			"vote_average": 0,
+			"overview": "화려한 액션과 스펙터클로 전 세계를 사로잡은 영화 <트랜스포머> 시리즈의 신작 <트랜스포머: 비스트의 서막>은 1990년대의 지구를 배경으로 벌어지는 오토봇과 디셉티콘의 전투 그리고 새롭게 등장하는 캐릭터들인 맥시멀을 선보일 예정이다.",
+			"genres": [
+				28,
+				12,
 				878
 			]
 		}
@@ -2151,23 +2151,6 @@
 		}
 	},
 	{
-		"pk": 937278,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 937278,
-			"title": "오토라는 남자",
-			"released_date": "2022-12-28",
-			"poster_path": "/bC0e8GRmi8pHnkXHPbKqUKo9Kxr.jpg",
-			"vote_count": 1199,
-			"vote_average": 7.9,
-			"overview": "모든 것을 포기하려는 ‘오토’(톰 행크스)는 죽고 싶을 타이밍마다 이를 방해하는 이웃들로 분노가 치밀어 오른다. 인생 최악의 순간, 뜻하지 않은 이웃들과의 사건들로 인해 상황은 생각지도 못한 방향으로 흘러가는데…",
-			"genres": [
-				35,
-				18
-			]
-		}
-	},
-	{
 		"pk": 988233,
 		"model": "movies.movie",
 		"fields": {
@@ -2390,6 +2373,23 @@
 			"overview": "폰허브의 성공과 추문에 대해 깊숙이 파헤친다. 배우, 운동가 그리고 전직 직원들의 인터뷰로 이루어진 다큐멘터리.",
 			"genres": [
 				99
+			]
+		}
+	},
+	{
+		"pk": 937278,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 937278,
+			"title": "오토라는 남자",
+			"released_date": "2022-12-28",
+			"poster_path": "/bC0e8GRmi8pHnkXHPbKqUKo9Kxr.jpg",
+			"vote_count": 1199,
+			"vote_average": 7.9,
+			"overview": "모든 것을 포기하려는 ‘오토’(톰 행크스)는 죽고 싶을 타이밍마다 이를 방해하는 이웃들로 분노가 치밀어 오른다. 인생 최악의 순간, 뜻하지 않은 이웃들과의 사건들로 인해 상황은 생각지도 못한 방향으로 흘러가는데…",
+			"genres": [
+				35,
+				18
 			]
 		}
 	},
@@ -2680,24 +2680,6 @@
 				16,
 				10751,
 				35
-			]
-		}
-	},
-	{
-		"pk": 615656,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 615656,
-			"title": "메가로돈 2",
-			"released_date": "2023-08-02",
-			"poster_path": "/uvYbo4eF3q6W06kpx5iDwC4jt6N.jpg",
-			"vote_count": 0,
-			"vote_average": 0,
-			"overview": "",
-			"genres": [
-				28,
-				878,
-				27
 			]
 		}
 	},
@@ -3302,6 +3284,24 @@
 			"genres": [
 				35,
 				28
+			]
+		}
+	},
+	{
+		"pk": 615656,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 615656,
+			"title": "메가로돈 2",
+			"released_date": "2023-08-02",
+			"poster_path": "/uvYbo4eF3q6W06kpx5iDwC4jt6N.jpg",
+			"vote_count": 0,
+			"vote_average": 0,
+			"overview": "",
+			"genres": [
+				28,
+				878,
+				27
 			]
 		}
 	},

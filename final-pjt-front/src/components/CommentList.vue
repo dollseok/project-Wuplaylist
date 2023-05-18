@@ -1,16 +1,20 @@
 <template>
   <div class="comment-list">
     <h3>댓글 목록</h3>
-    {{articleId}}
-    <!-- <CommentListItem 
-    v-for="comment in commentObj" :key="comment.id"
-    /> -->
-    <CommentForm />
+    <ul>
+      <CommentListItem 
+      v-for="comment in comments" :key="comment.id"
+      :comment="comment"
+      />
+    </ul>
+    <CommentForm 
+    :articleId="articleId"
+    />
   </div>
 </template>
 
 <script>
-// import CommentListItem from '@/components/CommentListItem.vue'
+import CommentListItem from '@/components/CommentListItem.vue'
 import CommentForm from '@/components/CommentForm.vue'
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
@@ -18,7 +22,7 @@ const API_URL = 'http://127.0.0.1:8000'
 export default {
   name: 'CommentList',
   components: {
-    // CommentListItem,
+    CommentListItem,
     CommentForm
   },
   props: {
@@ -26,16 +30,17 @@ export default {
   },
   data() {
     return {
-      // commentObj: 
+      comments: [] 
     }
   },
   created() {
     axios({
       method: 'get',
-      url: `${API_URL}/api/v1/comments/`,
+      url: `${API_URL}/api/v1/articles/${this.articleId}/comments_article/`,
     })
     .then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
+      this.comments = res.data
     })
     .catch(err => console.log(err))
   }

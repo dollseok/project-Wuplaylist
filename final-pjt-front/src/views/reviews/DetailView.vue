@@ -24,6 +24,7 @@
     </div>
     <hr>
     <CommentList 
+    v-if="article"
     :articleId="article.id"
     />
   </div>
