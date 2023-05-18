@@ -8,7 +8,9 @@ from .models import *
 import requests
 import json
 
-
+# 데이터 파일 제이슨으로 받기
+# 현재는 고정, 업데이트가 필요할 수도 있음
+# 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
 def get_movie_datas():
     total_data = []
 
@@ -46,8 +48,8 @@ def get_movie_datas():
         with open("movies/fixtures/movie_data.json", "w", encoding="utf-8") as w:
             json.dump(total_data, w, indent="\t", ensure_ascii=False)
         
+    print('데이터 저장')
         
-
 
 get_movie_datas()
 

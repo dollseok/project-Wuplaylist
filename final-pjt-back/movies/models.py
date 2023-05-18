@@ -12,3 +12,11 @@ class Movie(models.Model):
     overview = models.TextField()
     genres=models.JSONField()
     # backdrop_path=models.TextField()
+    
+
+class Article(models.Model):
+    
+    title = models.CharField(max_length=30)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
