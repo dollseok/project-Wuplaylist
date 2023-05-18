@@ -74,4 +74,10 @@ def article_list(request):
             serializer.save()
             # serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
+
+@api_view(['GET'])
+def article_detail(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    if request.method == 'GET':
+        serializer = ArticleSerializer(article)
+        return Response(serializer.data)
