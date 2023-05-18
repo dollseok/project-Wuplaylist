@@ -2,8 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import GenreView from '../views/GenreView.vue'
-import ReviewView from '../views/ReviewView.vue'
-import CreateView from '../views/CreateView.vue'
+import ReviewView from '../views/reviews/ReviewView.vue'
+import CreateView from '../views/reviews/CreateView.vue'
+import DetailView from '../views/reviews/DetailView.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/create',
     name: 'create',
     component: CreateView
+  },
+  {
+    path: '/review/:id',
+    name: 'detail',
+    component: DetailView
   },
 ]
 
