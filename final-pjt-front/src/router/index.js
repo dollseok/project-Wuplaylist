@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import GenreView from '../views/GenreView.vue'
 import ReviewView from '../views/ReviewView.vue'
+import CreateView from '../views/CreateView.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/review',
     name: 'review',
     component: ReviewView
+  },
+  {
+    path: '/create',
+    name: 'create',
+    component: CreateView
   },
 ]
 

@@ -36,6 +36,9 @@ INSTALLED_APPS = [
     
     'rest_framework',
     
+    # CORS policy
+    'corsheaders',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,12 +50,22 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# 교차 출처 자원 공유를 허용할 도메인 등록
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
+]
+
+# 모든 Origin을 허용
+# CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'my_api.urls'
 
