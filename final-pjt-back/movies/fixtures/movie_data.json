@@ -1171,23 +1171,6 @@
 		}
 	},
 	{
-		"pk": 943822,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 943822,
-			"title": "프라이즈파이터: 더 라이프 오브 젬 벨처",
-			"released_date": "2022-06-30",
-			"poster_path": "/x3PIk93PTbxT88ohfeb26L1VpZw.jpg",
-			"vote_count": 126,
-			"vote_average": 6.3,
-			"overview": "",
-			"genres": [
-				18,
-				36
-			]
-		}
-	},
-	{
 		"pk": 1114905,
 		"model": "movies.movie",
 		"fields": {
@@ -1349,6 +1332,23 @@
 				10751,
 				878,
 				14
+			]
+		}
+	},
+	{
+		"pk": 943822,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 943822,
+			"title": "프라이즈파이터: 더 라이프 오브 젬 벨처",
+			"released_date": "2022-06-30",
+			"poster_path": "/x3PIk93PTbxT88ohfeb26L1VpZw.jpg",
+			"vote_count": 126,
+			"vote_average": 6.3,
+			"overview": "",
+			"genres": [
+				18,
+				36
 			]
 		}
 	},
