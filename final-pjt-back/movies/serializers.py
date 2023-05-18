@@ -13,6 +13,7 @@ class CommentMovieSerializer(serializers.ModelSerializer):
         read_only_fields=('movie',)
         
 class MovieSerializer(serializers.ModelSerializer):
+    comment_set = CommentMovieSerializer(many=True, read_only=True)
     class Meta:
         model= Movie
         fields = '__all__'
@@ -33,6 +34,7 @@ class CommentArticleSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
+    comment_set = CommentArticleSerializer(many=True,read_only=True)
     class Meta:
         model= Article
         fields = '__all__'

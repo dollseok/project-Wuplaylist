@@ -138,3 +138,20 @@ def comment_movie_create(request, movie_pk):
         serializer.save(movie=movie)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@api_view(['GET','PUT','DELETE'])
+def comment_movie_detail(request, comment_pk):
+    comment = get_object_or_404(Comment_movie, pk=comment_pk)
+    
+    if request.method == 'GET':
+        serializer = CommentMovieSerializer(comment)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = CommentMovieSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+    
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)    
+    
