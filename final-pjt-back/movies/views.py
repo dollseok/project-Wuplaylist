@@ -101,7 +101,7 @@ def article_detail(request, article_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 
-# 게시글 댓글 함수
+# 게시글 댓글 CRUD views
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def comment_article_detail(request, comment_pk):
@@ -128,3 +128,5 @@ def comment_article_create(request, article_pk):
     if serializer.is_valid(raise_exception=True):
         serializer.save(article=article)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+# 영화 댓글 CRUD views

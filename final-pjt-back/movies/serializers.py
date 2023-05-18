@@ -1,10 +1,24 @@
 from rest_framework import serializers
-from .models import Movie, Article, Comment_article
+from .models import Movie, Article, Comment_article, Comment_movie
 
-class MovieSerializer(serializers.ModelSerializer):
+class MovieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
+        fields = ('title','overview','genres', 'poster_path',)
+
+class CommentMovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment_movie
         fields = '__all__'
+        read_only_fields=('movie',)
+        
+class MovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Movie
+        fields = '__all__'
+        # read_only_fields = ('user',)
+
+
         
 class ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
