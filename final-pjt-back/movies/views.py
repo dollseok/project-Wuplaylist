@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 
 from rest_framework import status
 from django.shortcuts import get_list_or_404, get_object_or_404
-from .serializers import CommentArticleSerializer, MovieSerializer, ArticleListSerializer, ArticleSerializer
+from .serializers import *
 
 from .models import *
 
@@ -130,3 +130,11 @@ def comment_article_create(request, article_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
 # 영화 댓글 CRUD views
+@api_view(['POST'])
+def comment_movie_create(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    serializer = CommentMovieSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(movie=movie)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
