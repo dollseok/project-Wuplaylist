@@ -5,7 +5,7 @@ app_name = 'movies'
 urlpatterns =[
     # 영화 데이터 조회
     path('movies/', views.movie_list),
-    # path('movies/<int:movie_pk>', views.movie_detail),
+    path('movies/<int:movie_pk>/', views.movie_detail),
     
     # 게시글 CRUD url
     path('articles/', views.article_list),
