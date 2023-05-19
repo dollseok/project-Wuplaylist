@@ -5,11 +5,31 @@
       <router-link to="/genre">장르별 추천</router-link> |
       <router-link to="/review">영화 리뷰</router-link> |
       <router-link to="/signup">회원가입</router-link> |
-      <router-link to="/login">로그인</router-link>
+      <router-link to="/login">로그인</router-link> |
+      <button v-if="token" @click="logout">로그아웃</button>
     </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+import router from '@/router'
+
+export default {
+  methods: {
+    logout(){
+      this.$store.dispatch('logout')
+      router.go(0)
+    },
+  },
+  computed: {
+    token() {
+      return this.$store.state.token
+    }
+  }
+}
+</script>
+
 
 <style>
 #app {
