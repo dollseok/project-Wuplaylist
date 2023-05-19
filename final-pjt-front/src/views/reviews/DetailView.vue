@@ -62,7 +62,7 @@ export default {
       })
       .catch(err => console.log(err))
     },
-    updateMode(){
+    updateMode() {
       this.updatestatus = !this.updatestatus
     },
 
@@ -76,7 +76,7 @@ export default {
         data: { title, content }
       })
       .then(() => {
-        this.$router.push({ name: `review` })
+        this.$router.go(0)
       })
       .catch(err => console.log(err))
     },

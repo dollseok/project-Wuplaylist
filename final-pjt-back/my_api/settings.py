@@ -35,10 +35,20 @@ INSTALLED_APPS = [
     'movies',
     
     'rest_framework',
+    # Auth
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     
+    # registration
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+
     # CORS policy
     'corsheaders',
-
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +56,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    # Authentication
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
+
+# DEFAULT_PERMISSION_CLASSES
+
+REST_AUTH = {
+    'SESSION_LOGIN': False
+}
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

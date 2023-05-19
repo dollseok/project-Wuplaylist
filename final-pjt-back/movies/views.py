@@ -31,11 +31,12 @@ def get_movie_datas():
 
         for movie in response['results']:
             if movie.get('release_date', ''):
+                poster_url = f"https://image.tmdb.org/t/p/w300{movie['poster_path']}"
+            
                 fields = {
                     'movie_id': movie['id'],
                     'title' : movie['title'], 
                     'released_date': movie['release_date'],
-                    'poster_path':movie['poster_path'],
                     'vote_count':movie['vote_count'],
                     'vote_average': movie['vote_average'],
                     'overview': movie['overview'],
@@ -47,7 +48,9 @@ def get_movie_datas():
                     'model': 'movies.movie',
                     'fields': fields
                 }
-
+                # poster_path 링크 누락된 부분 수정하고 데이터에 넣어주기 
+                data['fields']['poster_path'] = poster_url
+                
                 total_data.append(data)
 
         with open("movies/fixtures/movie_data.json", "w", encoding="utf-8") as w:
@@ -95,7 +98,7 @@ def article_detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     if request.method == 'GET':
         serializer = ArticleSerializer(article)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
     
     if request.method == 'PUT':

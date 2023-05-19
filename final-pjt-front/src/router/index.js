@@ -14,21 +14,25 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  // 장르로 영화 검색하는 페이지
   {
     path: '/genre',
     name: 'genre',
     component: GenreView
   },
+  // 리뷰 게시판
   {
     path: '/review',
     name: 'review',
     component: ReviewView
   },
+  // 게시글 생성 페이지
   {
     path: '/create',
     name: 'create',
     component: CreateView
   },
+  // 게시글 상세 페이지
   {
     path: '/review/:id',
     name: 'detail',

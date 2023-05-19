@@ -20,6 +20,7 @@ export default {
     articleId: Number,
   },
   methods: {
+    // 댓글 작성 메소드
     createComment() {
       const content = this.content
 
@@ -29,10 +30,11 @@ export default {
         data: { content },
       })
       .then(() => {
+        // 인자로 넘긴 숫자만큼 히스토리 스택에서 앞, 뒤 페이지로 이동
         this.$router.go(0)
       })
       .catch(err => console.log(err))
-    }
+    },
   }
 }
 </script>

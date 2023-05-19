@@ -29,6 +29,19 @@ export default new Vuex.Store({
         context.commit('GET_ARTICLES', res.data)
       })
       .catch(err => console.log(err))
+    },
+    signUp(context, payload) {
+      const username = payload.username
+      const password1 = payload.password1
+      const password2 = payload.password2
+
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/signup/`,
+        data: {
+          username, password1, password2
+        }
+      })
     }
   },
   modules: {
