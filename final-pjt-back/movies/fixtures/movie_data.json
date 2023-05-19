@@ -31,8 +31,8 @@
 			"overview": "길바닥에서 지친 베스가 비좁은 아파트에서 세 아이를 키우는 엘리를 뒤늦게 찾아간다. 아파트에서 신비로운 책이 발견되며 육체에 사로잡힌 악마가 발견되며, 베스가 가장 악몽 같은 버전의 모성애에 직면하게 되면서 생존에 위한 원초적인 싸움에 내몰리게 되는데...",
 			"poster_path": "https://image.tmdb.org/t/p/w300/5ik4ATKmNtmJU6AYD0bLm56BCVM.jpg",
 			"genres": [
-				27,
 				53,
+				27,
 				14
 			]
 		}
@@ -501,23 +501,6 @@
 		}
 	},
 	{
-		"pk": 964980,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 964980,
-			"title": "에어",
-			"released_date": "2023-04-05",
-			"vote_count": 558,
-			"vote_average": 7.5,
-			"overview": "세기의 아이콘을 만든 그들의 실화! 당신이 알고 있는 그 이상의 이야기  1984년, 업계 꼴찌를 벗어나지 못하고 있는 나이키는 브랜드의 간판이 되어 줄 새로운 모델을 찾는다. 나이키의 스카우터 소니 바카로(맷 데이먼)는 NBA의 떠오르는 루키 마이클 조던이 나이키의 미래라고 생각한다. 그런데, 이미 시장을 장악한 컨버스와 아디다스가 그와의 계약을 노리는 상황 나이키 팀은 조던의 마음을 얻기 위한 전략을 세우는데….",
-			"poster_path": "https://image.tmdb.org/t/p/w300/u72FzpfOZLBkeUdL3o3jyYK9OxU.jpg",
-			"genres": [
-				18,
-				36
-			]
-		}
-	},
-	{
 		"pk": 552688,
 		"model": "movies.movie",
 		"fields": {
@@ -583,6 +566,23 @@
 				53,
 				35,
 				80
+			]
+		}
+	},
+	{
+		"pk": 964980,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 964980,
+			"title": "에어",
+			"released_date": "2023-04-05",
+			"vote_count": 558,
+			"vote_average": 7.5,
+			"overview": "세기의 아이콘을 만든 그들의 실화! 당신이 알고 있는 그 이상의 이야기  1984년, 업계 꼴찌를 벗어나지 못하고 있는 나이키는 브랜드의 간판이 되어 줄 새로운 모델을 찾는다. 나이키의 스카우터 소니 바카로(맷 데이먼)는 NBA의 떠오르는 루키 마이클 조던이 나이키의 미래라고 생각한다. 그런데, 이미 시장을 장악한 컨버스와 아디다스가 그와의 계약을 노리는 상황 나이키 팀은 조던의 마음을 얻기 위한 전략을 세우는데….",
+			"poster_path": "https://image.tmdb.org/t/p/w300/u72FzpfOZLBkeUdL3o3jyYK9OxU.jpg",
+			"genres": [
+				18,
+				36
 			]
 		}
 	},
@@ -769,22 +769,6 @@
 		}
 	},
 	{
-		"pk": 1008005,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 1008005,
-			"title": "La niña de la comunión",
-			"released_date": "2023-02-10",
-			"vote_count": 107,
-			"vote_average": 6.2,
-			"overview": "",
-			"poster_path": "https://image.tmdb.org/t/p/w300/sGSzha9K65abyvzBwXXnSV2sHWV.jpg",
-			"genres": [
-				27
-			]
-		}
-	},
-	{
 		"pk": 579884,
 		"model": "movies.movie",
 		"fields": {
@@ -852,6 +836,22 @@
 				16,
 				28,
 				14
+			]
+		}
+	},
+	{
+		"pk": 1008005,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 1008005,
+			"title": "La niña de la comunión",
+			"released_date": "2023-02-10",
+			"vote_count": 107,
+			"vote_average": 6.2,
+			"overview": "",
+			"poster_path": "https://image.tmdb.org/t/p/w300/sGSzha9K65abyvzBwXXnSV2sHWV.jpg",
+			"genres": [
+				27
 			]
 		}
 	},
@@ -2010,6 +2010,25 @@
 		}
 	},
 	{
+		"pk": 569094,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 569094,
+			"title": "스파이더맨: 어크로스 더 유니버스",
+			"released_date": "2023-05-31",
+			"vote_count": 0,
+			"vote_average": 0,
+			"overview": "새로운 스파이더맨 마일스 모랄레스(샤메익 무어)가 수많은 스파이더맨들과 함께 멀티버스 세계 속 다중 우주의 질서를 잡기 위해 빌런과 대결하는 이야기",
+			"poster_path": "https://image.tmdb.org/t/p/w300/p2l6hOlyx1ZP6jt9wagthliVg9h.jpg",
+			"genres": [
+				16,
+				28,
+				12,
+				878
+			]
+		}
+	},
+	{
 		"pk": 675353,
 		"model": "movies.movie",
 		"fields": {
@@ -2836,25 +2855,6 @@
 				80,
 				18,
 				53
-			]
-		}
-	},
-	{
-		"pk": 569094,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 569094,
-			"title": "스파이더맨: 어크로스 더 유니버스",
-			"released_date": "2023-05-31",
-			"vote_count": 0,
-			"vote_average": 0,
-			"overview": "새로운 스파이더맨 마일스 모랄레스(샤메익 무어)가 수많은 스파이더맨들과 함께 멀티버스 세계 속 다중 우주의 질서를 잡기 위해 빌런과 대결하는 이야기",
-			"poster_path": "https://image.tmdb.org/t/p/w300/p2l6hOlyx1ZP6jt9wagthliVg9h.jpg",
-			"genres": [
-				16,
-				28,
-				12,
-				878
 			]
 		}
 	},
