@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'accounts'
 urlpatterns =[
-    # path('<int:user_pk>/', views.follow, name='follow')
+    path('<int:user_pk>/', views.follow, name='follow')
 ]
