@@ -31,6 +31,9 @@ export default new Vuex.Store({
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({ name: 'review' })
+    },
+    DELETE_TOKEN(state) {
+      state.token = null
     }
   },
   actions: {
@@ -82,6 +85,17 @@ export default new Vuex.Store({
         context.commit('SAVE_TOKEN', res.data.key)
       })
       .catch((err) => console.log(err))
+    },
+    logout(context) {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/logout/`
+      })
+      .then((res) => {
+        context.commit('DELETE_TOKEN') 
+        console.log(res)
+      })
+      .catch(err => console.log(err))
     }
   },
   modules: {

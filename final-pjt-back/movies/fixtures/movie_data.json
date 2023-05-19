@@ -501,23 +501,6 @@
 		}
 	},
 	{
-		"pk": 964980,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 964980,
-			"title": "에어",
-			"released_date": "2023-04-05",
-			"vote_count": 558,
-			"vote_average": 7.5,
-			"overview": "세기의 아이콘을 만든 그들의 실화! 당신이 알고 있는 그 이상의 이야기  1984년, 업계 꼴찌를 벗어나지 못하고 있는 나이키는 브랜드의 간판이 되어 줄 새로운 모델을 찾는다. 나이키의 스카우터 소니 바카로(맷 데이먼)는 NBA의 떠오르는 루키 마이클 조던이 나이키의 미래라고 생각한다. 그런데, 이미 시장을 장악한 컨버스와 아디다스가 그와의 계약을 노리는 상황 나이키 팀은 조던의 마음을 얻기 위한 전략을 세우는데….",
-			"poster_path": "https://image.tmdb.org/t/p/w300/u72FzpfOZLBkeUdL3o3jyYK9OxU.jpg",
-			"genres": [
-				18,
-				36
-			]
-		}
-	},
-	{
 		"pk": 552688,
 		"model": "movies.movie",
 		"fields": {
@@ -583,6 +566,23 @@
 				53,
 				35,
 				80
+			]
+		}
+	},
+	{
+		"pk": 964980,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 964980,
+			"title": "에어",
+			"released_date": "2023-04-05",
+			"vote_count": 558,
+			"vote_average": 7.5,
+			"overview": "세기의 아이콘을 만든 그들의 실화! 당신이 알고 있는 그 이상의 이야기  1984년, 업계 꼴찌를 벗어나지 못하고 있는 나이키는 브랜드의 간판이 되어 줄 새로운 모델을 찾는다. 나이키의 스카우터 소니 바카로(맷 데이먼)는 NBA의 떠오르는 루키 마이클 조던이 나이키의 미래라고 생각한다. 그런데, 이미 시장을 장악한 컨버스와 아디다스가 그와의 계약을 노리는 상황 나이키 팀은 조던의 마음을 얻기 위한 전략을 세우는데….",
+			"poster_path": "https://image.tmdb.org/t/p/w300/u72FzpfOZLBkeUdL3o3jyYK9OxU.jpg",
+			"genres": [
+				18,
+				36
 			]
 		}
 	},
