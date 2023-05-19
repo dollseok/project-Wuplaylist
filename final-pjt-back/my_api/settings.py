@@ -61,10 +61,15 @@ REST_FRAMEWORK = {
     # Authentication
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
+    ],
+
+    # Permission setting
+    # 모든 요청에 대해 인증을 요구하거나 인증이 없어도 허용하는 설정 가능
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 모든 요청에 대해 허용 설정
+        'rest_framework.permissions.AllowAny'
     ]
 }
-
-# DEFAULT_PERMISSION_CLASSES
 
 REST_AUTH = {
     'SESSION_LOGIN': False

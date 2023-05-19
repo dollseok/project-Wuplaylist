@@ -2,9 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import GenreView from '../views/GenreView.vue'
+
 import ReviewView from '../views/reviews/ReviewView.vue'
 import CreateView from '../views/reviews/CreateView.vue'
 import DetailView from '../views/reviews/DetailView.vue'
+
+import LoginView from '../views/LoginView.vue'
+import SignupView from '../views/SignupView.vue'
 
 Vue.use(VueRouter)
 
@@ -37,6 +41,16 @@ const routes = [
     path: '/review/:id',
     name: 'detail',
     component: DetailView
+  },
+  {
+    path: '/signup',
+    name: 'SignupView',
+    component: SignupView
+  },
+  {
+    path: '/login',
+    name: 'LoginView',
+    component: LoginView
   },
 ]
 

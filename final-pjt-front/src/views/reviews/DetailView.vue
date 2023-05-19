@@ -44,8 +44,8 @@ export default {
     return {
       article: null,
       updatestatus: true,
-      changedTitle: null,
-      changedContent: null
+      changedTitle: this.$route.params.articleTitle,
+      changedContent: this.$route.params.articleContent,
     }
   },
   created() {

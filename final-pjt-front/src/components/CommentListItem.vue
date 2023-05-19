@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       updateStatus: true,
-      changedContent: null,
+      changedContent: this.comment.content,
     }
   },
   methods: {

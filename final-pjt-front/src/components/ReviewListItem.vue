@@ -5,7 +5,11 @@
     <router-link
       :to="{
         name: 'detail',
-        params: { id: article.id }
+        params: { 
+          id: article.id,
+          articleTitle: articleTitle,
+          articleContent: articleContent
+         }
       }"
     >
     [DETAIL]
@@ -22,6 +26,12 @@ export default {
   },
   props: {
     article: Object,
+  },
+  data() {
+    return {
+      articleTitle: this.article.title,
+      articleContent: this.article.content
+    }
   }
 }
 </script>
