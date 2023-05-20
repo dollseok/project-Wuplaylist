@@ -30,6 +30,7 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
+       
       router.push({ name: 'review' })
     },
     DELETE_TOKEN(state) {
@@ -83,6 +84,7 @@ export default new Vuex.Store({
       })
       .then((res) => {
         context.commit('SAVE_TOKEN', res.data.key)
+        console.log(res.data.key)
       })
       .catch((err) => console.log(err))
     },

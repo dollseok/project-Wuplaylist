@@ -6,7 +6,9 @@
       <router-link to="/review">영화 리뷰</router-link> |
       <router-link to="/signup">회원가입</router-link> |
       <router-link to="/login">로그인</router-link> |
-      <button v-if="token" @click="logout">로그아웃</button>
+      <button v-if="token" @click="logout">로그아웃</button> |
+      <router-link to="/profile">프로필</router-link>
+
     </nav>
     <router-view/>
   </div>
