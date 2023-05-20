@@ -91,8 +91,8 @@ def article_list(request):
     elif request.method == 'POST':
         serializer = ArticleSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            # serializer.save(user=request.user)
+            # serializer.save()
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET','PUT','DELETE'])
@@ -100,7 +100,6 @@ def article_detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     if request.method == 'GET':
         serializer = ArticleSerializer(article)
-        # print(serializer.data)
         return Response(serializer.data)
     
     if request.method == 'PUT':
@@ -129,7 +128,7 @@ def comment_list_article(request, article_pk):
     if request.method == 'POST':
         serializer = CommentArticleSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(article=article)
+            serializer.save(article=article, user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -166,7 +165,7 @@ def comment_list_movie(request, movie_pk):
     if request.method == 'POST':
         serializer = CommentMovieSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(movie=movie)
+            serializer.save(movie=movie, user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
