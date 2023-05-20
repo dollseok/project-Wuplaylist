@@ -2,7 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 from .serializers import UserSerializer
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 # # Create your views here.
 
@@ -14,19 +15,17 @@ def profile(request, username):
         return Response(serializer.data)
     
 
-@api_view(['GET'])
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def follow(request, username):
-    if request.method == 'GET':
-
+    if request.method == 'POST':
         person = get_user_model().objects.get(username=username)
         serializer = UserSerializer(person)
 
         if serializer.is_valid():
-
             if person != request.user:
                 if person.followers.filter(pk=request.user.pk).exists():
                     person.followers.remove(request.user)
                 else:
                     person.followers.add(request.user)
-
-            return Response(serializer.data)
+            return Response()
