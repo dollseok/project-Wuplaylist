@@ -134,14 +134,15 @@
 			"movie_id": 594767,
 			"title": "샤잠! 신들의 분노",
 			"released_date": "2023-03-15",
-			"vote_count": 1631,
+			"vote_count": 1633,
 			"vote_average": 6.8,
 			"overview": "신들의 힘을 갖게 된 빌리(애셔 앤젤)와 친구들은 각자의 방법으로 슈퍼히어로의 삶을 즐기게 된다. 그러던 그들 앞에 잃어버린 힘을 되찾고자 그리스 여신 헤스페라(헬렌 미렌)와 칼립소(루시 리우)가 나타나게 되고, 세상은 혼돈에 빠지게 되는데…",
 			"poster_path": "https://image.tmdb.org/t/p/w300/f5907P7GdAGI22PHNRfqoKCAcDR.jpg",
 			"genres": [
-				28,
 				35,
-				14
+				28,
+				14,
+				12
 			]
 		}
 	},
@@ -1828,24 +1829,6 @@
 		}
 	},
 	{
-		"pk": 983282,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 983282,
-			"title": "The Artifice Girl",
-			"released_date": "2023-04-27",
-			"vote_count": 46,
-			"vote_average": 6.4,
-			"overview": "",
-			"poster_path": "https://image.tmdb.org/t/p/w300/A3qrVjsBd4IZ3QWHMs2x1dwRxuX.jpg",
-			"genres": [
-				878,
-				53,
-				18
-			]
-		}
-	},
-	{
 		"pk": 1003579,
 		"model": "movies.movie",
 		"fields": {
@@ -1949,6 +1932,24 @@
 			"poster_path": "https://image.tmdb.org/t/p/w300/qEkatvFb6hrebLBAanb25ea26yh.jpg",
 			"genres": [
 				878
+			]
+		}
+	},
+	{
+		"pk": 983282,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 983282,
+			"title": "The Artifice Girl",
+			"released_date": "2023-04-27",
+			"vote_count": 46,
+			"vote_average": 6.4,
+			"overview": "",
+			"poster_path": "https://image.tmdb.org/t/p/w300/A3qrVjsBd4IZ3QWHMs2x1dwRxuX.jpg",
+			"genres": [
+				878,
+				53,
+				18
 			]
 		}
 	},
@@ -4687,7 +4688,7 @@
 			"movie_id": 739405,
 			"title": "스파이 코드명 포춘",
 			"released_date": "2023-01-04",
-			"vote_count": 725,
+			"vote_count": 724,
 			"vote_average": 6.6,
 			"overview": "꿀성대, 수트 핏, 어나더 레벨 액션, 모든 것이 완벽한 스파이 ‘포춘’과 전 세계 최고 요원들이 뭉쳐 세계 평화를 지키기 위해 고군분투하는 첩보 액션 블록버스터",
 			"poster_path": "https://image.tmdb.org/t/p/w300/gEFzlw5tnkJYthVfDS8WuIDZAhU.jpg",
@@ -5057,24 +5058,6 @@
 			"poster_path": "https://image.tmdb.org/t/p/w300/sPU7GkL58qKE5fKFgGb2qoTlt7G.jpg",
 			"genres": [
 				18
-			]
-		}
-	},
-	{
-		"pk": 744,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 744,
-			"title": "탑건",
-			"released_date": "1986-05-16",
-			"vote_count": 7355,
-			"vote_average": 7,
-			"overview": "해군 최신예 전투기인 F-14기를 모는 젊은 조종사 매버릭 대위는 훌륭한 전투기 조종사였던 아버지를 둔 패기만만한 파일럿 청년. 솜씨가 거칠기로 소문난 그는 탑 건 훈련학교에 입학하면서 인생의 전환을 맞게 된다. 가장 큰 변화는 항공물리학을 강의하는 여교관 찰리와 사랑에 빠진 것. 하지만 매버릭이 조종하던 F-14 전투기가 비행 훈련 도중 그만 제트 기류에 빠지면서 엔진 고장을 일으키고, 이때 함께 탈출을 시도하던 구즈가 사망하는 사고가 발생하고 마는데...",
-			"poster_path": "https://image.tmdb.org/t/p/w300/9DVdYFqGXdMPLgIfqQxNpUWz266.jpg",
-			"genres": [
-				10749,
-				18,
-				28
 			]
 		}
 	},
@@ -6105,6 +6088,24 @@
 				53,
 				27,
 				80
+			]
+		}
+	},
+	{
+		"pk": 744,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 744,
+			"title": "탑건",
+			"released_date": "1986-05-16",
+			"vote_count": 7355,
+			"vote_average": 7,
+			"overview": "해군 최신예 전투기인 F-14기를 모는 젊은 조종사 매버릭 대위는 훌륭한 전투기 조종사였던 아버지를 둔 패기만만한 파일럿 청년. 솜씨가 거칠기로 소문난 그는 탑 건 훈련학교에 입학하면서 인생의 전환을 맞게 된다. 가장 큰 변화는 항공물리학을 강의하는 여교관 찰리와 사랑에 빠진 것. 하지만 매버릭이 조종하던 F-14 전투기가 비행 훈련 도중 그만 제트 기류에 빠지면서 엔진 고장을 일으키고, 이때 함께 탈출을 시도하던 구즈가 사망하는 사고가 발생하고 마는데...",
+			"poster_path": "https://image.tmdb.org/t/p/w300/9DVdYFqGXdMPLgIfqQxNpUWz266.jpg",
+			"genres": [
+				10749,
+				18,
+				28
 			]
 		}
 	},
