@@ -7,12 +7,19 @@ from rest_framework.decorators import api_view
 # # Create your views here.
 
 @api_view(['GET'])
+def profile(request, username):
+    if request.method == 'GET':
+        person = get_user_model().objects.get(username=username)
+        serializer = UserSerializer(person)
+        return Response(serializer.data)
+    
 
-def follow(request, user_pk):
+@api_view(['GET'])
+def follow(request, username):
     if request.method == 'GET':
 
-        person = get_user_model().objects.get(pk=user_pk)
-        serializer = UserSerializer(data=request.data)
+        person = get_user_model().objects.get(username=username)
+        serializer = UserSerializer(person)
 
         if serializer.is_valid():
 
@@ -21,5 +28,5 @@ def follow(request, user_pk):
                     person.followers.remove(request.user)
                 else:
                     person.followers.add(request.user)
-            # print(serializer)
+
             return Response(serializer.data)
