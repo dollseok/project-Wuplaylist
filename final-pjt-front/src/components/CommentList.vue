@@ -41,6 +41,7 @@ export default {
     .then((res) => {
       // console.log(res.data)
       this.comments = res.data
+      console.log(this.comments)
     })
     .catch(err => console.log(err))
   }
