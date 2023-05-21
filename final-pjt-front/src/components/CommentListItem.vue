@@ -36,7 +36,7 @@ export default {
   },
 
   created(){
-    console.log(this.comment.user)
+    // console.log(this.comment.user)
     this.getUserDetail(this.comment.user)
   },
 

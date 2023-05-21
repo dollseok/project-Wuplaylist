@@ -3,7 +3,7 @@
     <h1>Article Detail</h1>
     <hr>
     <div v-if="updatestatus">
-      <p>작성자 : {{ author }}</p>
+      <p @click="goProfile">작성자 : {{ author }}</p>
       <p>글 번호 : {{ article?.id }}</p>
       <p>제목 : {{ article?.title }}</p>
       <p>내용 : {{ article?.content }}</p>
@@ -60,7 +60,7 @@ export default {
         url: `${API_URL}/api/v1/articles/${this.$route.params.id}/`
       })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         this.article = res.data
         // 이 부분 수정(username을 가져오기 위한 함수)
         // console.log(this.article.user)
@@ -77,7 +77,7 @@ export default {
         url: `${API_URL}/accounts/user/detail/${userId}/`
       })
       .then((res)=>{
-        console.log(res.data)
+        // console.log(res.data)
         this.author = res.data.username
         
         // this.article.user = res.data.username
@@ -86,9 +86,9 @@ export default {
       .catch(err=>console.log(err))
     },
     // 해당 작성자의 프로필로 이동
-    // goProfile() {
-    //     this.$router.push({ name: 'ProfileView', query: { data: JSON.stringify({userId: this.article.user}) } })
-    // },
+    goProfile() {
+        this.$router.push({ name: 'ProfileView', query: { data: JSON.stringify({userId: this.article.user}) } })
+    },
     updateMode() {
       this.updatestatus = !this.updatestatus
     },
