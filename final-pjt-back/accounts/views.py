@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from .serializers import UserSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse
 
 # # Create your views here.
 
@@ -13,7 +14,19 @@ def profile(request, username):
         person = get_user_model().objects.get(username=username)
         serializer = UserSerializer(person)
         return Response(serializer.data)
-    
+
+@api_view(['GET'])
+def get_user_detail(request, user_id):
+    try:
+        user = get_user_model().objects.get(pk=user_id)
+        response_data = {
+            'username': user.username,
+        }
+        print(response_data)
+        return JsonResponse(response_data)
+    except get_user_model().DoesNotExist:
+        return JsonResponse({'error':'User not found'}, status=404)
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

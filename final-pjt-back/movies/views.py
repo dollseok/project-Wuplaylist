@@ -93,6 +93,7 @@ def article_list(request):
         if serializer.is_valid(raise_exception=True):
             # serializer.save()
             serializer.save(user=request.user)
+            print(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET','PUT','DELETE'])
@@ -185,4 +186,4 @@ def comment_movie_detail(request, comment_pk):
     elif request.method == 'DELETE':
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)    
-    
+

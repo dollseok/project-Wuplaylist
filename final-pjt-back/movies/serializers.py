@@ -22,7 +22,7 @@ class MovieSerializer(serializers.ModelSerializer):
 class ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id','title','content')
+        fields = ('id','title','content',)
 
 class CommentArticleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,9 +30,17 @@ class CommentArticleSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('article', 'user',)
 
+from django.contrib.auth import get_user_model
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('__all__')
 
 class ArticleSerializer(serializers.ModelSerializer):
     comment_article_set = CommentArticleSerializer(many=True,read_only=True)
+    # user = UserSerializer(many=True)
+    
     class Meta:
         model= Article
         fields = '__all__'
