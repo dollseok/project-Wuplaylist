@@ -74,7 +74,7 @@ export default {
         url: `${API_URL}/accounts/user/detail/${userId}/`
       })
       .then((res)=>{
-        // console.log(res.data)
+        console.log(res.data)
         this.article.user = res.data.username
         // console.log(this.article)
       })

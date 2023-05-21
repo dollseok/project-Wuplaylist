@@ -2,7 +2,7 @@
   <div class="eachComment">
     <div v-if="updateStatus">
       <li>
-        {{ comment.content }}
+        {{ author }} - {{ comment.content }}
         <button @click="updateMode">수정</button>
         <button @click="deleteComment">삭제</button>
       </li>
@@ -31,8 +31,15 @@ export default {
     return {
       updateStatus: true,
       changedContent: this.comment.content,
+      author : null
     }
   },
+
+  created(){
+    // console.log(this.comment.user)
+    this.getUserDetail(this.comment.user)
+  },
+
   methods: {
     updateMode() {
       this.updateStatus = !this.updateStatus
@@ -63,6 +70,19 @@ export default {
       })
       .catch(err => console.log(err))
     },
+
+    // user의 디테일을 가져오기 위한 method
+    getUserDetail(userId){
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/detail/${userId}/`
+      })
+      .then((res)=>{
+        this.author = res.data.username
+      })
+      .catch(err=>console.log(err))
+    },
+
   }
 }
 </script>
