@@ -12,7 +12,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   plugins: [
-    createPersistedState(),
+    createPersistedState({
+    }),
   ],
   state: {
     articles: [
@@ -38,8 +39,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    // 리뷰 게시글 불러오는 요청
     getArticles(context) {
-      // 리뷰 게시글 불러오는 요청
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/articles/`,
@@ -53,6 +54,7 @@ export default new Vuex.Store({
       })
       .catch(err => console.log(err))
     },
+    // 회원가입
     signUp(context, payload) {
       const username = payload.username
       const password1 = payload.password1
@@ -71,6 +73,7 @@ export default new Vuex.Store({
       })
       .catch(err => console.log(err))
     },
+    // 로그인
     login(context, payload) {
       const username = payload.username
       const password = payload.password
@@ -88,6 +91,7 @@ export default new Vuex.Store({
       })
       .catch((err) => console.log(err))
     },
+    // 로그아웃
     logout(context) {
       axios({
         method: 'post',

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>Profile Page</h1>
-
+    <h1 v-if="userData">{{ userData.username }}의 Profile Page</h1>
   </div>
 </template>
 
@@ -14,20 +13,29 @@ export default {
     components: {},
     data(){
         return {
-
+            userData: null,
+            paramsData: null
         }
     },
     created(){
-        axios({
-            method: 'get',
-            url: `${API_URL}/accounts/profile/`
-        })
-        .then((res) => {
-            console.log(res)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+        this.paramsData = JSON.parse(this.$route.query.data)
+        console.log(this.paramsData)
+        this.getUserDetail()
+    },
+    methods: {
+        getUserDetail() {
+            axios({
+                method: 'get',
+                url: `${API_URL}/accounts/user/detail/${this.paramsData.userId}/`
+            })
+            .then((res) => {
+                console.log('데이터 잘 들어오쥬?')
+                this.userData = res.data
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
     }
 
 }

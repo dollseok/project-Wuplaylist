@@ -3,7 +3,7 @@
     <h1>Article Detail</h1>
     <hr>
     <div v-if="updatestatus">
-      <p>작성자 : {{ article?.user }}</p>
+      <p @click="goProfile" >작성자 : {{ author }}</p>
       <p>글 번호 : {{ article?.id }}</p>
       <p>제목 : {{ article?.title }}</p>
       <p>내용 : {{ article?.content }}</p>
@@ -44,6 +44,7 @@ export default {
   data() {
     return {
       article: null,
+      author: null,
       updatestatus: true,
       changedTitle: this.$route.params.articleTitle,
       changedContent: this.$route.params.articleContent,
@@ -75,13 +76,15 @@ export default {
       })
       .then((res)=>{
         // console.log(res.data)
-        this.article.user = res.data.username
+        this.author = res.data.username
         // console.log(this.article)
       })
       .catch(err=>console.log(err))
     },
-
-
+    // 해당 작성자의 프로필로 이동
+    goProfile() {
+        this.$router.push({ name: 'ProfileView', query: { data: JSON.stringify({userId: this.article.user}) } })
+    },
     updateMode() {
       this.updatestatus = !this.updatestatus
     },
