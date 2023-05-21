@@ -3,9 +3,10 @@
     <!-- <h1 v-if="userData">{{ userData.username }}의 Profile Page</h1> -->
     <h1>Profile Page</h1>
     <p v-if="userData">Username : {{ userData.username }}</p>
-    <p>Nickname : {{ user.nickname }}</p>
+    <p>Nickname : {{ userData.nickname }}</p>
     <p>Follower Count : {{ followerCount }}</p>
     <p>Following Count : {{ followingCount }}</p>
+    <button @click="follow">follow</button>
   </div>
 </template>
 
@@ -20,17 +21,13 @@ export default {
         return {
             followerCount: 0,
             followingCount: 0,
-            userData: null,
+            userData: {},
             paramsData: null,
         }
     },
     created(){
         this.paramsData = JSON.parse(this.$route.query.data)
-        // console.log(this.paramsData)
         this.getUserDetail()
-
-        this.fetchProfileData()
-
         
     },
     methods:{
@@ -42,6 +39,7 @@ export default {
             })
             .then((response) => {
                 this.user = response.data
+                console.log(this.user)
                 this.followerCount = response.data.followers.length
                 this.followingCount = response.data.followings.length
             })
@@ -55,10 +53,28 @@ export default {
                 url: `${API_URL}/accounts/user/detail/${this.paramsData.userId}/`
             })
             .then((res) => {
-                this.userData = res.data
                 console.log(res.data)
+                this.userData = res.data
+                this.fetchProfileData()
             })
             .catch(err => console.log(err))
+        },
+
+        follow(){
+            const username = this.userData.username
+            console.log(username)
+            axios({
+                method: 'post',
+                url: `${API_URL}/accounts/user/profile/${username}/follow/`,
+                
+                headers: {
+                    Authorization: `Token ${ this.$store.state.token }`
+                }
+            })
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => console.log(err))
         }
     }
 }

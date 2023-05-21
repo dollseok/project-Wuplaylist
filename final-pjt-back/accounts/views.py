@@ -19,8 +19,7 @@ def signup(request):
         return Response({'error':'비밀번호가 일치하지 않습니다'}, status=status.HTTP_400_BAD_REQUEST)
     
     serializer = UserSerializer(data = request.data)
-    print(serializer)
-    print(11111111111111111111111111111111)
+
     if serializer.is_valid(raise_exception=True):
         user = serializer.save()
         user.set_password(request.data.get('password'))
@@ -41,9 +40,10 @@ def get_user_detail(request, user_id):
         user = get_user_model().objects.get(pk=user_id)
         response_data = {
             'username': user.username,
+            'nickname': user.nickname, 
         }
-        print(response_data)
         return JsonResponse(response_data)
+    
     except get_user_model().DoesNotExist:
         return JsonResponse({'error':'User not found'}, status=404)
 
@@ -53,12 +53,16 @@ def get_user_detail(request, user_id):
 def follow(request, username):
     if request.method == 'POST':
         person = get_user_model().objects.get(username=username)
-        serializer = UserSerializer(person)
-
-        if serializer.is_valid():
-            if person != request.user:
-                if person.followers.filter(pk=request.user.pk).exists():
-                    person.followers.remove(request.user)
-                else:
-                    person.followers.add(request.user)
-            return Response()
+        me = get_user_model().objects.get(username=request.user)
+        print(person)
+        print(me.followings)
+        if person != me:
+            if me.followings.filter(username=person).exists():
+                me.followings.remove(person)
+                print('언팔')
+            else:
+                print('팔로우')
+                me.followings.add(person)
+        
+        
+        return Response('following')
