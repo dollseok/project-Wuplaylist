@@ -2,7 +2,7 @@
   <div>
     <!-- <h1 v-if="userData">{{ userData.username }}의 Profile Page</h1> -->
     <h1>Profile Page</h1>
-    <p>Username : {{ userData.username }}</p>
+    <p v-if="userData">Username : {{ userData.username }}</p>
     <p>Nickname : {{ user.nickname }}</p>
     <p>Follower Count : {{ followerCount }}</p>
     <p>Following Count : {{ followingCount }}</p>
@@ -18,41 +18,24 @@ export default {
     components: {},
     data(){
         return {
-    //         userData: null,
-    //         paramsData: null
-    //     }
-    // },
-    // created(){
-    //     this.paramsData = JSON.parse(this.$route.query.data)
-    //     console.log(this.paramsData)
-    //     this.getUserDetail()
-    // },
-    // methods: {
-    //     getUserDetail() {
-    //         axios({
-    //             method: 'get',
-    //             url: `${API_URL}/accounts/user/detail/${this.paramsData.userId}/`
-    //         })
-    //         .then((res) => {
-    //             console.log('데이터 잘 들어오쥬?')
-    //             this.userData = res.data
-            user : {},
-            followerCount : 0,
-            followingCount : 0,
+            followerCount: 0,
+            followingCount: 0,
             userData: null,
             paramsData: null,
         }
     },
     created(){
-        this.fetchProfileData()
-
         this.paramsData = JSON.parse(this.$route.query.data)
         console.log(this.paramsData)
         this.getUserDetail()
+
+        this.fetchProfileData()
+
+        
     },
     methods:{
         fetchProfileData(){
-            const username = this.$route.params.username
+            const username = this.userData.username
             axios({
                 method: 'get',
                 url: `${API_URL}/accounts/user/profile/${username}/`
@@ -73,7 +56,7 @@ export default {
             })
             .then((res) => {
                 this.userData = res.data
-                console.log(res.data)
+                console.log(this.userData)
             })
             .catch(err => console.log(err))
         }
