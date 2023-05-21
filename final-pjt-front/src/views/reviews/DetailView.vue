@@ -66,7 +66,7 @@ export default {
         // console.log(this.article.user)
         this.getUserDetail(this.article.user)
       })
-      .catch(err => console.log(err))
+      .catch(err => {console.log(err)})
     },
 
     // user의 디테일을 가져오기 위한 method

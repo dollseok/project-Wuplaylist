@@ -7,10 +7,13 @@
       <input type="text" id="username" v-model="username"><br>
       <!-- 비밀번호 -->
       <label for="password1">password : </label>
-      <input type="password" id="password1" v-model="password1"><br>
+      <input type="password" id="password" v-model="password"><br>
       <!-- 비밀번호 검증 -->
       <label for="password2">password confirmation: </label>
       <input type="password" id="password2" v-model="password2"><br>
+      <!-- 닉네임 -->
+      <label for="nickname">nickname : </label>
+      <input type="text" id="nickname" v-model="nickname"><br>
 
       <input type="submit" value="SignUp">
     </form>
@@ -23,18 +26,20 @@ export default {
   data() {
     return {
       username: null,
-      password1: null,
+      password: null,
       password2: null,
+      nickname:null,
     }
   },
   methods: {
     signUp() {
       const username = this.username
-      const password1 = this.password1
+      const password = this.password
       const password2 = this.password2
+      const nickname = this.nickname
 
       const payload = {
-        username, password1, password2
+        username, password, password2, nickname,
       }
 
       this.$store.dispatch('signUp', payload)

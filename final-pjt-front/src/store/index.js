@@ -31,7 +31,6 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-       
       router.push({ name: 'review' })
     },
     DELETE_TOKEN(state) {
@@ -57,14 +56,17 @@ export default new Vuex.Store({
     // 회원가입
     signUp(context, payload) {
       const username = payload.username
-      const password1 = payload.password1
+      const password = payload.password
       const password2 = payload.password2
+      const nickname = payload.nickname
+      console.log(username)
+      console.log(nickname)
 
       axios({
         method: 'post',
-        url: `${API_URL}/accounts/signup/`,
+        url: `${API_URL}/accounts/user/signup/`,
         data: {
-          username, password1, password2
+          username, password, password2, nickname,
         }
       })
       .then((res) => {
