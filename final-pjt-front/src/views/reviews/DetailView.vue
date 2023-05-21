@@ -3,6 +3,7 @@
     <h1>Article Detail</h1>
     <hr>
     <div v-if="updatestatus">
+      <p>작성자 : {{ article?.user }}</p>
       <p>글 번호 : {{ article?.id }}</p>
       <p>제목 : {{ article?.title }}</p>
       <p>내용 : {{ article?.content }}</p>
@@ -59,9 +60,28 @@ export default {
       })
       .then((res) => {
         this.article = res.data
+        // 이 부분 수정(username을 가져오기 위한 함수)
+        this.getUserDetail(this.article.user)
+        console.log(this.article.user)
       })
       .catch(err => console.log(err))
     },
+
+    // user의 디테일을 가져오기 위한 method
+    getUserDetail(userId){
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/detail/${userId}/`
+      })
+      .then((res)=>{
+        // console.log(res.data)
+        this.article.user = res.data.username
+        // console.log(this.article)
+      })
+      .catch(err=>console.log(err))
+    },
+
+
     updateMode() {
       this.updatestatus = !this.updatestatus
     },

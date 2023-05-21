@@ -25,6 +25,7 @@ export default {
     return {
       title: null,
       content: null,
+      user : null,
     }
   },
   methods: {
