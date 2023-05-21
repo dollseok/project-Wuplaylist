@@ -46,8 +46,8 @@ export default {
       article: null,
       author: null,
       updatestatus: true,
-      changedTitle: this.$route.params.articleTitle,
-      changedContent: this.$route.params.articleContent,
+      changedTitle: this.$route.query.articleTitle,
+      changedContent: this.$route.query.articleContent,
     }
   },
   created() {
@@ -57,7 +57,7 @@ export default {
     getArticleDetail() {
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/articles/${this.$route.params.id}/`
+        url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`
       })
       .then((res) => {
         // console.log(res.data)
@@ -96,10 +96,11 @@ export default {
     updateArticle() {
       const title = this.changedTitle
       const content = this.changedContent
+      // const articleUser = this.article.user
 
       axios({
         method: 'put',
-        url: `${API_URL}/api/v1/articles/${this.$route.params.id}/`,
+        url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`,
         data: { title, content }
       })
       .then(() => {
@@ -110,7 +111,7 @@ export default {
     deleteArticle() {
       axios({
         method: 'delete',
-        url: `${API_URL}/api/v1/articles/${this.$route.params.id}/`,
+        url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`,
       })
       .then(() => {
         this.$router.push({ name: 'review' })

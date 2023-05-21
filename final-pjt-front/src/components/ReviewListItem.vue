@@ -4,8 +4,8 @@
     <p>내용 : {{ article.content }}</p>
     <router-link
       :to="{
-        name: 'detail',
-        params: { 
+        path: '/review/:id',
+        query: { 
           id: article.id,
           articleTitle: articleTitle,
           articleContent: articleContent
