@@ -51,7 +51,7 @@ export default {
                 method: 'get',
                 url: `${API_URL}/accounts/user/profile/${username}`
             })
-            .then((res) => {
+            .then((response) => {
                 this.user = response.data
                 this.followerCount = response.data.followers.length
                 this.followingCount = response.data.followings.length

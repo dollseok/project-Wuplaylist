@@ -60,25 +60,27 @@ export default {
         url: `${API_URL}/api/v1/articles/${this.$route.params.id}/`
       })
       .then((res) => {
+        console.log(res.data)
         this.article = res.data
         // 이 부분 수정(username을 가져오기 위한 함수)
+        // console.log(this.article.user)
         this.getUserDetail(this.article.user)
-        console.log(this.article.user)
       })
       .catch(err => console.log(err))
     },
 
     // user의 디테일을 가져오기 위한 method
     getUserDetail(userId){
+      console.log(userId)
       axios({
         method: 'get',
         url: `${API_URL}/accounts/user/detail/${userId}/`
       })
       .then((res)=>{
-        // console.log(res.data)
-        // this.author = res.data.username
         console.log(res.data)
-        this.article.user = res.data.username
+        this.author = res.data.username
+        
+        // this.article.user = res.data.username
         // console.log(this.article)
       })
       .catch(err=>console.log(err))

@@ -1418,24 +1418,6 @@
 		}
 	},
 	{
-		"pk": 507086,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 507086,
-			"title": "쥬라기 월드: 도미니언",
-			"released_date": "2022-06-01",
-			"vote_count": 4819,
-			"vote_average": 6.9,
-			"overview": "공룡들의 터전이었던 이슬라 누블라 섬이 파괴된 후,  마침내 공룡들은 섬을 벗어나 세상 밖으로 출몰한다. 지상에 함께 존재해선 안 될 위협적 생명체인 공룡의 등장으로 인류 역사상 겪어보지 못한 사상 최악의 위기를 맞이한 인간들. 지구의 최상위 포식자 자리를 걸고 인간과 공룡의 최후의 사투가 펼쳐진다.",
-			"poster_path": "https://image.tmdb.org/t/p/w300/odxdUZWZ7fBfy3ZRj063wuJnZvo.jpg",
-			"genres": [
-				12,
-				28,
-				878
-			]
-		}
-	},
-	{
 		"pk": 650270,
 		"model": "movies.movie",
 		"fields": {
@@ -1789,6 +1771,23 @@
 				28,
 				16,
 				14
+			]
+		}
+	},
+	{
+		"pk": 873256,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 873256,
+			"title": "키스, 키스!",
+			"released_date": "2023-04-26",
+			"vote_count": 19,
+			"vote_average": 6.3,
+			"overview": "어떤 여자라도 매료시킬 수 있다고 확신하는 집념의 바람둥이. 그가 야심 많은 정치인의 아들과 결혼을 앞둔 완고한 여자에게 단단히 꽂힌다.",
+			"poster_path": "https://image.tmdb.org/t/p/w300/sJ7uqEbmE9U1Z2G1boys1mpvW0k.jpg",
+			"genres": [
+				10749,
+				35
 			]
 		}
 	},
@@ -2462,23 +2461,6 @@
 				16,
 				10749,
 				878
-			]
-		}
-	},
-	{
-		"pk": 873256,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 873256,
-			"title": "키스, 키스!",
-			"released_date": "2023-04-26",
-			"vote_count": 19,
-			"vote_average": 6.3,
-			"overview": "어떤 여자라도 매료시킬 수 있다고 확신하는 집념의 바람둥이. 그가 야심 많은 정치인의 아들과 결혼을 앞둔 완고한 여자에게 단단히 꽂힌다.",
-			"poster_path": "https://image.tmdb.org/t/p/w300/sJ7uqEbmE9U1Z2G1boys1mpvW0k.jpg",
-			"genres": [
-				10749,
-				35
 			]
 		}
 	},
@@ -3195,6 +3177,25 @@
 		}
 	},
 	{
+		"pk": 555604,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 555604,
+			"title": "기예르모 델토로의 피노키오",
+			"released_date": "2022-11-09",
+			"vote_count": 2260,
+			"vote_average": 8.2,
+			"overview": "많은 이들의 사랑을 받은 목각 인형 피노키오의 마법 같은 모험. 현실의 한계를 뛰어넘어, 새 생명을 불어넣는 강력한 사랑의 힘이 펼쳐진다. 이탈리아 고전 동화 \"피노키오\"가 스톱모션 뮤지컬로 재탄생한다. 말썽꾸러기 피노키오는 과연 인간 소년이 될 수 있을까? 그 여정을 따라가 보자.",
+			"poster_path": "https://image.tmdb.org/t/p/w300/6bdUtxydFXLtgcxHMMvlkNnRZWg.jpg",
+			"genres": [
+				16,
+				14,
+				18,
+				10402
+			]
+		}
+	},
+	{
 		"pk": 406759,
 		"model": "movies.movie",
 		"fields": {
@@ -3511,24 +3512,6 @@
 			"genres": [
 				16,
 				10751
-			]
-		}
-	},
-	{
-		"pk": 845659,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 845659,
-			"title": "퍼펙트 어딕션",
-			"released_date": "2023-02-16",
-			"vote_count": 115,
-			"vote_average": 6.6,
-			"overview": "",
-			"poster_path": "https://image.tmdb.org/t/p/w300/3wkrRKMFRwCpjp1U27914oRbcqH.jpg",
-			"genres": [
-				18,
-				10749,
-				28
 			]
 		}
 	},
@@ -6734,94 +6717,6 @@
 			"genres": [
 				12,
 				14
-			]
-		}
-	},
-	{
-		"pk": 862965,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 862965,
-			"title": "에밀리: 범죄의 유혹",
-			"released_date": "2022-08-12",
-			"vote_count": 505,
-			"vote_average": 6.8,
-			"overview": "미대를 졸업했지만 경미한 폭행 전과 때문에 변변한 직장을 구하지 못한 에밀리, 그녀는 학자금 대출의 압박과 함께 돈을 벌기 위해 신용카드 도용 사기를 하고 있는 조직에 가담하게 되고, 이를 통해 쉽게 돈을 벌 수 있게 되자 점점 더 깊은 범죄의 유혹 속으로 빠져들게 되는데...",
-			"poster_path": "https://image.tmdb.org/t/p/w300/iZvzMpREGiqDQ5eYbx8z70qPgst.jpg",
-			"genres": [
-				80,
-				18,
-				53
-			]
-		}
-	},
-	{
-		"pk": 74887,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 74887,
-			"title": "옥보단2:옥녀심경",
-			"released_date": "1996-05-09",
-			"vote_count": 24,
-			"vote_average": 6.1,
-			"overview": "'서문견’은 친구의 부인마저도 겁탈해 자신의 부인으로 맞는 악랄한 호색한이다. 그의 똑똑한 딸 ‘아유’는 배움을 위해 남장을 하고 몰래 학교에 가고 거기서 ‘화도’라는 동문을 알게 된다. 하지만 화도는 실수로 아유의 정조대에 의해 다치고, 상처를 치료하는 가운데 아유가 여자임을 알게 된다. 화도와 아유는 ‘극악도사’를 찾아가 상처를 치료받기로 하지만 극악도사는 ‘환희’라는 요괴의 얼굴을 고쳐준 후 ‘옥녀심경’이라는 고서를 빼앗긴 채 죽음을 당한다. 그러던 중 아유는 요괴를 쫓던 ‘철중당’을 만나고, 환희 요괴가 떨어뜨린 옥녀심경의 반을 찾게 된다. 한편, 서문견은 빚을 갚지 못하는 이씨의 딸의 미모에 홀려 사랑에 빠지지만 그녀의 정체는 환희 요괴였는데…",
-			"poster_path": "https://image.tmdb.org/t/p/w300/w9AZCyA2eWfuQLfZ096ufS0pURQ.jpg",
-			"genres": [
-				18,
-				14,
-				10749,
-				35
-			]
-		}
-	},
-	{
-		"pk": 12444,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 12444,
-			"title": "해리 포터와 죽음의 성물 1",
-			"released_date": "2010-10-06",
-			"vote_count": 17352,
-			"vote_average": 7.8,
-			"overview": "덤블도어 교장의 죽음 이후, 마법부는 죽음을 먹는 자들에게 점령당하고 호그와트는 위기에 빠진다. 성년이 되며 해리를 지켜주던 수호 마법은 사라지고 해리와 론, 헤르미온느는 볼드모트 영혼의 조각이 보관된 호크룩스를 찾아 파괴하기 위한 모험을 떠난다. 그러나 이미 볼드모트에 의해 장악된 마법세계에서 죽음을 먹는 자들을 피해 숨어다니는 것만으로도 쉽지 않다. 세 사람에게 남겨진 덤블도어의 유품은 수수께끼처럼 그저 막막하고, 아무런 단서도 없이 떠난 그들의 모험은 불안과 초조함으로 가득하다. 계속되는 시련의 나날 속에 세 친구는 끊임없이 서로에 대한 믿음과 숙명에 대한 의지를 시험받는다.",
-			"poster_path": "https://image.tmdb.org/t/p/w300/lOXvz8HrgOkp7AXGQp1APKeZqag.jpg",
-			"genres": [
-				12,
-				14
-			]
-		}
-	},
-	{
-		"pk": 1090328,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 1090328,
-			"title": "La Trampa",
-			"released_date": "2022-08-11",
-			"vote_count": 7,
-			"vote_average": 6.6,
-			"overview": "",
-			"poster_path": "https://image.tmdb.org/t/p/w300/nXhPTEIEDxekCZg9DwZQNshZ432.jpg",
-			"genres": [
-				35,
-				28
-			]
-		}
-	},
-	{
-		"pk": 744275,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 744275,
-			"title": "애프터: 관계의 함정",
-			"released_date": "2021-09-01",
-			"vote_count": 2173,
-			"vote_average": 7.1,
-			"overview": "영국 런던에서 미국 시애틀까지, 핫스팟에서 시작된 사랑의 클라이맥스! 첫사랑, 첫키스, 첫경험, 설렘 가득했던 처음을 뒤로 하고 꿈을 위해 잠시 서로를 떠나게 된 하딘과 테사. 각자 영국 런던과 미국 시애틀에서 롱디 연애를 앞둔 두 사람은 시간과 장소를 가리지 않고 달콤한 사랑을 속삭인다. 하지만 연애와 꿈의 갈림길에 선 둘은 서로에게 감춘 '누군가'의 존재와 예상치 못한 비밀까지 알게 되면서 사랑의 클라이맥스에 치닫게 되는데…",
-			"poster_path": "https://image.tmdb.org/t/p/w300/o0PgoBD6jLYId3LYpu9yUY06SLT.jpg",
-			"genres": [
-				10749,
-				18
 			]
 		}
 	}
