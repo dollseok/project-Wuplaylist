@@ -57,9 +57,8 @@ export default {
       likeCount: 0,
     }
   },
-  created() {
+  mounted() {
     this.getCurrentUser()
-    this.getArticleDetail()
   },
 
   methods: {
@@ -71,27 +70,24 @@ export default {
           return false
       }
     },
-    getArticleDetail() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`
-      })
-      .then((res) => {
+    // getArticleDetail() {
+    //   axios({
+    //     method: 'get',
+    //     url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`
+    //   })
+    //   .then((res) => {
+    //     // console.log(res.data.like_user)
+    //     this.article = res.data
+    //     this.getUserDetail(this.article.user)
+    //     this.likeCount = res.data.like_user.length
+    //     this.isLiked = this.checkLike(res.data.like_user, this.currentUser.id)
+    //     console.log(this.currentUser.id)
 
-        // console.log(res.data.like_user)
-        this.article = res.data
-        this.getUserDetail(this.article.user)
-        this.likeCount = res.data.like_user.length
-        
-        this.isLiked = this.checkLike(res.data.like_user, this.currentUser.id)
-        console.log(this.isLiked)
-        console.log(this.currentUser.id)
-
-        // 이 부분 수정(username을 가져오기 위한 함수)
-        // console.log(this.article.user)
-      })
-      .catch(err => {console.log(err)})
-    },
+    //     // 이 부분 수정(username을 가져오기 위한 함수)
+    //     // console.log(this.article.user)
+    //   })
+    //   .catch(err => {console.log(err)})
+    // },
 
     // user의 디테일을 가져오기 위한 method
     getUserDetail(userId){
@@ -149,10 +145,10 @@ export default {
         }
       })
       .then((res) => {
-        // console.log(res)
-        // console.log(res.data.like_user)
+
         this.likeCount = res.data.like_user.length
         this.isLiked = !this.isLiked
+
       })
       .catch(err => console.log(err))
     },
@@ -166,8 +162,23 @@ export default {
         })
         .then((res) => {
             this.currentUser = res.data
-            console.log(res.data.id)
-        })
+            const userId = res.data.id
+              axios({
+                method: 'get',
+                url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`
+              })
+              .then((res) => {
+                this.article = res.data
+                this.getUserDetail(this.article.user)
+                this.likeCount = res.data.like_user.length
+                this.isLiked = this.checkLike(res.data.like_user, userId)
+                console.log(this.currentUser.id)
+
+                // 이 부분 수정(username을 가져오기 위한 함수)
+                // console.log(this.article.user)
+              })
+              .catch(err => {console.log(err)})            
+            })
         .catch(err => console.log(err))
     },
   }
