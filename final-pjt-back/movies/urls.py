@@ -10,7 +10,8 @@ urlpatterns =[
     # 게시글 CRUD url
     path('articles/', views.article_list),
     path('articles/<int:article_pk>/', views.article_detail),
-    path('articles/<int:article_pk>/likes', views.like_article),
+    # 게시글 좋아요
+    path('articles/<int:article_pk>/likes/', views.like_article),
     
     # 게시글 댓글 CRUD url
     # 게시글 댓글 상세 조회, 수정, 삭제 

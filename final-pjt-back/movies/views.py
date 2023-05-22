@@ -193,10 +193,10 @@ def like_article(request, article_pk):
     if request.user.is_authenticated:
         article = get_object_or_404(Article, pk=article_pk)
 
-        if article.like_users.filter(pk=request.user.pk).exists():
-            article.like_users.remove(request.user)
+        if article.like_user.filter(pk=request.user.pk).exists():
+            article.like_user.remove(request.user)
             
         else:
-            article.like_users.add(request.user)
+            article.like_user.add(request.user)
         serializer = ArticleSerializer(article)
         return Response(serializer.data)
