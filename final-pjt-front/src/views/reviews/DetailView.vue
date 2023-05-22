@@ -51,42 +51,56 @@ export default {
       updatestatus: true,
       changedTitle: this.$route.query.articleTitle,
       changedContent: this.$route.query.articleContent,
+
+      currentUser: {},
       isLiked: false,
       likeCount: 0,
     }
   },
   created() {
+    this.getCurrentUser()
     this.getArticleDetail()
   },
+
   methods: {
+    // 해당 게시글 좋아요를 누른 사용자인지 확인하는 함수
+    checkLike(list, userId) {
+      if (list.indexOf(userId) != -1 ) {
+          return true
+      } else {
+          return false
+      }
+    },
     getArticleDetail() {
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`
       })
       .then((res) => {
-        console.log(res.data)
+
+        // console.log(res.data.like_user)
         this.article = res.data
+        this.getUserDetail(this.article.user)
+        this.likeCount = res.data.like_user.length
+        
+        this.isLiked = this.checkLike(res.data.like_user, this.currentUser.id)
+        console.log(this.isLiked)
+        console.log(this.currentUser.id)
+
         // 이 부분 수정(username을 가져오기 위한 함수)
         // console.log(this.article.user)
-        this.getUserDetail(this.article.user)
       })
       .catch(err => {console.log(err)})
     },
 
     // user의 디테일을 가져오기 위한 method
     getUserDetail(userId){
-      console.log(userId)
       axios({
         method: 'get',
         url: `${API_URL}/accounts/user/detail/${userId}/`
       })
       .then((res)=>{
-        // console.log(res.data)
         this.author = res.data.username
-        
-        // this.article.user = res.data.username
-        // console.log(this.article)
       })
       .catch(err=>console.log(err))
     },
@@ -125,6 +139,7 @@ export default {
     goBack() {
       this.$router.push({ name: 'review'})
     },
+    // 게시글 좋아요
     likeArticle() {
       axios({
         method: 'post',
@@ -140,7 +155,21 @@ export default {
         this.isLiked = !this.isLiked
       })
       .catch(err => console.log(err))
-    }
+    },
+    getCurrentUser(){
+        axios({
+            method: 'get',
+            url:`${API_URL}/accounts/user/current/`,
+            headers:{
+                Authorization: `Token ${this.$store.state.token}`
+            }
+        })
+        .then((res) => {
+            this.currentUser = res.data
+            console.log(res.data.id)
+        })
+        .catch(err => console.log(err))
+    },
   }
 }
 </script>
