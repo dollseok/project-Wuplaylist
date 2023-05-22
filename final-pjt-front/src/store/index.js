@@ -19,6 +19,8 @@ export default new Vuex.Store({
     ],
     token: null,
     currentUsername: null,
+    
+    movies: [],
   },
   getters: {
     isLogin(state) {
@@ -39,6 +41,10 @@ export default new Vuex.Store({
     },
     DELETE_TOKEN(state) {
       state.token = null
+    },
+
+    GET_ALL_MOVIES(state, movies){
+      state.movies = movies
     }
   },
   actions: {  // dispatch로 호출하여 사용
@@ -109,7 +115,23 @@ export default new Vuex.Store({
         console.log(res)
       })
       .catch(err => console.log(err))
+    },
+
+    getAllMovies(context){
+      // 전체 영화 데이터 불러오기
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/`
+      })
+      .then((res) => {
+        context.commit('GET_ALL_MOVIES', res.data)
+        console.log(res)
+        // this.allMovieList = res.data
+        // console.log(this.allMovieList)
+      })
+      .catch(err => console.log(err))
     }
+
   },
   modules: {
   }
