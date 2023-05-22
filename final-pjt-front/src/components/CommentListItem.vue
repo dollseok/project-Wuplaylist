@@ -2,9 +2,10 @@
   <div class="eachComment">
     <div v-if="updateStatus">
       <li>
-        {{ author }} - {{ comment.content }}
+        <p><span @click="goProfile">{{ author }}</span> - {{ comment.content }}
         <button @click="updateMode">수정</button>
         <button @click="deleteComment">삭제</button>
+        </p>
       </li>
     </div>
     <!-- 수정 버튼을 누르지 않았을 때 -->
@@ -15,8 +16,8 @@
         <button @click="updateMode">취소</button>
       </li>
     </div>
-    <button v-if="isLiked" @click="likeComment">좋아요 취소</button>
-    <button v-else @click="likeComment">좋아요</button>
+    <button v-if="isLiked" @click="likeComment">{{ likeCount }} 좋아요 취소</button>
+    <button v-else @click="likeComment">{{ likeCount }} 좋아요</button>
   </div>
 </template>
 
@@ -48,6 +49,9 @@ export default {
     this.getCurrentUser()
   },
   methods: {
+    goProfile() {
+        this.$router.push({ name: 'ProfileView', query: { data: JSON.stringify({userId: this.comment.user}) } })
+    },
     updateMode() {
       this.updateStatus = !this.updateStatus
     },
@@ -91,17 +95,16 @@ export default {
     },
     // 댓글 좋아요
     likeComment() {
-      console.log(this.articleId)
-      console.log(this.comment.id)
       axios({
         method: 'post',
-        url: `${API_URL}/api/v1/articles/${this.articleId}/comments_article/${this.comment.id}/`,
+        url: `${API_URL}/api/v1/comments_article/${this.comment.id}/likes/`,
         headers: {
           Authorization: `Token ${ this.$store.state.token }`
         }
       })
       .then((res) => {
-        console.log(res)
+        this.likeCount = res.data.like_user.length
+        this.isLiked = !this.isLiked
       })
       .catch(err => console.log(err))
     },
