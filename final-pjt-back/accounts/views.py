@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.response import Response
+from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 from .serializers import UserSerializer
 from rest_framework.decorators import api_view, permission_classes
@@ -54,15 +55,24 @@ def follow(request, username):
     if request.method == 'POST':
         person = get_user_model().objects.get(username=username)
         me = get_user_model().objects.get(username=request.user)
-        print(person)
-        print(me.followings)
         if person != me:
             if me.followings.filter(username=person).exists():
                 me.followings.remove(person)
-                print('언팔')
+                print('언팔로우')
+                serializer = UserSerializer(me)
+
             else:
-                print('팔로우')
                 me.followings.add(person)
+                print('팔로우')
+                serializer = UserSerializer(me)
         
+        return Response(serializer.data) # 팔로우 버튼 누른 당사자의 serializer 데이터
         
-        return Response('following')
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def currentUser(request):
+    if request.method == 'GET':
+        me = get_user_model().objects.get(username=request.user)
+        serializer = UserSerializer(me)
+        return Response(serializer.data)

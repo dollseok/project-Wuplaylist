@@ -4,7 +4,6 @@
       <router-link to="/">홈</router-link> |
       <router-link to="/genre">장르별 추천</router-link> |
       <router-link to="/review">영화 리뷰</router-link> |
-      
       <router-link :to="{ name: 'ProfileView', query: { data: JSON.stringify({ username: currentUsername }) } }">프로필</router-link>
       <!-- 토큰이 있을 때는 로그아웃 버튼 -->
       <button v-if="token" @click="logout">로그아웃</button> 

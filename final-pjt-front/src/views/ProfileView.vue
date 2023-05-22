@@ -6,11 +6,12 @@
     <p>Nickname : {{ nickname }}</p>
     <p>Follower Count : {{ followerCount }}</p>
     <p>Following Count : {{ followingCount }}</p>
-    <button @click="follow">follow</button>
+    <button @click="follow">{{ isFollowing? 'Unfollow':'follow'}}</button>
   </div>
 </template>
 
 <script>
+import router from '@/router'
 import axios from 'axios'
 const API_URL='http://127.0.0.1:8000'
 
@@ -25,6 +26,9 @@ export default {
             followingCount: 0,
             userData: {},
             paramsData: null,
+
+            currentUser : null,
+            isFollowing:false, // 팔로우 상태 저장하는 변수
         }
     },
     created(){
@@ -35,7 +39,7 @@ export default {
         } else { // userId로 받아오는 경우 ( 게시글이나 댓글을 통해 )
             this.getUserDetail()    // 작성자의 프로필 정보 가져오기
         }
-        
+        this.getCurrentUser()    
     },
     methods:{
         // 타고 들어간 해당 유저의 데이터
@@ -53,19 +57,48 @@ export default {
                 this.nickname = response.data.nickname
                 this.followerCount = response.data.followers.length
                 this.followingCount = response.data.followings.length
+
+                const loggedInUserId = this.currentUser.id // 현재 로그인된 유저의 아이디
+                const followersList = response.data.followers
+                this.isFollowing = this.checkIdExists(followersList, loggedInUserId)
+                console.log(this.isFollowing)
             })
             .catch((err)=>{
                 console.log(err)
             })
         },
         // userId를 활용해 username과 nickname을 받아오기
+        // 현재 유저의 데이터
+        getCurrentUser(){
+            axios({
+                method: 'get',
+                url:`${API_URL}/accounts/user/current/`,
+                headers:{
+                    Authorization: `Token ${this.$store.state.token}`
+                }
+            })
+            .then((res) => {
+                this.currentUser = res.data
+            })
+            .catch(err => console.log(err))
+        },
+        // 팔로워 리스트에 있는지 확인하는 함수
+        checkIdExists(data, id){
+            if (data.indexOf(id) != -1) {
+                return true
+            } else { 
+                return false
+            }
+
+        },
+
         getUserDetail() {
             axios({
                 method: 'get',
                 url: `${API_URL}/accounts/user/detail/${this.paramsData.userId}/`
             })
             .then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 this.userData = res.data
                 const username = this.userData.username
                 this.fetchProfileData(username)
@@ -75,17 +108,19 @@ export default {
 
         follow(){
             const username = this.userData.username
-            console.log(username)
             axios({
                 method: 'post',
                 url: `${API_URL}/accounts/user/profile/${username}/follow/`,
-                
                 headers: {
                     Authorization: `Token ${ this.$store.state.token }`
                 }
             })
             .then((res) => {
-                console.log(res)
+                router.go(0)
+                this.isFollowing = !this.isFollowing
+                console.log(this.isFollowing)
+                console.log(res.data)
+
             })
             .catch((err) => console.log(err))
         }
