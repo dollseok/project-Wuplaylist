@@ -33,14 +33,14 @@ export default {
         }
     },
     created(){
+        this.getCurrentUser()   
         this.paramsData = JSON.parse(this.$route.query.data) // 게시글에서 작성자 UserId를 받아오고
         console.log(this.paramsData)
         if (this.paramsData.username) { // username으로 받아오는 경우 
             this.fetchProfileData(this.paramsData.username)
         } else { // userId로 받아오는 경우 ( 게시글이나 댓글을 통해 )
             this.getUserDetail()    // 작성자의 프로필 정보 가져오기
-        }
-        this.getCurrentUser()    
+        } 
     },
     methods:{
         // 타고 들어간 해당 유저의 데이터

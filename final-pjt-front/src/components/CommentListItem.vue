@@ -2,9 +2,10 @@
   <div class="eachComment">
     <div v-if="updateStatus">
       <li>
-        {{ author }} - {{ comment.content }}
+        <p><span @click="goProfile">{{ author }}</span> - {{ comment.content }}
         <button @click="updateMode">수정</button>
         <button @click="deleteComment">삭제</button>
+        </p>
       </li>
     </div>
     <!-- 수정 버튼을 누르지 않았을 때 -->
@@ -15,6 +16,8 @@
         <button @click="updateMode">취소</button>
       </li>
     </div>
+    <button v-if="isLiked" @click="likeComment">{{ likeCount }} 좋아요 취소</button>
+    <button v-else @click="likeComment">{{ likeCount }} 좋아요</button>
   </div>
 </template>
 
@@ -31,7 +34,10 @@ export default {
     return {
       updateStatus: true,
       changedContent: this.comment.content,
-      author : null
+      author : null,
+      articleId: null,
+      likeCount: 0,
+      isLiked: false,
     }
   },
 
@@ -39,8 +45,13 @@ export default {
     // console.log(this.comment.user)
     this.getUserDetail(this.comment.user)
   },
-
+  mounted(){
+    this.getCurrentUser()
+  },
   methods: {
+    goProfile() {
+        this.$router.push({ name: 'ProfileView', query: { data: JSON.stringify({userId: this.comment.user}) } })
+    },
     updateMode() {
       this.updateStatus = !this.updateStatus
     },
@@ -82,7 +93,62 @@ export default {
       })
       .catch(err=>console.log(err))
     },
+    // 댓글 좋아요
+    likeComment() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/comments_article/${this.comment.id}/likes/`,
+        headers: {
+          Authorization: `Token ${ this.$store.state.token }`
+        }
+      })
+      .then((res) => {
+        this.likeCount = res.data.like_user.length
+        this.isLiked = !this.isLiked
+      })
+      .catch(err => console.log(err))
+    },
+    // 현재 접속한 유저의 id를 확인하고
+    // 확인이 되었다면 comment의 세부정보를 가져옴
+    // 현재 접속한 유저가 좋아요를 눌렀는지 여부 포함
+    getCurrentUser(){
+    axios({
+        method: 'get',
+        url:`${API_URL}/accounts/user/current/`,
+        headers:{
+            Authorization: `Token ${this.$store.state.token}`
+        }
+    })
+    .then((res) => {
+        this.currentUser = res.data
+        const userId = res.data.id
+          // comment의 세부정보를 가져오는 요청
+          axios({
+            method: 'get',
+            url: `${API_URL}/api/v1/comments_article/${this.comment.id}/`
+          })
+          .then((res) => {
+            console.log(res.data)
+            this.commentData = res.data // comment 정보
+            this.articleId = res.data.article // 게시글 id
+            // this.getUserDetail(res.data.user) // 작성자 세부정보 가져오기
+            this.likeCount = res.data.like_user.length
+            this.isLiked = this.checkLike(res.data.like_user, userId)
 
+            // 이 부분 수정(username을 가져오기 위한 함수)
+            // console.log(this.article.user)
+          })
+          .catch(err => {console.log(err)})            
+        })
+    .catch(err => console.log(err))
+    },
+    checkLike(list, userId) {
+      if (list.indexOf(userId) != -1 ) {
+          return true
+      } else {
+          return false
+      }
+    },
   }
 }
 </script>

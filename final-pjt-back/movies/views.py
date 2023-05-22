@@ -10,9 +10,30 @@ from .models import *
 
 
 
-# 데이터 파일 제이슨으로 받기
-# 현재는 고정, 업데이트가 필요할 수도 있음
-# 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
+# # 데이터 파일 제이슨으로 받기
+# # 현재는 고정, 업데이트가 필요할 수도 있음
+# # 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
+
+from django.core.exceptions import ObjectDoesNotExist
+
+def save_movie_data(total_data):
+    print('이건되나')
+    for data in total_data:
+        try:
+            movie = Movie.objects.get(movie_id=data['fields']['movie_id'])
+        except ObjectDoesNotExist:
+            movie = Movie(
+                movie_id=data['fields']['movie_id'],
+                title=data['fields']['title'],
+                released_date=data['fields']['released_date'],
+                poster_path=data['fields']['poster_path'],
+                vote_count=data['fields']['vote_count'],
+                vote_average=data['fields']['vote_average'],
+                overview=data['fields']['overview'],
+                genres=data['fields']['genres']
+            )
+            movie.save()
+
 
 # import requests
 # import json
@@ -207,4 +228,20 @@ def like_article(request, article_pk):
         else:
             article.like_user.add(request.user)
         serializer = ArticleSerializer(article)
+        return Response(serializer.data)
+    
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def like_comment_article(request, comment_pk):
+    print('함수호출?')
+    print(request.user)
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment_article, pk=comment_pk)
+
+        if comment.like_user.filter(pk=request.user.pk).exists():
+            comment.like_user.remove(request.user)
+            
+        else:
+            comment.like_user.add(request.user)
+        serializer = CommentArticleSerializer(comment)
         return Response(serializer.data)
