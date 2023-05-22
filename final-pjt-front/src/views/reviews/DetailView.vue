@@ -60,7 +60,7 @@ export default {
         url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`
       })
       .then((res) => {
-        // console.log(res.data)
+        console.log(res.data)
         this.article = res.data
         // 이 부분 수정(username을 가져오기 위한 함수)
         // console.log(this.article.user)

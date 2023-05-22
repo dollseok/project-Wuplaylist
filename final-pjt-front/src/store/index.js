@@ -19,15 +19,20 @@ export default new Vuex.Store({
     articles: [
     ],
     token: null,
+    currentUsername: null,
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
     }
   },
-  mutations: {
+  mutations: {  // commit으로 호출하여 사용
     GET_ARTICLES(state, articles) {
       state.articles = articles
+    },
+    SAVE_USER(state, currentUsername) {
+      console.log(currentUsername)
+      state.currentUsername = currentUsername
     },
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -37,7 +42,7 @@ export default new Vuex.Store({
       state.token = null
     }
   },
-  actions: {
+  actions: {  // dispatch로 호출하여 사용
     // 리뷰 게시글 불러오는 요청
     getArticles(context) {
       axios({
@@ -88,8 +93,9 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
+        console.log(res)
+        context.commit('SAVE_USER', username)
         context.commit('SAVE_TOKEN', res.data.key)
-        console.log(res.data.key)
       })
       .catch((err) => console.log(err))
     },
