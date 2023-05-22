@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import router from '@/router'
 import axios from 'axios'
 const API_URL='http://127.0.0.1:8000'
 
@@ -72,6 +73,7 @@ export default {
                 }
             })
             .then((res) => {
+                router.go(0)
                 console.log(res)
             })
             .catch((err) => console.log(err))
