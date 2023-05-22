@@ -14,61 +14,61 @@ from .models import *
 # 현재는 고정, 업데이트가 필요할 수도 있음
 # 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
 
-import requests
-import json
+# import requests
+# import json
 
-def get_movie_datas():
-    total_data = []
+# def get_movie_datas():
+#     total_data = []
 
-    for i in range(1,20):
-        url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page={i}&sort_by=popularity.desc"
+#     for i in range(1,20):
+#         url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page={i}&sort_by=popularity.desc"
 
-        headers = {
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjNlM2FhNjVlOTZlOTVjN2Y0MWZmMDdmY2NkMzAxYiIsInN1YiI6IjYzZDMxYTM4NWEwN2Y1MDA5ZTk4MDM0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.svzZx8RMTp1kjkBzxbvcOuoduFUJjduTqyQf-ufCBfo"
-        }
+#         headers = {
+#             "accept": "application/json",
+#             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjNlM2FhNjVlOTZlOTVjN2Y0MWZmMDdmY2NkMzAxYiIsInN1YiI6IjYzZDMxYTM4NWEwN2Y1MDA5ZTk4MDM0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.svzZx8RMTp1kjkBzxbvcOuoduFUJjduTqyQf-ufCBfo"
+#         }
 
-        response = requests.get(url, headers=headers).json()
+#         response = requests.get(url, headers=headers).json()
 
-        for movie in response['results']:
-            if movie.get('release_date', ''):
-                poster_url = f"https://image.tmdb.org/t/p/w300{movie['poster_path']}"
+#         for movie in response['results']:
+#             if movie.get('release_date', ''):
+#                 poster_url = f"https://image.tmdb.org/t/p/w300{movie['poster_path']}"
             
-                fields = {
-                    'movie_id': movie['id'],
-                    'title' : movie['title'], 
-                    'released_date': movie['release_date'],
-                    'vote_count':movie['vote_count'],
-                    'vote_average': movie['vote_average'],
-                    'overview': movie['overview'],
-                    'poster_path': movie['poster_path'],
-                    'genres': movie['genre_ids']
-                }
-                data = {
-                    'pk' : movie['id'],
-                    'model': 'movies.movie',
-                    'fields': fields
-                }
-                # poster_path 링크 누락된 부분 수정하고 데이터에 넣어주기 
-                data['fields']['poster_path'] = poster_url
+#                 fields = {
+#                     'movie_id': movie['id'],
+#                     'title' : movie['title'], 
+#                     'released_date': movie['release_date'],
+#                     'vote_count':movie['vote_count'],
+#                     'vote_average': movie['vote_average'],
+#                     'overview': movie['overview'],
+#                     'poster_path': movie['poster_path'],
+#                     'genres': movie['genre_ids']
+#                 }
+#                 data = {
+#                     'pk' : movie['id'],
+#                     'model': 'movies.movie',
+#                     'fields': fields
+#                 }
+#                 # poster_path 링크 누락된 부분 수정하고 데이터에 넣어주기 
+#                 data['fields']['poster_path'] = poster_url
                 
-                total_data.append(data)
+#                 total_data.append(data)
 
-        with open("movies/fixtures/movie_data.json", "w", encoding="utf-8") as w:
-            json.dump(total_data, w, indent="\t", ensure_ascii=False)
+#         # with open("movies/fixtures/movie_data.json", "w", encoding="utf-8") as w:
+#         #     json.dump(total_data, w, indent="\t", ensure_ascii=False)
         
-        movie_obj, created = Movie.objects.update_or_create(
-            movie_id = movie['id'],
-            defaults = fields
-        )
+#         # movie_obj, created = Movie.objects.update_or_create(
+#         #     movie_id = movie['id'],
+#         #     defaults = fields
+#         # )
         
-        movie_obj.poster_path = poster_url
-        movie_obj.save()
+#         # movie_obj.poster_path = poster_url
+#         # movie_obj.save()
         
-    print('데이터 저장')
+#     print('데이터 저장')
         
 
-get_movie_datas()
+# get_movie_datas()
 
 
 # Create your views here.
