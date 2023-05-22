@@ -104,6 +104,7 @@ export default {
     goProfile() {
         this.$router.push({ name: 'ProfileView', query: { data: JSON.stringify({userId: this.article.user}) } })
     },
+    
     updateMode() {
       this.updatestatus = !this.updatestatus
     },
