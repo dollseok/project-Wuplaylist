@@ -7,5 +7,5 @@ class UserSerializer(serializers.ModelSerializer):
     # followers = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = get_user_model()
-        fields = ('username', 'password', 'nickname', 'followings', 'followers', 'introduce',)
+        fields = ('id','username', 'password', 'nickname', 'followings', 'followers', 'introduce',)
         read_only_fields = ('followings', 'followers',)

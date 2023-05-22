@@ -10,4 +10,7 @@ urlpatterns =[
     path('profile/<str:username>/', views.profile, name='profile'),
     # 팔로우 기능 
     path('profile/<str:username>/follow/', views.follow, name='follow'),
+
+    # 현재 유저의 정보를 가져옴
+    path('current/',views.currentUser, name='currentUser')
 ]
