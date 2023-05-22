@@ -23,6 +23,9 @@
       <button @click="updateArticle">저장</button>
       <button @click="updateMode">취소</button>
     </div>
+    <button v-if="isLiked" @click="likeArticle">{{ likeCount }} 좋아요 취소</button>
+    <button v-else @click="likeArticle">{{ likeCount }} 좋아요</button>
+
     <hr>
     <CommentList 
     v-if="article"
@@ -48,6 +51,8 @@ export default {
       updatestatus: true,
       changedTitle: this.$route.query.articleTitle,
       changedContent: this.$route.query.articleContent,
+      isLiked: false,
+      likeCount: 0,
     }
   },
   created() {
@@ -119,6 +124,22 @@ export default {
     },
     goBack() {
       this.$router.push({ name: 'review'})
+    },
+    likeArticle() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/articles/${this.article.id}/likes/`,
+        headers: {
+          Authorization: `Token ${ this.$store.state.token }`
+        }
+      })
+      .then((res) => {
+        // console.log(res)
+        // console.log(res.data.like_user)
+        this.likeCount = res.data.like_user.length
+        this.isLiked = !this.isLiked
+      })
+      .catch(err => console.log(err))
     }
   }
 }
