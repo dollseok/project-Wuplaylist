@@ -26,7 +26,7 @@
 			"movie_id": 385687,
 			"title": "분노의 질주: 라이드 오어 다이",
 			"released_date": "2023-05-17",
-			"vote_count": 250,
+			"vote_count": 252,
 			"vote_average": 7.1,
 			"overview": "돔과 그의 패밀리 앞에 나타난 운명의 적 단테. 과거의 그림자는 돔의 모든 것을 파괴하기 위해 달려온다. 단테에 의해 산산히 흩어진 패밀리들은 모두 목숨을 걸고 맞서야 하는 함정에 빠지고 마는데...",
 			"poster_path": "https://image.tmdb.org/t/p/w300/3JT1oE0JIA6CQJaZDG00y3S0kP3.jpg",
@@ -345,7 +345,7 @@
 			"movie_id": 934433,
 			"title": "스크림 6",
 			"released_date": "2023-03-08",
-			"vote_count": 1219,
+			"vote_count": 1218,
 			"vote_average": 7.3,
 			"overview": "고스트페이스의 습격에서 살아남은 생존자들이 우즈보로를 떠나 뉴욕에서 새로운 삶을 시작하지만, 다시금 과거의 살인마에게 쫓기게 되는 이야기",
 			"poster_path": "https://image.tmdb.org/t/p/w300/1zhb49U0Rjg2qVU9L7VLmujf1Hs.jpg",
@@ -504,6 +504,25 @@
 		}
 	},
 	{
+		"pk": 1121116,
+		"model": "movies.movie",
+		"fields": {
+			"movie_id": 1121116,
+			"title": "매기 심슨의 \"베이비 로그 원\"",
+			"released_date": "2023-05-04",
+			"vote_count": 15,
+			"vote_average": 5.2,
+			"overview": "어린이집으로 향하던 매기는 호머가 한눈을 판 사이 그로구의 비행 유모차에 올라타 은하계를 가로지르는 하이퍼스페이스로 모험을 떠난다. '스타워즈'의 모든 것를 기념하는 이 에픽한 스케일의 단편에서 매기는 스프링필드에서 제국군의 타이 파이터 대대를 상대로 전투를 벌인다.",
+			"poster_path": "https://image.tmdb.org/t/p/w300/1iKP4PLgFOBw8cTMp950Kr2xw7c.jpg",
+			"genres": [
+				16,
+				10751,
+				878,
+				35
+			]
+		}
+	},
+	{
 		"pk": 325358,
 		"model": "movies.movie",
 		"fields": {
@@ -638,25 +657,6 @@
 			"genres": [
 				28,
 				12,
-				35
-			]
-		}
-	},
-	{
-		"pk": 1121116,
-		"model": "movies.movie",
-		"fields": {
-			"movie_id": 1121116,
-			"title": "매기 심슨의 \"베이비 로그 원\"",
-			"released_date": "2023-05-04",
-			"vote_count": 15,
-			"vote_average": 5.2,
-			"overview": "어린이집으로 향하던 매기는 호머가 한눈을 판 사이 그로구의 비행 유모차에 올라타 은하계를 가로지르는 하이퍼스페이스로 모험을 떠난다. '스타워즈'의 모든 것를 기념하는 이 에픽한 스케일의 단편에서 매기는 스프링필드에서 제국군의 타이 파이터 대대를 상대로 전투를 벌인다.",
-			"poster_path": "https://image.tmdb.org/t/p/w300/1iKP4PLgFOBw8cTMp950Kr2xw7c.jpg",
-			"genres": [
-				16,
-				10751,
-				878,
 				35
 			]
 		}

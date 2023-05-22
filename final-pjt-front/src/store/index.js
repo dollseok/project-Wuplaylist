@@ -31,8 +31,8 @@ export default new Vuex.Store({
       state.articles = articles
     },
     SAVE_USER(state, currentUsername) {
-      console.log(currentUsername)
       state.currentUsername = currentUsername
+      localStorage.setItem('currentUsername', state.currentUsername)
     },
     SAVE_TOKEN(state, token) {
       state.token = token

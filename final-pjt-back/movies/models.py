@@ -20,14 +20,16 @@ class Movie(models.Model):
 class Article(models.Model):
     
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_articles')
-
+    like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_articles')
+    
     title = models.CharField(max_length=30)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Comment_article(models.Model):
+
+    like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_comment_articles')
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)    
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
@@ -36,6 +38,8 @@ class Comment_article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class Comment_movie(models.Model):
+    
+    like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_comment_movies')
     
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)    
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
