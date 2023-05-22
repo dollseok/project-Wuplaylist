@@ -33,7 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts',
     'movies',
-    
+
+    'apscheduler',
+
     'rest_framework',
     # Auth
     'rest_framework.authtoken',
@@ -176,5 +178,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
 
-# APScheduler settings
-SCHEDULER_AUTOSTART = True

@@ -10,9 +10,30 @@ from .models import *
 
 
 
-# 데이터 파일 제이슨으로 받기
-# 현재는 고정, 업데이트가 필요할 수도 있음
-# 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
+# # 데이터 파일 제이슨으로 받기
+# # 현재는 고정, 업데이트가 필요할 수도 있음
+# # 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
+
+from django.core.exceptions import ObjectDoesNotExist
+
+def save_movie_data(total_data):
+    print('이건되나')
+    for data in total_data:
+        try:
+            movie = Movie.objects.get(movie_id=data['fields']['movie_id'])
+        except ObjectDoesNotExist:
+            movie = Movie(
+                movie_id=data['fields']['movie_id'],
+                title=data['fields']['title'],
+                released_date=data['fields']['released_date'],
+                poster_path=data['fields']['poster_path'],
+                vote_count=data['fields']['vote_count'],
+                vote_average=data['fields']['vote_average'],
+                overview=data['fields']['overview'],
+                genres=data['fields']['genres']
+            )
+            movie.save()
+
 
 import requests
 import json
@@ -20,7 +41,7 @@ import json
 def get_movie_datas():
     total_data = []
 
-    for i in range(1,20):
+    for i in range(1,10):
         url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page={i}&sort_by=popularity.desc"
 
         headers = {
@@ -53,22 +74,9 @@ def get_movie_datas():
                 data['fields']['poster_path'] = poster_url
                 
                 total_data.append(data)
-
-        with open("movies/fixtures/movie_data.json", "w", encoding="utf-8") as w:
-            json.dump(total_data, w, indent="\t", ensure_ascii=False)
-        
-        movie_obj, created = Movie.objects.update_or_create(
-            movie_id = movie['id'],
-            defaults = fields
-        )
-        
-        movie_obj.poster_path = poster_url
-        movie_obj.save()
-        
-    print('데이터 저장')
-        
-
-get_movie_datas()
+    
+    save_movie_data(total_data)
+    # print(total_data)     
 
 
 # Create your views here.
