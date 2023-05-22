@@ -208,3 +208,18 @@ def like_article(request, article_pk):
             article.like_user.add(request.user)
         serializer = ArticleSerializer(article)
         return Response(serializer.data)
+    
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def like_comment_article(request, comment_pk):
+    print('함수호출?')
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment_article, pk=comment_pk)
+
+        if comment.like_user.filter(pk=request.user.pk).exists():
+            comment.like_user.remove(request.user)
+            
+        else:
+            comment.like_user.add(request.user)
+        serializer = CommentArticleSerializer(comment)
+        return Response(serializer.data)

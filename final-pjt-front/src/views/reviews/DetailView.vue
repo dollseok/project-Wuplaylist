@@ -146,10 +146,8 @@ export default {
         }
       })
       .then((res) => {
-
         this.likeCount = res.data.like_user.length
         this.isLiked = !this.isLiked
-
       })
       .catch(err => console.log(err))
     },
@@ -164,6 +162,7 @@ export default {
         .then((res) => {
             this.currentUser = res.data
             const userId = res.data.id
+              // Article의 세부정보를 가져오는 요청
               axios({
                 method: 'get',
                 url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`
@@ -173,7 +172,7 @@ export default {
                 this.getUserDetail(this.article.user)
                 this.likeCount = res.data.like_user.length
                 this.isLiked = this.checkLike(res.data.like_user, userId)
-                console.log(this.currentUser.id)
+                // console.log(this.currentUser.id)
 
                 // 이 부분 수정(username을 가져오기 위한 함수)
                 // console.log(this.article.user)
