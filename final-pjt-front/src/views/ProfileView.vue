@@ -1,12 +1,13 @@
 <template>
   <div>
-    <!-- <h1 v-if="userData">{{ userData.username }}의 Profile Page</h1> -->
     <h1>Profile Page</h1>
-    <p v-if="userData">Username : {{ username }}</p>
-    <p>Nickname : {{ nickname }}</p>
-    <p>Follower Count : {{ followerCount }}</p>
-    <p>Following Count : {{ followingCount }}</p>
-    <button @click="follow">{{ isFollowing? 'Unfollow':'follow'}}</button>
+    <div v-if="username">
+        <p>Username : {{ username }}</p>
+        <p>Nickname : {{ nickname }}</p>
+        <p>Follower Count : {{ followerCount }}</p>
+        <p>Following Count : {{ followingCount }}</p>
+        <button v-if="username != currentUser.username " @click="follow">{{ isFollowing? 'Unfollow':'follow'}}</button>
+    </div>
   </div>
 </template>
 
