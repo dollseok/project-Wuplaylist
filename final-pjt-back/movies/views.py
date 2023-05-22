@@ -57,6 +57,14 @@ def get_movie_datas():
         with open("movies/fixtures/movie_data.json", "w", encoding="utf-8") as w:
             json.dump(total_data, w, indent="\t", ensure_ascii=False)
         
+        movie_obj, created = Movie.objects.update_or_create(
+            movie_id = movie['id'],
+            defaults = fields
+        )
+        
+        movie_obj.poster_path = poster_url
+        movie_obj.save()
+        
     print('데이터 저장')
         
 
