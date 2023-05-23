@@ -42,7 +42,8 @@ const routes = [
   {
     path: '/review/:id',
     name: 'detail',
-    component: DetailView
+    component: DetailView,
+    props:true
   },
   {
     path: '/signup',
