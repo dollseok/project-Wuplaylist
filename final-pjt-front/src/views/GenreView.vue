@@ -2,15 +2,6 @@
   <div class="genre">
     <h1>Main</h1>
     
-    <AllMovieList />
-
-    <!-- <div v-for="movie in allMovieList" :key="movie.id">
-      {{ movie.title }}
-      <img :src="movie.poster_path" alt="movieImage">
-    </div> -->
-
-
-
     <!-- 장르 버튼 -->
     <GenreList/>
     <!-- <GenreButton /> -->
@@ -23,14 +14,12 @@
 </template>
 
 <script>
-import AllMovieList from '@/components/AllMovieList.vue'
 import GenreList from '@/components/GenreList.vue'
 
 
 export default {
   name: 'GenreView',
   components: {
-    AllMovieList,
     GenreList,
   },
   computed:{

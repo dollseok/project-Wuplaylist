@@ -10,10 +10,10 @@
         {{ genre.genre_name }}
       </div>
     </div>
-      <div>
-        <h1>선택한 장르에 따른 영화 추천</h1>
-
-      </div>
+    <div>
+      <h1>선택한 장르에 따른 영화 추천</h1>
+      
+    </div>
 
   </div>
 </template>
