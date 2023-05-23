@@ -1,13 +1,13 @@
 <template>
   <div class="genre">
-    <h1>Genre</h1>
+    <h1>Main</h1>
     
     <AllMovieList />
 
-    <div v-for="movie in allMovieList" :key="movie.id">
+    <!-- <div v-for="movie in allMovieList" :key="movie.id">
       {{ movie.title }}
       <img :src="movie.poster_path" alt="movieImage">
-    </div>
+    </div> -->
 
 
 
@@ -22,38 +22,27 @@
 <script>
 import AllMovieList from '@/components/AllMovieList.vue'
 
-// import axios from 'axios'
-// const API_URL='http://127.0.0.1:8000'
-
 export default {
   name: 'GenreView',
   components: {
     AllMovieList,
   },
-  // data() {
-  //   return {
-  //     allMovieList: [], 
-  //   }
-  // },
+  computed:{
+    allMovieList(){
+      return this.$store.state.movies
+    }
+  },
   created() {
     this.getAllMovies()
+    this.getGenres()
   },
   methods: {
     getAllMovies(){
       this.$store.dispatch('getAllMovies')
-      // console.log(this.$store.state.movies)
     },
-
-    // 전체 영화 데이터 불러오기
-    // axios({
-    //   method: 'get',
-    //   url: `${API_URL}/api/v1/movies/`
-    // })
-    // .then((res) => {
-    //   this.allMovieList = res.data
-    //   console.log(this.allMovieList)
-    // })
-    // .catch(err => console.log(err))
+    getGenres(){
+      this.$store.dispatch('getGenres')
+    }
   },
 }
 

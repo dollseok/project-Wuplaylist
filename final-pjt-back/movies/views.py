@@ -122,6 +122,14 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 @api_view(['GET'])
+def genre_list(request):
+    if request.method == 'GET':
+        genres = get_list_or_404(Genre)
+        serializer = GenreSerializer(genres, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
 def movie_list(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)

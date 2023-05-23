@@ -17,10 +17,13 @@ export default new Vuex.Store({
   state: {
     articles: [
     ],
+    // 유저 관련
     token: null,
     currentUsername: null,
     
+    // 영화 관련
     movies: [],
+    genres: [],
   },
   getters: {
     isLogin(state) {
@@ -43,8 +46,14 @@ export default new Vuex.Store({
       state.token = null
     },
 
+    //영화 전체 리스트
     GET_ALL_MOVIES(state, movies){
       state.movies = movies
+    },
+
+    // 장르 전체 리스트
+    GET_ALL_GENRES(state, genres){
+      state.genres = genres
     }
   },
   actions: {  // dispatch로 호출하여 사용
@@ -117,17 +126,27 @@ export default new Vuex.Store({
       .catch(err => console.log(err))
     },
 
+    // 전체 영화 데이터 불러오기
     getAllMovies(context){
-      // 전체 영화 데이터 불러오기
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/movies/`
+        url: `${API_URL}/api/v1/movies/`,
       })
       .then((res) => {
         context.commit('GET_ALL_MOVIES', res.data)
+      })
+      .catch(err => console.log(err))
+    },
+
+    // 전체 장르 데이터 불러오기
+    getGenres(context){
+      axios({
+        method:'get',
+        url: `${API_URL}/api/v1/genres/`
+      })
+      .then((res) => {
+        context.commit('GET_ALL_GENRES', res.data)
         console.log(res)
-        // this.allMovieList = res.data
-        // console.log(this.allMovieList)
       })
       .catch(err => console.log(err))
     }
