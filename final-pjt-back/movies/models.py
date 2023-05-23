@@ -22,8 +22,12 @@ class Genre(models.Model):
 
 
 class Article(models.Model):
-    
+    # 자신의 플레이리스트에 담은 영화 목록
+    # contain_articles를 통해 해당 영화를 포함한 플레이리스트(게시글)을 불러올 수 있음
+    # contain_movies = models.ManyToManyField(Movie, related_name='contain_articles')
+    # 작성자
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # 게시글을 좋아요한 유저
     like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_articles')
     
     title = models.CharField(max_length=30)

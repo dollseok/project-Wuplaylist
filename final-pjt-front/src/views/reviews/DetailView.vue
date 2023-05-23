@@ -44,6 +44,9 @@ export default {
   components: {
     CommentList
   },
+  props: {
+    id: String,
+  },
   data() {
     return {
       article: null,
@@ -116,7 +119,7 @@ export default {
 
       axios({
         method: 'put',
-        url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`,
+        url: `${API_URL}/api/v1/articles/${this.id}/`,
         data: { title, content }
       })
       .then(() => {
@@ -127,7 +130,7 @@ export default {
     deleteArticle() {
       axios({
         method: 'delete',
-        url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`,
+        url: `${API_URL}/api/v1/articles/${this.id}/`,
       })
       .then(() => {
         this.$router.push({ name: 'review' })
@@ -165,7 +168,7 @@ export default {
               // Article의 세부정보를 가져오는 요청
               axios({
                 method: 'get',
-                url: `${API_URL}/api/v1/articles/${this.$route.query.id}/`
+                url: `${API_URL}/api/v1/articles/${this.id}/`
               })
               .then((res) => {
                 this.article = res.data

@@ -3,14 +3,10 @@
     <p>제목 : {{ article.title }}</p>
     <p>내용 : {{ article.content }}</p>
     <router-link
-      :to="{
-        path: '/review/:id',
-        query: { 
-          id: article.id,
+      :to="{name:'detail', params:{id: String(article.id)}, query: { 
           articleTitle: articleTitle,
           articleContent: articleContent
-         }
-      }"
+         } }"
     >
     [DETAIL]
     </router-link>
