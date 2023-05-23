@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>HomeView</h1>
+    <AllMovieList />
     <!-- <MovieCard 
     v-for=" movie in newMovies" :key=""
     />
@@ -17,10 +18,12 @@
 
 <script>
 // import movieData from '@/assets/movie_data.json'
+import AllMovieList from '@/components/AllMovieList.vue'
 
 export default {
   name: 'HomeView',
   components: {
+    AllMovieList
   },
   computed: {
     // movieData() {
