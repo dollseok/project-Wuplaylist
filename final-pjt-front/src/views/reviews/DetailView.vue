@@ -73,15 +73,14 @@ export default {
   },
 
   methods: {
+    // 해당 글에 담긴 영화들을 가져오는함수
     getPlaylistMovies() {
-      console.log(this.article)
       const movies = this.$store.state.movies // 전체 영화 데이터
       if (this.article.contain_movies) {
         for (const movieId of this.article.contain_movies) {
           this.playlist_movies.push(movies[movieId-1])
         }
       }
-      // console.log(this.playlist_movies)
     },
     // 해당 게시글 좋아요를 누른 사용자인지 확인하는 함수
     checkLike(list, userId) {
@@ -91,6 +90,7 @@ export default {
           return false
       }
     },
+    // -----------------------------------------
     // getArticleDetail() {
     //   axios({
     //     method: 'get',
@@ -109,6 +109,7 @@ export default {
     //   })
     //   .catch(err => {console.log(err)})
     // },
+    // -----------------------------------------
 
     // user의 디테일을 가져오기 위한 method
     getUserDetail(userId){
@@ -129,7 +130,7 @@ export default {
     updateMode() {
       this.updatestatus = !this.updatestatus
     },
-
+    // 글 수정
     updateArticle() {
       const title = this.changedTitle
       const content = this.changedContent
@@ -145,6 +146,7 @@ export default {
       })
       .catch(err => console.log(err))
     },
+    // 글 삭제
     deleteArticle() {
       axios({
         method: 'delete',
@@ -182,23 +184,17 @@ export default {
         })
         .then((res) => {
             this.currentUser = res.data
-            const userId = res.data.id
-              // Article의 세부정보를 가져오는 요청
-              axios({
+            const userId = res.data.id // 현재 접속한 유저의 id
+              axios({ // Article의 세부정보를 가져오는 요청
                 method: 'get',
                 url: `${API_URL}/api/v1/articles/${this.id}/`
               })
               .then((res) => {
                 this.article = res.data
-                console.log(this.article)
-                this.getUserDetail(this.article.user)
+                this.getUserDetail(this.article.user) // 작성자 username 가져오는 함수
                 this.likeCount = res.data.like_user.length
-                this.isLiked = this.checkLike(res.data.like_user, userId)
-                // console.log(this.currentUser.id)
-
-                // 이 부분 수정(username을 가져오기 위한 함수)
-                // console.log(this.article.user)
-                this.getPlaylistMovies()
+                this.isLiked = this.checkLike(res.data.like_user, userId) // 접속한 유저가 좋아요를 눌렀는지 확인
+                this.getPlaylistMovies() // 플레이리스트의 영화들 가져오기
               })
               .catch(err => {console.log(err)})            
             })

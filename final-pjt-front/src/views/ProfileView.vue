@@ -7,6 +7,8 @@
         <p>Follower Count : {{ followerCount }}</p>
         <p>Following Count : {{ followingCount }}</p>
         <button v-if="username != currentUser.username " @click="follow">{{ isFollowing? 'Unfollow':'follow'}}</button>
+
+        {{userData['article_set']}}
     </div>
   </div>
 </template>
@@ -32,10 +34,9 @@ export default {
             isFollowing:false, // 팔로우 상태 저장하는 변수
         }
     },
-    created(){
+    mounted(){
         this.getCurrentUser()   
         this.paramsData = JSON.parse(this.$route.query.data) // 게시글에서 작성자 UserId를 받아오고
-        console.log(this.paramsData)
         if (this.paramsData.username) { // username으로 받아오는 경우 
             this.fetchProfileData(this.paramsData.username)
         } else { // userId로 받아오는 경우 ( 게시글이나 댓글을 통해 )
@@ -53,7 +54,6 @@ export default {
             .then((response) => {
                 this.user = response.data
                 // console.log(this.user)
-                // console.log(response.data.username)
                 this.username = response.data.username
                 this.nickname = response.data.nickname
                 this.followerCount = response.data.followers.length
@@ -62,7 +62,6 @@ export default {
                 const loggedInUserId = this.currentUser.id // 현재 로그인된 유저의 아이디
                 const followersList = response.data.followers
                 this.isFollowing = this.checkIdExists(followersList, loggedInUserId)
-                console.log(this.isFollowing)
             })
             .catch((err)=>{
                 console.log(err)
@@ -99,7 +98,7 @@ export default {
                 url: `${API_URL}/accounts/user/detail/${this.paramsData.userId}/`
             })
             .then((res) => {
-                // console.log(res.data)
+                console.log(res.data)
                 this.userData = res.data
                 const username = this.userData.username
                 this.fetchProfileData(username)
