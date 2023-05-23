@@ -31,7 +31,7 @@ def save_movie_data(total_data):
 def get_movies_data():
     total_data = []
 
-    for i in range(1,20):
+    for i in range(1,8):
         url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page={i}&sort_by=popularity.desc"
 
         headers = {
@@ -112,14 +112,14 @@ from datetime import datetime, timedelta
 def start():
 
     scheduler = BackgroundScheduler()
-    # scheduler.add_job(get_genres_data, 'interval', seconds=10)
-    # scheduler.add_job(get_movie_datas, 'interval', seconds=10)
+    scheduler.add_job(get_genres_data, 'interval', seconds=100000)
+    scheduler.add_job(get_movies_data, 'interval', seconds=100000)
     
-    # 시작할 때는 바로 저장
-    scheduler.add_job(get_genres_data, 'date', run_date=datetime.now())
-    scheduler.add_job(get_movies_data, 'date', run_date=datetime.now())
-    # 후에는 네시간에 한번
-    scheduler.add_job(get_movies_data, 'interval', hours=4, start_date=datetime.now() +timedelta(hours=4))
+    # # 시작할 때는 바로 저장
+    # scheduler.add_job(get_genres_data, 'date', run_date=datetime.now())
+    # scheduler.add_job(get_movies_data, 'date', run_date=datetime.now())
+    # # 후에는 네시간에 한번
+    # scheduler.add_job(get_movies_data, 'interval', hours=4, start_date=datetime.now() +timedelta(hours=4))
     
     scheduler.start()
     
