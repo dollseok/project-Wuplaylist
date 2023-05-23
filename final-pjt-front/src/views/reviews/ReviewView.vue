@@ -1,6 +1,6 @@
 <template>
   <div class="review">
-    <h1>Review</h1>
+    <h1>무비 플레이리스트</h1>
     <router-link to="/create">글 작성하기</router-link>
     <ReviewList />
   </div>

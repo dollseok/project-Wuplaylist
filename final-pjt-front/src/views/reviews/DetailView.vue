@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Article Detail</h1>
     <hr>
     <div v-if="updatestatus">
-      <p @click="goProfile">작성자 : {{ author }}</p>
-      <p>글 번호 : {{ article?.id }}</p>
-      <p>제목 : {{ article?.title }}</p>
+      <h2>{{ article?.title }}</h2>
+      <hr>
       <p>내용 : {{ article?.content }}</p>
+
+      <span @click="goProfile">작성자 : {{ author }}</span>
       <p>작성시각 : {{ article?.created_at }}</p>
       <p>수정시각 : {{ article?.updated_at }}</p>
 
@@ -16,8 +16,7 @@
     </div>
     <!-- 수정버튼을 눌렀을 때 -->
     <div v-else>
-      <p>글 번호 : {{ article?.id }}</p>
-      <p>제목 : <input type="text" v-model="changedTitle"></p>
+      <h2><input type="text" v-model="changedTitle"></h2>
       <p>내용 : <input type="text" v-model="changedContent"></p>
 
       <button @click="updateArticle">저장</button>
@@ -31,11 +30,12 @@
     <div v-for="movie in playlist_movies" :key="movie.id">
       {{ movie.title }}
       <img :src="movie.poster_path" alt="movieImage">
+      <button v-if="!updatestatus" @click="deleteFromPlaylist(movie)">삭제</button>
     </div>
     <hr>
     <CommentList 
     v-if="article"
-    :articleId="article.id"
+    :articleId="article?.id"
     />
   </div>
 </template>
@@ -58,8 +58,9 @@ export default {
       article: null,
       author: null,
       updatestatus: true,
-      changedTitle: this.$route.query.articleTitle,
-      changedContent: this.$route.query.articleContent,
+      changedTitle: this.$route.query.articleData.title,
+      changedContent: this.$route.query.articleData.content,
+      changedContainMoviesId: [],
 
       currentUser: {},
       isLiked: false,
@@ -79,6 +80,7 @@ export default {
       if (this.article.contain_movies) {
         for (const movieId of this.article.contain_movies) {
           this.playlist_movies.push(movies[movieId-1])
+          this.changedContainMoviesId.push(movieId)
         }
       }
     },
@@ -134,12 +136,13 @@ export default {
     updateArticle() {
       const title = this.changedTitle
       const content = this.changedContent
+      const contain_movies = this.changedContainMoviesId
       // const articleUser = this.article.user
 
       axios({
         method: 'put',
         url: `${API_URL}/api/v1/articles/${this.id}/`,
-        data: { title, content }
+        data: { title, content, contain_movies }
       })
       .then(() => {
         this.$router.go(0)
@@ -158,6 +161,12 @@ export default {
     },
     goBack() {
       this.$router.push({ name: 'review'})
+    },
+    // 플레이리스트 영화 삭제
+    deleteFromPlaylist(movie) {
+      const movieIdx = this.playlist_movies.indexOf(movie)
+      this.playlist_movies.splice(movieIdx, 1)
+      this.changedContainMoviesId.splice(movieIdx, 1)
     },
     // 게시글 좋아요
     likeArticle() {

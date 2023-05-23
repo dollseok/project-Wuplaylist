@@ -1,6 +1,5 @@
 <template>
   <div class="review-list">
-    <h3>review list</h3>
     <hr>
     <ReviewListItem 
     v-for="article in articles" :key="article.id"

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>플레이리스트 만들기</h1>
-
+    <hr>
     <!-- 영화 추가하는 모달 팝업 -->
     <div class="movieModal black-bg" v-if="isModalViewed" @close-modal="isModalViewed=false">
       <div class="white-bg">
@@ -14,7 +14,6 @@
           {{ movie.title }}
           <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage">
         </div>
-        
       </div>
     </div>
 
@@ -33,7 +32,7 @@
       <ContentView 
       :containedMovie="containedMovie"
       />
-
+      <hr v-if="!isModalViewed">
       <button @click.prevent="isModalViewed=true">영화 추가하기</button> | 
       <input type="submit" id="submit">
     </form>
