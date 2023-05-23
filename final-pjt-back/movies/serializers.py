@@ -4,6 +4,7 @@ from .models import Movie, Article, Comment_article, Comment_movie, Genre
 class MovieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
+        fields = '__all__'
         # fields = ('title','overview','genres', 'poster_path', 'like_user')
 
 class CommentMovieSerializer(serializers.ModelSerializer):

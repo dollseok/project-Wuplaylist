@@ -9,7 +9,7 @@
       <p>내용 : {{ article?.content }}</p>
       <p>작성시각 : {{ article?.created_at }}</p>
       <p>수정시각 : {{ article?.updated_at }}</p>
-      
+
       <button @click="updateMode">수정</button>
       <button @click="deleteArticle">삭제</button>
       <button @click="goBack">목록</button>
@@ -26,6 +26,12 @@
     <button v-if="isLiked" @click="likeArticle">{{ likeCount }} 좋아요 취소</button>
     <button v-else @click="likeArticle">{{ likeCount }} 좋아요</button>
 
+    <hr>
+    <h4>담은 영화들</h4>
+    <div v-for="movie in playlist_movies" :key="movie.id">
+      {{ movie.title }}
+      <img :src="movie.poster_path" alt="movieImage">
+    </div>
     <hr>
     <CommentList 
     v-if="article"
@@ -58,6 +64,8 @@ export default {
       currentUser: {},
       isLiked: false,
       likeCount: 0,
+
+      playlist_movies: [],
     }
   },
   mounted() {
@@ -65,6 +73,16 @@ export default {
   },
 
   methods: {
+    getPlaylistMovies() {
+      console.log(this.article)
+      const movies = this.$store.state.movies // 전체 영화 데이터
+      if (this.article.contain_movies) {
+        for (const movieId of this.article.contain_movies) {
+          this.playlist_movies.push(movies[movieId-1])
+        }
+      }
+      // console.log(this.playlist_movies)
+    },
     // 해당 게시글 좋아요를 누른 사용자인지 확인하는 함수
     checkLike(list, userId) {
       if (list.indexOf(userId) != -1 ) {
@@ -172,6 +190,7 @@ export default {
               })
               .then((res) => {
                 this.article = res.data
+                console.log(this.article)
                 this.getUserDetail(this.article.user)
                 this.likeCount = res.data.like_user.length
                 this.isLiked = this.checkLike(res.data.like_user, userId)
@@ -179,6 +198,7 @@ export default {
 
                 // 이 부분 수정(username을 가져오기 위한 함수)
                 // console.log(this.article.user)
+                this.getPlaylistMovies()
               })
               .catch(err => {console.log(err)})            
             })
