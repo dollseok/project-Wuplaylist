@@ -14,25 +14,25 @@ from .models import *
 # # 현재는 고정, 업데이트가 필요할 수도 있음
 # # 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
 
-from django.core.exceptions import ObjectDoesNotExist
+# from django.core.exceptions import ObjectDoesNotExist
 
-def save_movie_data(total_data):
-    print('이건되나')
-    for data in total_data:
-        try:
-            movie = Movie.objects.get(movie_id=data['fields']['movie_id'])
-        except ObjectDoesNotExist:
-            movie = Movie(
-                movie_id=data['fields']['movie_id'],
-                title=data['fields']['title'],
-                released_date=data['fields']['released_date'],
-                poster_path=data['fields']['poster_path'],
-                vote_count=data['fields']['vote_count'],
-                vote_average=data['fields']['vote_average'],
-                overview=data['fields']['overview'],
-                genres=data['fields']['genres']
-            )
-            movie.save()
+# def save_movie_data(total_data):
+#     print('이건되나')
+#     for data in total_data:
+#         try:
+#             movie = Movie.objects.get(movie_id=data['fields']['movie_id'])
+#         except ObjectDoesNotExist:
+#             movie = Movie(
+#                 movie_id=data['fields']['movie_id'],
+#                 title=data['fields']['title'],
+#                 released_date=data['fields']['released_date'],
+#                 poster_path=data['fields']['poster_path'],
+#                 vote_count=data['fields']['vote_count'],
+#                 vote_average=data['fields']['vote_average'],
+#                 overview=data['fields']['overview'],
+#                 genres=data['fields']['genres']
+#             )
+#             movie.save()
 
 
 # import requests
@@ -75,21 +75,9 @@ def save_movie_data(total_data):
                 
 #                 total_data.append(data)
 
-#         # with open("movies/fixtures/movie_data.json", "w", encoding="utf-8") as w:
-#         #     json.dump(total_data, w, indent="\t", ensure_ascii=False)
-        
-#         # movie_obj, created = Movie.objects.update_or_create(
-#         #     movie_id = movie['id'],
-#         #     defaults = fields
-#         # )
-        
-#         # movie_obj.poster_path = poster_url
-#         # movie_obj.save()
-        
+#     save_movie_data(total_data)
 #     print('데이터 저장')
         
-
-# get_movie_datas()
 
 
 # Create your views here.

@@ -2,9 +2,8 @@
   <div>
     <h1>All Movie List</h1>
     <MovieItem 
-        
-        v-for="movie in movies" :key="movie.id"
-        :movie="movie"
+    v-for="movie in movies" :key="movie.id"
+    :movie="movie"
     />
   </div>
 </template>
