@@ -8,13 +8,13 @@ from .serializers import *
 
 from .models import *
 
-
+import requests
+import json
+from django.core.exceptions import ObjectDoesNotExist
 
 # # 데이터 파일 제이슨으로 받기
 # # 현재는 고정, 업데이트가 필요할 수도 있음
 # # 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
-
-# from django.core.exceptions import ObjectDoesNotExist
 
 # def save_movie_data(total_data):
 #     print('이건되나')
@@ -35,8 +35,7 @@ from .models import *
 #             movie.save()
 
 
-# import requests
-# import json
+
 
 # def get_movie_datas():
 #     total_data = []
@@ -77,7 +76,47 @@ from .models import *
 
 #     save_movie_data(total_data)
 #     print('데이터 저장')
+
+# def save_genre_data(total_genre):
+#     for data in total_genre:
+#         try:
+#             genre = Genre.objects.get(genre_id = data['fields']['genre_id'])
+#         except ObjectDoesNotExist:
+#             genre = Genre(
+#                 genre_id = data['fields']['genre_id'],
+#                 genre_name = data['fields']['genre_name'],
+#             )
+#             genre.save()
+
+# def get_genres_data():
+#     genres_data = []
+#     url = "https://api.themoviedb.org/3/genre/movie/list?language=ko"
+
+#     headers = {
+#         "accept": "application/json",
+#         "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjNlM2FhNjVlOTZlOTVjN2Y0MWZmMDdmY2NkMzAxYiIsInN1YiI6IjYzZDMxYTM4NWEwN2Y1MDA5ZTk4MDM0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.svzZx8RMTp1kjkBzxbvcOuoduFUJjduTqyQf-ufCBfo"
+#     }
+
+#     response = requests.get(url, headers=headers).json()
+    
+#     total_genre=[]
+    
+#     for genre in response['genres']:
+#         fields= {
+#             'genre_id': genre['id'],
+#             'genre_name':genre['name'],
+#         }
+#         data = {
+#             'fields':fields
+#         }
         
+#         total_genre.append(data)
+    
+#     save_genre_data(total_genre)
+#     print('장르 저장')
+
+
+
 
 
 # Create your views here.

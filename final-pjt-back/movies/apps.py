@@ -5,5 +5,6 @@ class MoviesConfig(AppConfig):
     name = 'movies'
     
     # def ready(self):
-    #     from .views import get_movie_datas
+    #     from .views import get_movie_datas, get_genres_data
     #     get_movie_datas()
+    #     get_genres_data()

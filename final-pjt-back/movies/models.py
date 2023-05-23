@@ -16,6 +16,10 @@ class Movie(models.Model):
     genres=models.JSONField()
     # backdrop_path=models.TextField()
     
+class Genre(models.Model):
+    genre_id = models.IntegerField()
+    genre_name = models.CharField(max_length=20) 
+
 
 class Article(models.Model):
     
