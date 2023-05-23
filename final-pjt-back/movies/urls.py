@@ -3,6 +3,9 @@ from . import views
 
 app_name = 'movies'
 urlpatterns =[
+    # 장르 데이터 vue 전달
+    path('genres/', views.genre_list),
+    
     # 영화 데이터 조회
     path('movies/', views.movie_list),
     path('movies/<int:movie_pk>/', views.movie_detail),
@@ -26,5 +29,4 @@ urlpatterns =[
     path('comments_movie/<int:comment_pk>/', views.comment_movie_detail),
     # 영화 댓글 리스트 조회, 생성
     path('movies/<int:movie_pk>/comments_movie/', views.comment_list_movie),
-    
 ]   
