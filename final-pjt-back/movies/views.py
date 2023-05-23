@@ -60,7 +60,9 @@ def article_detail(request, article_pk):
     
     if request.method == 'PUT':
         serializer = ArticleSerializer(article, data=request.data)
+        print('수정할거야')
         if serializer.is_valid(raise_exception=True):
+            print('통과했나?')
             serializer.save()
             return Response(serializer.data)
     

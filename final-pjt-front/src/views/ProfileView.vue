@@ -1,26 +1,32 @@
 <template>
   <div>
-    <h1>Profile Page</h1>
-    <div v-if="username">
-        <p>Username : {{ username }}</p>
-        <p>Nickname : {{ nickname }}</p>
-        <p>Follower Count : {{ followerCount }}</p>
-        <p>Following Count : {{ followingCount }}</p>
+      <div v-if="username">
+        <h1>@{{ username }}</h1>
+        <p>팔로워: {{ followerCount }} 팔로잉 : {{ followingCount }}</p>
+        <p>별명 : {{ nickname }}</p>
         <button v-if="username != currentUser.username " @click="follow">{{ isFollowing? 'Unfollow':'follow'}}</button>
-
-        {{userData['article_set']}}
+        <h3>작성한 플레이리스트</h3>
+        <hr>
+        <!-- 작성한 플레이리스트의 id (article.id)를 가져와서 v-for 활용하자 -->
+        <ReviewListItem 
+        v-for="article in userArticles" :key="article.id"
+        :article="article"
+        />
     </div>
   </div>
 </template>
 
 <script>
+import ReviewListItem from '@/components/ReviewListItem.vue'
 import router from '@/router'
 import axios from 'axios'
 const API_URL='http://127.0.0.1:8000'
 
 export default {
     name: 'ProfileView',
-    components: {},
+    components: {
+        ReviewListItem,
+    },
     data(){
         return {
             username: null,
@@ -32,7 +38,11 @@ export default {
 
             currentUser : null,
             isFollowing:false, // 팔로우 상태 저장하는 변수
+            userArticles: [],
         }
+    },
+    created() {
+        this.getUserArticles()
     },
     mounted(){
         this.getCurrentUser()   
@@ -44,6 +54,19 @@ export default {
         } 
     },
     methods:{
+        getUserArticles() {
+            axios({
+                method: 'get',
+                url:`${API_URL}/accounts/user/current/`,
+                headers:{
+                    Authorization: `Token ${this.$store.state.token}`
+                }
+            })
+            .then((res) => {
+                this.userArticles = res.data.article_set
+            })
+            .catch(err => console.log(err))            
+        },
         // 타고 들어간 해당 유저의 데이터
         // username을 이용해 프로필 데이터를 가져오기
         fetchProfileData(username){
@@ -98,7 +121,6 @@ export default {
                 url: `${API_URL}/accounts/user/detail/${this.paramsData.userId}/`
             })
             .then((res) => {
-                console.log(res.data)
                 this.userData = res.data
                 const username = this.userData.username
                 this.fetchProfileData(username)
@@ -115,11 +137,9 @@ export default {
                     Authorization: `Token ${ this.$store.state.token }`
                 }
             })
-            .then((res) => {
+            .then(() => {
                 router.go(0)
                 this.isFollowing = !this.isFollowing
-                console.log(this.isFollowing)
-                console.log(res.data)
 
             })
             .catch((err) => console.log(err))

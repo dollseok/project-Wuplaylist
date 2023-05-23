@@ -23,7 +23,7 @@ class MovieSerializer(serializers.ModelSerializer):
 class ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id','title','content',)
+        fields = '__all__'
         read_only_fields = ('user', 'like_user')
 
 class CommentArticleSerializer(serializers.ModelSerializer):
@@ -46,7 +46,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model= Article
         fields = '__all__'
-        read_only_fields = ('user', 'like_user')
+        read_only_fields = ('user', 'like_user',)
         
 
 # 장르 시리얼라이저
