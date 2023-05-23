@@ -5,7 +5,7 @@
     <router-link
       :to="{name:'detail', params:{id: String(article.id)}, query: { 
           articleTitle: articleTitle,
-          articleContent: articleContent
+          articleContent: articleContent,
          } }"
     >
     [DETAIL]

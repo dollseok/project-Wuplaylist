@@ -44,6 +44,7 @@ def article_list(request):
     
     elif request.method == 'POST':
         serializer = ArticleSerializer(data=request.data)
+
         if serializer.is_valid(raise_exception=True):
             # serializer.save()
             serializer.save(user=request.user)
@@ -51,7 +52,7 @@ def article_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET','PUT','DELETE'])
-def article_detail(request, article_pk):
+def article_detail(request, article_pk): 
     article = get_object_or_404(Article, pk=article_pk)
     if request.method == 'GET':
         serializer = ArticleSerializer(article)

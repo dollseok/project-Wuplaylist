@@ -37,13 +37,21 @@ def profile(request, username):
 
 @api_view(['GET'])
 def get_user_detail(request, user_id):
+
     try:
         user = get_user_model().objects.get(pk=user_id)
-        response_data = {
-            'username': user.username,
-            'nickname': user.nickname, 
-        }
-        return JsonResponse(response_data)
+        serializer = UserSerializer(user)
+        # response_data = {
+        #     'username': user.username,
+        #     'nickname': user.nickname, 
+        #     'articles': user.article_set
+        # }
+        # print('------------')
+        # print(response_data)
+        # print('------------')
+        # return JsonResponse(response_data)
+        print(serializer.data)
+        return Response(serializer.data)
     
     except get_user_model().DoesNotExist:
         return JsonResponse({'error':'User not found'}, status=404)

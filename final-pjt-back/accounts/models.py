@@ -8,5 +8,5 @@ class User(AbstractUser):
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     introduce = models.TextField(null=True)
     nickname = models.CharField(max_length=30)
-
+    
     
