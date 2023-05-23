@@ -2,7 +2,7 @@
   <div>
 
     <!-- modal 창 -->
-    <div class="black-bg" v-if="modalopen == true" @click="modalclose">
+    <div class="movieModal black-bg" v-if="modalopen == true" @click="modalclose">
       <div class="white-bg">
         <h4>상세 페이지</h4>
         <img :src="movie.poster_path" alt="poster">
@@ -15,8 +15,7 @@
         <button @click="modalclose">Close</button>
       </div>
     </div>
-
-    <img @click="modalopen=true" :src="movie.poster_path" alt="poster">
+    <img @click="modalopen=true" :src="movie.poster_path" alt="poster" style="height:450px;">
 
 
   </div>
@@ -64,6 +63,12 @@ div {
   background: white;
   border-radius: 8px;
   padding: 20px;
+}
+
+.movieModal {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 }
 
 

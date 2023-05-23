@@ -12,7 +12,10 @@
 
 
     <!-- 장르 버튼 -->
+    <GenreList/>
     <!-- <GenreButton /> -->
+
+
     <!-- 장르 영화 리스트 -->
     <!-- 전체 영화 데이터를 불러와서 List 컴포넌트에서 필터링해서 출력? -->
     <!-- <GenreMovieList /> -->
@@ -21,11 +24,14 @@
 
 <script>
 import AllMovieList from '@/components/AllMovieList.vue'
+import GenreList from '@/components/GenreList.vue'
+
 
 export default {
   name: 'GenreView',
   components: {
     AllMovieList,
+    GenreList,
   },
   computed:{
     allMovieList(){
