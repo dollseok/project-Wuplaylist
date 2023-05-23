@@ -1,48 +1,136 @@
 <template>
-  <div class="genre">
+  <div>
     <h1>Main</h1>
-    
-    <!-- 장르 버튼 -->
-    <GenreList/>
-    <!-- <GenreButton /> -->
-
-
-    <!-- 장르 영화 리스트 -->
-    <!-- 전체 영화 데이터를 불러와서 List 컴포넌트에서 필터링해서 출력? -->
-    <!-- <GenreMovieList /> -->
+    <h1>Select Genre</h1>
+    <div class="genre">
+      <div
+        v-for="genre in genres" :key="genre.id"
+        :class="['genre_button', { 'selected': checkSelected(genre.genre_id) }]"
+        @click="selectedGenre(genre.genre_id)"        
+      >
+        {{ genre.genre_name }}
+      </div>
+    </div>
+    <div>
+      <h1>당신이 선택한 장르는</h1>
+      <span style="font-size : 30px;" v-for="genrename in selectedGenreNameList" :key="genrename.id">
+        {{ genrename }}
+      </span>
+      <div class="movieList" >
+        <RecommendItem 
+        v-for="movie in this.recommendMovies" :key="movie.id"
+        :movie="movie"
+        />
+        <!-- <img v-for="movie in this.recommendMovies" :key="movie.id" :src="`https://image.tmdb.org/t/p/w300/${movie.poster_path}`" alt=""> -->
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import GenreList from '@/components/GenreList.vue'
-
+import axios from 'axios'
+import RecommendItem from '@/components/RecommendItem.vue'
 
 export default {
   name: 'GenreView',
   components: {
-    GenreList,
+    RecommendItem
   },
-  computed:{
-    allMovieList(){
-      return this.$store.state.movies
+  data(){
+    return {
+      selectedGenreList : [],
+      recommendMovies : {},
     }
   },
-  created() {
-    this.getAllMovies()
-    this.getGenres()
-  },
-  methods: {
-    getAllMovies(){
-      this.$store.dispatch('getAllMovies')
+  methods : {
+      // 선택되었는지 확인하는 함수
+      checkSelected(genre_id){
+        return this.selectedGenreList.includes(genre_id)
+      },
+
+      // 선택을 하고 취소 하는 함수
+      selectedGenre(genre_id){
+        if (this.selectedGenreList.includes(genre_id)){
+          const index = this.selectedGenreList.indexOf(genre_id)
+          if (index > -1) {
+            this.selectedGenreList.splice(index, 1)
+          }
+        }
+        else {
+          this.selectedGenreList.push(genre_id)
+        }
+        
+        this.GenreRecommendList()
+      },
+      GenreRecommendList(){
+        let genreCode = ''
+        for (const index in this.selectedGenreList){
+          console.log(index)
+          console.log(this.selectedGenreList.length - 1)
+          if (index != this.selectedGenreList.length - 1){
+            genreCode += this.selectedGenreList[index] + '%2C%20'
+          }
+          else {
+            genreCode += this.selectedGenreList[index] 
+          }
+        }
+        axios({
+          method:'get',
+          url : `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-Kr&page=1&sort_by=popularity.desc&with_genres=${genreCode}`,
+          headers :{
+            "accept": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjNlM2FhNjVlOTZlOTVjN2Y0MWZmMDdmY2NkMzAxYiIsInN1YiI6IjYzZDMxYTM4NWEwN2Y1MDA5ZTk4MDM0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.svzZx8RMTp1kjkBzxbvcOuoduFUJjduTqyQf-ufCBfo"
+          },
+        })
+        .then(res=> {
+          this.recommendMovies = res.data.results
+        })
+        .catch(err=>console.log(err))
+      }
     },
-    getGenres(){
-      this.$store.dispatch('getGenres')
+  computed:{
+    genres(){
+      return this.$store.state.genres
+    },
+    selectedGenreNameList(){
+      const nameList = []
+      for (const genreId of this.selectedGenreList) {
+        for (const genre of this.genres){
+          if (genre.genre_id === genreId) {
+            nameList.push(genre.genre_name)
+          }
+        }
+      }
+      return nameList
+
     }
-  },
+    
+  }
 }
 
 </script>
 
-<style>
+<style scoped>
+.genre {
+  display: flex;
+  flex-wrap: wrap;
+}
+.genre_button{
+  margin: 10px;
+  width: 100px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
+.selected {
+  background-color:rgb(169, 232, 236);
+}
+
+.movieList {
+  display: flex;
+}
 </style>
