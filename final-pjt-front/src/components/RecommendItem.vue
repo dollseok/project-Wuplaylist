@@ -80,6 +80,7 @@ div {
   width: 300px;
   height:450px; 
   border-radius: 10px;
+  cursor: pointer;
 }
 
 </style>
