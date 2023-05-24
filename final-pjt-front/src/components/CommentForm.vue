@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" placeholder="댓글을 입력하세요" v-model="content">
+    <input type="text" placeholder="댓글을 입력하세요" v-model="content" >
     <button @click="createComment">작성</button>
   </div>
 </template>

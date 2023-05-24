@@ -5,7 +5,7 @@
       <h2>{{ article?.title }}</h2>
       <hr>
       <div class="d-flex">
-        <span @click="goProfile">작성자 : {{ author }}</span>
+        <span class="author" @click="goProfile">작성자 : {{ author }}</span>
         <div class="article-time">
           <p>작성시각 : {{ article?.created_at }} |  수정시각 : {{ article?.updated_at }}</p>
         </div>
@@ -228,6 +228,9 @@ export default {
             })
         .catch(err => console.log(err))
     },
+    // goMovieDetail() {
+
+    // }
   }
 }
 </script>
@@ -308,5 +311,9 @@ figure:hover+span {
 
 .article-time {
   float: right;
+}
+
+.author {
+  cursor: pointer;
 }
 </style>

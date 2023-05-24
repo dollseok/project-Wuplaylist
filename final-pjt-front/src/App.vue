@@ -70,6 +70,8 @@ export default {
 .routerlink{
   padding: 10px;
   text-decoration: none;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 nav {

@@ -3,7 +3,7 @@
     <div v-if="updateStatus">
       <li>
         <div class="each-comment">
-          <div><span @click="goProfile">{{ author }}</span> - {{ comment.content }}</div>
+          <div><span class="author" @click="goProfile">{{ author }}</span> - {{ comment.content }}</div>
           <div class="btn-package">
             <button class="btn" v-if="isLiked" @click="likeComment">{{ likeCount }} <font-awesome-icon :icon="['fas', 'heart']" size="lg" color="orangered" /></button>
             <button class="btn" v-else @click="likeComment">{{ likeCount }} <font-awesome-icon :icon="['far', 'heart']" size="lg" color="orangered" /></button>
@@ -14,7 +14,7 @@
       </li>
     </div>
     
-    <!-- 수정 버튼을 누르지 않았을 때 -->
+    <!-- 수정 버튼을 눌렀을 때 -->
     <div v-else>
       <li>
         <div class="each-comment">
@@ -171,5 +171,9 @@ li {
 .each-comment {
   display: flex;
   justify-content: space-between;
+}
+
+.author {
+  cursor: pointer;
 }
 </style>

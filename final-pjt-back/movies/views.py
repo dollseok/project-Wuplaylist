@@ -46,9 +46,7 @@ def article_list(request):
         serializer = ArticleSerializer(data=request.data)
 
         if serializer.is_valid(raise_exception=True):
-            # serializer.save()
             serializer.save(user=request.user)
-            print(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET','PUT','DELETE'])
@@ -60,9 +58,7 @@ def article_detail(request, article_pk):
     
     if request.method == 'PUT':
         serializer = ArticleSerializer(article, data=request.data)
-        print('수정할거야')
         if serializer.is_valid(raise_exception=True):
-            print('통과했나?')
             serializer.save()
             return Response(serializer.data)
     

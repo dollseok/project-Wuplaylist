@@ -47,24 +47,38 @@ export default {
             // currentUserArticles: [], // 접속 유저의 작성 게시글
         }
     },
+    computed: {
+        isLogin() {
+            return this.$store.getters.isLogin
+        }
+    },
     created() {
         // this.getCurrentUserArticles() // 접속 유저의 작성게시글 불러오기
     },
     mounted(){
-        this.getCurrentUser()   
-        this.paramsData = JSON.parse(this.$route.query.data) // 게시글에서 작성자 UserId를 받아오고
-        if (this.paramsData.username) { // username으로 받아오는 경우 
-            this.fetchProfileData(this.paramsData.username)
-        } else { // userId로 받아오는 경우 ( 게시글이나 댓글을 통해 )
-            this.getUserDetail()    // 작성자의 프로필 정보 가져오기
-        } 
+        if (this.isLogin) {
+            this.getCurrentUser()   
+            this.paramsData = JSON.parse(this.$route.query.data) // 게시글에서 작성자 UserId를 받아오고
+            if (this.paramsData.username) { // username으로 받아오는 경우 
+                this.fetchProfileData(this.paramsData.username)
+            } else { // userId로 받아오는 경우 ( 게시글이나 댓글을 통해 )
+                this.getUserDetail()    // 작성자의 프로필 정보 가져오기
+            }          
+        } else {
+            alert('로그인이 필요한 서비스입니다')
+            this.$router.push({ name: 'LogInView '})
+        }
+        
     },
     methods:{
         // username을 이용해 프로필 유저의 데이터를 가져오기
         fetchProfileData(username){
             axios({
                 method: 'get',
-                url: `${API_URL}/accounts/user/profile/${username}/`
+                url: `${API_URL}/accounts/user/profile/${username}/`,
+                headers: {
+                    Authorization: `Token ${ this.$store.state.token }`
+                }
             })
             .then((response) => {
                 this.user = response.data

@@ -29,6 +29,7 @@ def signup(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def profile(request, username):
     if request.method == 'GET':
         person = get_user_model().objects.get(username=username)

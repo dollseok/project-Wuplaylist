@@ -5,14 +5,14 @@
     <!-- 영화 추가하는 모달 팝업 -->
     <div class="movieModal black-bg" v-if="isModalViewed" @close-modal="isModalViewed=false">
       <div class="white-bg">
-        <h4> 플레이리스트에 영화 추가하기 </h4>
-        <label for="searchKeyword">검색: </label>
+          <h4> 플레이리스트에 영화 추가하기 </h4>
+          <label for="searchKeyword">검색어 : </label>
+          <button class="btn closebtn" @click="isModalViewed=false"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
         <input v-model="searchKeyword" @keyup.enter="searchMovie" id="searchKeyword">
-        <button class="closebtn" @click="isModalViewed=false">닫기</button>
         <br>
         <div class="searchedMovies" v-for="movie in movielist" :key="movie.id">
           {{ movie.title }}
-          <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage">
+          <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
         </div>
       </div>
     </div>
@@ -33,8 +33,8 @@
       :containedMovie="containedMovie"
       />
       <hr v-if="!isModalViewed">
-      <button @click.prevent="isModalViewed=true">영화 추가하기</button> | 
-      <input type="submit" id="submit">
+      <button class="btn" @click.prevent="isModalViewed=true"><font-awesome-icon :icon="['fas', 'film']" size="lg" /> 영화 담기</button>
+      <input class="btn btn-success" type="submit" id="submit" value="작성">
     </form>
 
   </div>
@@ -140,4 +140,5 @@ export default {
   #movie-image {
     cursor: pointer;
   }
+
 </style>
