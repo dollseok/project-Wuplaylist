@@ -80,7 +80,7 @@ def save_genre_data(total_genre):
             genre.save()
 
 def get_genres_data():
-    genres_data = []
+    # genres_data = []
     url = "https://api.themoviedb.org/3/genre/movie/list?language=ko"
 
     headers = {
@@ -112,8 +112,8 @@ from datetime import datetime, timedelta
 def start():
 
     scheduler = BackgroundScheduler()
-    scheduler.add_job(get_genres_data, 'interval', seconds=100000, start_date=datetime.now())
-    scheduler.add_job(get_movies_data, 'interval', seconds=100000, start_date=datetime.now())
+    scheduler.add_job(get_genres_data, 'interval', hours=1, start_date=datetime.now())
+    scheduler.add_job(get_movies_data, 'interval', hours=1, start_date=datetime.now())
     
     # # 시작할 때는 바로 저장
     # scheduler.add_job(get_genres_data, 'date', run_date=datetime.now())

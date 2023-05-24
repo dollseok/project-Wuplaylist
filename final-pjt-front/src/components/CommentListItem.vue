@@ -2,22 +2,33 @@
   <div class="eachComment">
     <div v-if="updateStatus">
       <li>
-        <p><span @click="goProfile">{{ author }}</span> - {{ comment.content }}
-        <button @click="updateMode">수정</button>
-        <button @click="deleteComment">삭제</button>
-        </p>
+        <div class="each-comment">
+          <div><span @click="goProfile">{{ author }}</span> - {{ comment.content }}</div>
+          <div class="btn-package">
+            <button class="btn" v-if="isLiked" @click="likeComment">{{ likeCount }} <font-awesome-icon :icon="['fas', 'heart']" size="lg" color="orangered" /></button>
+            <button class="btn" v-else @click="likeComment">{{ likeCount }} <font-awesome-icon :icon="['far', 'heart']" size="lg" color="orangered" /></button>
+            <button class="btn" @click="updateMode"><font-awesome-icon :icon="['far', 'pen-to-square']" /></button>
+            <button class="btn" @click="deleteComment"><font-awesome-icon :icon="['fas', 'trash']" /></button>
+          </div>
+        </div>
       </li>
     </div>
+    
     <!-- 수정 버튼을 누르지 않았을 때 -->
     <div v-else>
       <li>
+        <div class="each-comment">
         <input type="text" v-model="changedContent">
-        <button @click="updateComment">저장</button>
-        <button @click="updateMode">취소</button>
+        <div class="btn-package">
+          <button class="btn" v-if="isLiked" @click="likeComment">{{ likeCount }} <font-awesome-icon :icon="['fas', 'heart']" size="lg" color="orangered" /></button>
+          <button class="btn" v-else @click="likeComment">{{ likeCount }} <font-awesome-icon :icon="['far', 'heart']" size="lg" color="orangered" /></button>
+          <button class="btn" @click="updateComment"><font-awesome-icon :icon="['fas', 'floppy-disk']" /></button>
+          <button class="btn" @click="updateMode"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
+        </div>
+        </div>
       </li>
     </div>
-    <button v-if="isLiked" @click="likeComment">{{ likeCount }} 좋아요 취소</button>
-    <button v-else @click="likeComment">{{ likeCount }} 좋아요</button>
+    
   </div>
 </template>
 
@@ -42,7 +53,6 @@ export default {
   },
 
   created(){
-    // console.log(this.comment.user)
     this.getUserDetail(this.comment.user)
   },
   mounted(){
@@ -153,6 +163,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+li {
+  text-align: start;
+}
 
+.each-comment {
+  display: flex;
+  justify-content: space-between;
+}
 </style>

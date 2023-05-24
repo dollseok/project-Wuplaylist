@@ -4,34 +4,53 @@
     <div v-if="updatestatus">
       <h2>{{ article?.title }}</h2>
       <hr>
-      <p>내용 : {{ article?.content }}</p>
+      <div class="d-flex">
+        <span @click="goProfile">작성자 : {{ author }}</span>
+        <div class="article-time">
+          <p>작성시각 : {{ article?.created_at }} |  수정시각 : {{ article?.updated_at }}</p>
+        </div>
+      </div>
+      <p>{{ article?.content }}</p>
 
-      <span @click="goProfile">작성자 : {{ author }}</span>
-      <p>작성시각 : {{ article?.created_at }}</p>
-      <p>수정시각 : {{ article?.updated_at }}</p>
-
-      <button @click="updateMode">수정</button>
-      <button @click="deleteArticle">삭제</button>
-      <button @click="goBack">목록</button>
+      <!-- 플레이리스트에 담긴 영화들 -->
+      <div class="contain-movies">
+        <div class="column">
+          <div v-for="movie in playlist_movies" :key="movie.id">
+            <figure><img id="movie-image" :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
+            <span>{{ movie.title }}</span>
+            <button v-if="!updatestatus" @click="deleteFromPlaylist(movie)">삭제</button>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-primary" @click="updateMode">수정</button>
+      <button class="btn btn-danger" @click="deleteArticle">삭제</button>
+      <button class="btn btn-secondary" @click="goBack">목록</button>
+      
     </div>
     <!-- 수정버튼을 눌렀을 때 -->
     <div v-else>
       <h2><input type="text" v-model="changedTitle"></h2>
+      <hr>
       <p>내용 : <input type="text" v-model="changedContent"></p>
 
-      <button @click="updateArticle">저장</button>
-      <button @click="updateMode">취소</button>
-    </div>
-    <button v-if="isLiked" @click="likeArticle">{{ likeCount }} 좋아요 취소</button>
-    <button v-else @click="likeArticle">{{ likeCount }} 좋아요</button>
+      <!-- 플레이리스트에 담긴 영화들 -->
+      <div class="contain-movies">
+        <div class="column">
+          <div v-for="movie in playlist_movies" :key="movie.id">
+            <figure><img id="movie-image" :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
+            <span>{{ movie.title }}</span>
+            <button class="btn" v-if="!updatestatus" @click="deleteFromPlaylist(movie)"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
+          </div>
+        </div>
+      </div>
 
-    <hr>
-    <h4>담은 영화들</h4>
-    <div v-for="movie in playlist_movies" :key="movie.id">
-      {{ movie.title }}
-      <img :src="movie.poster_path" alt="movieImage">
-      <button v-if="!updatestatus" @click="deleteFromPlaylist(movie)">삭제</button>
+      <button class="btn btn-primary" @click="updateArticle">저장</button>
+      <button class="btn btn-danger" @click="updateMode">취소</button>
     </div>
+    <button class="btn" v-if="isLiked" @click="likeArticle">{{ likeCount }} <font-awesome-icon :icon="['fas', 'heart']" size="lg" color="orangered" /></button>
+    <button class="btn" v-else @click="likeArticle">{{ likeCount }} <font-awesome-icon :icon="['far', 'heart']" size="lg" color="orangered" /></button>
+
     <hr>
     <CommentList 
     v-if="article"
@@ -213,6 +232,81 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+#movie-image:hover {
+  /* 마우스를 올렸을 때 손바닥 모양 커서 */
+  cursor: pointer;
+  /* 서서히 느려지게 */
+  transition: all 0.2s linear; 
+  /* 이미지 확장 */
+  transform: scale(1.1);
+}
+
+.column {
+  margin: 15px 15px 0;
+  padding: 0;
+}
+
+.column:last-child {
+  padding-bottom: 60px;
+}
+
+.column::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.column div {
+  position: relative;
+  float: left;
+  width: 160px;
+  height: 250px;
+  margin: 0 0 0 25px;
+  padding: 0;
+}
+
+.column div:first-child {
+  margin-left: 0;
+}
+
+.column div span {
+  position: absolute;
+
+  z-index: -1;
+  display: block;
+  width: 160px;
+  margin: 0;
+  padding: 0;
+  color: #444;
+  font-size: 18px;
+  text-decoration: none;
+  text-align: center;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  opacity: 0; 
+}
+
+figure {
+  width: 160px;
+  height: 250px;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+figure:hover+span {
+  bottom: -55px;
+  opacity: 1;
+}
+
+.d-flex {
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: space-between;
+}
+
+.article-time {
+  float: right;
+}
 </style>
