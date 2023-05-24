@@ -19,6 +19,7 @@
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
     "flickity": "^3.0.0",
+    "lodash": "^4.17.21",
     "vue": "^2.7.14",
     "vue-awesome": "^4.5.0",
     "vue-carousel": "^0.18.0",

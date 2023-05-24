@@ -71,6 +71,7 @@ export default {
   padding: 10px;
   text-decoration: none;
   font-weight: 800;
+  font-size: 20px;
   cursor: pointer;
 }
 
