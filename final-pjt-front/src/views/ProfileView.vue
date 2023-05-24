@@ -99,7 +99,6 @@ export default {
                 console.log(err)
             })
         },
-        // userId를 활용해 username과 nickname을 받아오기
         // 현재 유저의 데이터
         // 현재 유저가 프로필 유저를 팔로우했는지 확인하기 위해 필요!
         getCurrentUser(){
