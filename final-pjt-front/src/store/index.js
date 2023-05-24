@@ -83,12 +83,13 @@ export default new Vuex.Store({
       const password = payload.password
       const password2 = payload.password2
       const nickname = payload.nickname
+      const introduce = payload.introduce
 
       axios({
         method: 'post',
         url: `${API_URL}/accounts/user/signup/`,
         data: {
-          username, password, password2, nickname,
+          username, password, password2, nickname, introduce,
         }
       })
       .then((res) => {
