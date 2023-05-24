@@ -2,10 +2,10 @@
   <div>
     <h2>팔로우 플레이리스트</h2>
     <hr>
-    <ReviewListItem
-    v-for="article in followingArticles" :key="article.id"
-    :article="article"
-    />
+    <div v-for="article in followingArticles" :key="article.id">
+        <ReviewListItem :article="article"/>
+        <hr>
+    </div>
   </div>
 </template>
 

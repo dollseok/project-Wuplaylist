@@ -12,7 +12,7 @@
     <div class="moviePreview">
       <img id="movie-image" v-for="poster in moviePosters" :key="poster.id" :src="poster" alt="movieimage" width="100px" height="150px">
     </div>
-    <hr>
+    <!-- <hr> -->
   </div>
 </template>
 
