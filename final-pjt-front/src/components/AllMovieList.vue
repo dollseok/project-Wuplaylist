@@ -45,12 +45,12 @@ export default {
 .movieItems{
   display: flex;
   overflow-x: scroll;
-  height: 400px;
-  align-items: center;
+  height: 340px;
+  /* align-items: center; */
 }
 
 div::-webkit-scrollbar {
-  height:7px;
+  height:20px;
 }
 
 div::-webkit-scrollbar-thumb{
