@@ -7,10 +7,10 @@
       <div class="d-flex">
         <span class="author" @click="goProfile">작성자 : {{ author }}</span>
         <div class="article-time">
-          <p>작성시각 : {{ article?.created_at }} |  수정시각 : {{ article?.updated_at }}</p>
+          <p>작성시각 : {{ article?.created_at }}   수정시각 : {{ article?.updated_at }}</p>
         </div>
       </div>
-      <p>{{ article?.content }}</p>
+      <p class="article-content">{{ article?.content }}</p>
 
       
 
@@ -34,7 +34,7 @@
     <div v-else>
       <h2><input type="text" v-model="changedTitle"></h2>
       <hr>
-      <p>내용 : <input type="text" v-model="changedContent"></p>
+      <p class="article-content">내용 : <input type="text" v-model="changedContent"></p>
 
       <!-- 플레이리스트에 담긴 영화들 -->
       <div class="contain-movies">
@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-
+      <button class="btn">영화 추가하기</button>
       <button class="btn btn-primary" @click="updateArticle">저장</button>
       <button class="btn btn-danger" @click="updateMode">취소</button>
     </div>
@@ -251,6 +251,10 @@ export default {
 .column {
   margin: 15px 15px 0;
   padding: 0;
+  display: flex;
+  /* 내용이 가로로 길면 잘리고, 필요할 때 스크롤바가 나타남 */
+  overflow-x: auto;
+
 }
 
 .column:last-child {
@@ -265,7 +269,6 @@ export default {
 
 .column div {
   position: relative;
-  float: left;
   width: 160px;
   height: 250px;
   margin: 0 0 0 25px;
@@ -313,6 +316,10 @@ figure:hover+span {
 
 .article-time {
   float: right;
+}
+
+.article-content {
+  padding-left: 20px;
 }
 
 .author {
