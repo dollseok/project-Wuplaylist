@@ -12,11 +12,13 @@
       </div>
       <p>{{ article?.content }}</p>
 
+      
+
       <!-- 플레이리스트에 담긴 영화들 -->
       <div class="contain-movies">
         <div class="column">
           <div v-for="movie in playlist_movies" :key="movie.id">
-            <figure><img id="movie-image" :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
+            <figure><img id="movie-image"  :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
             <span>{{ movie.title }}</span>
             <button v-if="!updatestatus" @click="deleteFromPlaylist(movie)">삭제</button>
           </div>
@@ -228,9 +230,9 @@ export default {
             })
         .catch(err => console.log(err))
     },
-    // goMovieDetail() {
-
-    // }
+    goMovieDetail(movie) {
+      this.$router.push({ name: 'MovieItem', query: { movie: movie }})
+    }
   }
 }
 </script>
