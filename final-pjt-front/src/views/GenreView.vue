@@ -139,6 +139,7 @@ export default {
 
 .movieList {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .recommendItem {
