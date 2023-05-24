@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <h1>HomeView</h1>
     <AllMovieList />
     <!-- 추천 플레이리스트 (좋아요 순으로 출력하기) -->
-    
+    <br>
+    <h1>인기 플레이리스트</h1>
     <div class="recommend-playlist">
       <ReviewPopular />
     </div>

@@ -1,7 +1,7 @@
 <template>
 <div>
 
-  <h1>All Movie List</h1>
+  <h1>전체 영화</h1>
   <div class="scroll movieItems">
     <MovieItem 
       v-for="movie in movies" 
