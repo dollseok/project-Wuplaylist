@@ -11,6 +11,7 @@ import LoginView from '../views/LoginView.vue'
 import SignupView from '../views/SignupView.vue'
 
 import ProfileView from '../views/ProfileView.vue'
+import ModalView from '../views/ModalView.vue'
 
 Vue.use(VueRouter)
 
@@ -59,6 +60,11 @@ const routes = [
     path: '/profile',
     name: 'ProfileView',
     component: ProfileView
+  },
+  {
+    path: '/modal',
+    name: 'ModalView',
+    component: ModalView
   },
 ]
 

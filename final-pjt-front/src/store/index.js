@@ -15,8 +15,8 @@ export default new Vuex.Store({
     createPersistedState(),
   ],
   state: {
-    articles: [
-    ],
+    articles: [],
+    popularArticles:[],
     // 유저 관련
     token: null,
     currentUsername: null,
@@ -31,6 +31,11 @@ export default new Vuex.Store({
     }
   },
   mutations: {  // commit으로 호출하여 사용
+    GET_POPULAR_ARTICLES(state, articles){
+      console.log(articles)
+      state.popularArticles
+    },
+
     GET_ARTICLES(state, articles) {
       state.articles = articles
     },
@@ -68,6 +73,7 @@ export default new Vuex.Store({
       })
       .then((res) => {
         context.commit('GET_ARTICLES', res.data)
+        context.commit('GET_POPULAR_ARTICLES',res.data)
       })
       .catch(err => console.log(err))
     },
