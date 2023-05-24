@@ -230,9 +230,9 @@ export default {
             })
         .catch(err => console.log(err))
     },
-    // goMovieDetail() {
-
-    // }
+      modalOpen(movie){
+        this.$router.push({name:"ModalView", params:{ movie: movie,}} )
+      }
   }
 }
 </script>
