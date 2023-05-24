@@ -15,7 +15,13 @@
         <button @click="modalclose">Close</button>
       </div>
     </div>
-    <img @click="modalopen=true" :src="movie.poster_path" alt="poster" style="height:450px;">
+
+    <div>
+      <img @click="modalopen=true" :src="movie.poster_path" 
+      alt="poster" id="movieListImage"
+      >
+      <!-- <h5>{{ movie.title }}</h5> -->
+    </div>
     
 
   </div>
@@ -43,6 +49,7 @@ export default {
 </script>
 
 <style>
+
 body {
   margin : 0
 }
@@ -71,5 +78,18 @@ div {
   overflow: auto;
 }
 
+#movieListImage{
+  cursor: pointer;
+  padding:5px;
+  width:200px;
+  height:295px;
+  vertical-align: middle;
+}
+
+#movieListImage:hover {
+  transform: scale(1.2);
+  background-color:  rgb(255, 255, 95);
+  /* opacity: 0.3; */
+}
 
 </style>

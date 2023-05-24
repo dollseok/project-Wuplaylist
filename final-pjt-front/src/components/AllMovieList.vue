@@ -1,17 +1,16 @@
 <template>
-  <div>
-    <h1>All Movie List</h1>
-    <div class="movieList">
-      <!-- <vueper-slides-->
+<div>
 
-      <MovieItem
-        v-for="movie in movies" :key="movie.id"
-        :movie="movie"
-      />
-
-
-    </div>
+  <h1>All Movie List</h1>
+  <div class="scroll movieItems">
+    <MovieItem 
+      v-for="movie in movies" 
+      :key="movie.id" 
+      :movie="movie"
+    />
   </div>
+
+</div>
 </template>
 
 <script>
@@ -35,12 +34,36 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .movieList {
-  display: flex;
-  gap : 10px;
-  height : 500px;
-  overflow-x: auto;
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
 }
+
+.movieItems{
+  display: flex;
+  overflow-x: scroll;
+  height: 400px;
+  align-items: center;
+}
+
+div::-webkit-scrollbar {
+  height:7px;
+}
+
+div::-webkit-scrollbar-thumb{
+  background-color: rgb(255, 255, 122);
+  border-radius: 10px;
+}
+
+div::-webkit-scrollbar-track {
+  background-color: rgb(228, 228, 228);
+  opacity: 0.5;
+  border-radius: 10px;
+}
+
+
+
 </style>
