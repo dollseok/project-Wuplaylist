@@ -10,7 +10,7 @@
         {{ article.title }}
         </router-link>
       </div>
-      <div class="">
+      <div>
         <font-awesome-icon class="flex-end" :icon="['fas', 'heart']" size="lg" color="orangered" /> 
         <span>
           {{ article.like_user.length }}

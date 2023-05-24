@@ -3,18 +3,30 @@
     <!-- modal 창 -->
     <div class="movieModal black-bg">
       <div class="white-bg">
-        <h4>{{movie.title}} </h4>
-        <img :src="movie.poster_path" alt="poster">
-        <p>개봉일 : {{movie.released_date}}</p>
-        <p>평점 : {{movie.vote_average}}</p>
-        <p>장르 : 
-        <span v-for="genrename in getGenrename" :key="genrename.id">
-          {{genrename}}
-        </span>
-        </p>
-        <p>{{movie.overview}}</p>
+        <div class="modal-title">
+          <h2>{{movie.title}} </h2>
+          <div @click="modalclose">
+            <font-awesome-icon :icon="['fas', 'xmark']" />
+          </div>
+        </div>
 
-        <button @click="modalclose">Close</button>
+        <div class="container">
+          <div class=row>
+            <div class="modal-poster">
+              <img class="modal-poster" :src="movie.poster_path" alt="poster">
+            </div>
+            <div class="modal-content">
+              <p>개봉일 : {{movie.released_date}}</p>
+              <p>평점 : {{movie.vote_average}}</p>
+              <p>장르 : 
+              <span v-for="genrename in getGenrename" :key="genrename.id">
+                {{genrename}}
+              </span>
+              </p>
+              <p>{{movie.overview}}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -82,6 +94,27 @@ div {
   height: 100%;
   width: 100%;
   overflow: auto;
+}
+
+
+.modal-title {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+
+.modal-poster {
+  width: auto;
+  height: 100%;
+}
+
+.modal-content{
+  width:60%;
+  background-color: rgb(255, 255, 122, 0.1);;
+}
+.modal-content > p{
+  margin-top: 30px;
 }
 
 </style>
