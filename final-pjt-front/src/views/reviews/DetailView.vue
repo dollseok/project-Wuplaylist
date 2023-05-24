@@ -12,6 +12,8 @@
       </div>
       <p>{{ article?.content }}</p>
 
+      
+
       <!-- 플레이리스트에 담긴 영화들 -->
       <div class="contain-movies">
         <div class="column">
@@ -228,17 +230,9 @@ export default {
             })
         .catch(err => console.log(err))
     },
-
-    
-    modalOpen(movie){
-      this.$router.push({name:"ModalView", params:{ movie: movie,}} )
-    }
-    
-
-
-    // goMovieDetail() {
-
-    // }
+      modalOpen(movie){
+        this.$router.push({name:"ModalView", params:{ movie: movie,}} )
+      }
   }
 }
 </script>
