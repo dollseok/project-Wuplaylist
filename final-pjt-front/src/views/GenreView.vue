@@ -120,9 +120,11 @@ export default {
   flex-wrap: wrap;
 }
 .genre_button{
+  font-size: 13px;
+  display: flex;
   margin: 10px;
-  width: 100px;
-  height: 50px;
+  width: 70px;
+  height: 35px;
   border: 1px solid black;
   border-radius: 10px;
   justify-content: center;
