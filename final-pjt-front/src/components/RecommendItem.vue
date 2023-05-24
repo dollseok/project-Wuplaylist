@@ -15,7 +15,7 @@
         <button @click="modalclose">Close</button>
       </div>
     </div>
-    <img @click="modalopen=true" :src="`https://image.tmdb.org/t/p/w300/${movie.poster_path}`" alt="poster" style="height:450px;">
+    <img @click="modalopen=true" :src="`https://image.tmdb.org/t/p/w300/${movie.poster_path}`" alt="poster" style="height:450px; border-radius: 10px;">
     
 
   </div>

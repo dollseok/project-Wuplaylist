@@ -17,6 +17,7 @@
       </span>
       <div class="movieList">
         <RecommendItem 
+        class="recommendItem"
         v-for="movie in this.recommendMovies" :key="movie.id"
         :movie="movie"
         />
@@ -139,4 +140,9 @@ export default {
 .movieList {
   display: flex;
 }
+
+.recommendItem {
+  margin:5px;
+}
+
 </style>
