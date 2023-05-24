@@ -1,8 +1,7 @@
 <template>
   <div>
-
     <!-- modal 창 -->
-    <!-- <div class="movieModal black-bg" v-if="modalopen == true" @click="modalclose">
+    <div class="movieModal black-bg">
       <div class="white-bg">
         <h4>상세 페이지</h4>
         <img :src="movie.poster_path" alt="poster">
@@ -14,47 +13,34 @@
 
         <button @click="modalclose">Close</button>
       </div>
-    </div> -->
-
-    <div>
-      <img @click="modalOpen" :src="movie.poster_path" 
-      alt="poster" id="movieListImage"
-      >
-      <!-- <h5>{{ movie.title }}</h5> -->
     </div>
-    
-
   </div>
 </template>
 
 <script>
-// import ModalView from './ModalView.vue'
+
 
 export default {
-    name:'MovieItem',
-    props: {
-        movie: Object,
-    },
+    name:"ModalView",
     data(){
         return {
-          modalopen: false,
-          movies : this.movies,
+          movie: this.$route.params.movie
         }
     },
+    created() {
+      console.log(this.$route.params.movie)
+    },
     methods:{
-      modalOpen(){
-        this.$router.push({name:"ModalView", params:{ movie: this.movie,}} )
+      modalclose(){
+        this.$router.go(-1)
       }
-
     }
 }
+
 </script>
 
 <style>
 
-body {
-  margin : 0
-}
 div {
   box-sizing : border-box;
 }
@@ -78,20 +64,6 @@ div {
   height: 100%;
   width: 100%;
   overflow: auto;
-}
-
-#movieListImage{
-  cursor: pointer;
-  padding:5px;
-  width:200px;
-  height:295px;
-  vertical-align: middle;
-}
-
-#movieListImage:hover {
-  transform: scale(1.2);
-  background-color:  rgb(255, 255, 95);
-  /* opacity: 0.3; */
 }
 
 </style>

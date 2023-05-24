@@ -3,21 +3,22 @@
     <h1>HomeView</h1>
     <AllMovieList />
     <!-- 추천 플레이리스트 (좋아요 순으로 출력하기) -->
+    
     <div class="recommend-playlist">
-      <!-- <ReviewListItem /> -->
+      <ReviewPopular />
     </div>
   </div>
 </template>
 
 <script>
 import AllMovieList from '@/components/AllMovieList.vue'
-// import ReviewListItem from '@/components/ReviewListItem.vue'
+import ReviewPopular from '@/components/ReviewPopular.vue'
 
 export default {
   name: 'HomeView',
   components: {
     AllMovieList,
-    // ReviewListItem,
+    ReviewPopular,
   },
   created() {
     this.getAllMovies()
