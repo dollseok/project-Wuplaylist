@@ -8,6 +8,7 @@
     >
     {{ article.title }}
     </router-link>
+    <font-awesome-icon :icon="['fas', 'heart']" size="lg" color="orangered" /> {{ article.like_user.length }}
     <div class="moviePreview">
       <img id="movie-image" v-for="poster in moviePosters" :key="poster.id" :src="poster" alt="movieimage" width="100px" height="150px">
     </div>

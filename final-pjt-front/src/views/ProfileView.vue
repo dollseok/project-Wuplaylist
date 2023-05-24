@@ -6,6 +6,7 @@
         <h1>@{{ username }}</h1>
         <p>팔로워: {{ followerCount }} 팔로잉 : {{ followingCount }}</p>
         <p>별명 : {{ nickname }}</p>
+        <p>소개 : {{ introduce }}</p>
         <button v-if="username != currentUser.username " @click="follow">{{ isFollowing? 'Unfollow':'follow'}}</button>
         <h3>{{username}}의 플레이리스트</h3>
         <hr>
@@ -36,6 +37,7 @@ export default {
         return {
             username: null,
             nickname: null,
+            introduce: null,
             followerCount: 0,
             followingCount: 0,
             userData: {},
@@ -85,6 +87,7 @@ export default {
                 this.userArticles = response.data.article_set
                 this.username = response.data.username
                 this.nickname = response.data.nickname
+                this.introduce = response.data.introduce
                 this.followerCount = response.data.followers.length
                 this.followingCount = response.data.followings.length
 
@@ -96,7 +99,6 @@ export default {
                 console.log(err)
             })
         },
-        // userId를 활용해 username과 nickname을 받아오기
         // 현재 유저의 데이터
         // 현재 유저가 프로필 유저를 팔로우했는지 확인하기 위해 필요!
         getCurrentUser(){
@@ -109,6 +111,7 @@ export default {
             })
             .then((res) => {
                 this.currentUser = res.data
+                console.log(res.data)
             })
             .catch(err => console.log(err))
         },
