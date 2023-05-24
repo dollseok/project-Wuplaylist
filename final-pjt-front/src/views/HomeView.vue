@@ -38,7 +38,7 @@ export default {
     },
     getGenres(){
       this.$store.dispatch('getGenres')
-    }
+    },
   },
 
   computed:{

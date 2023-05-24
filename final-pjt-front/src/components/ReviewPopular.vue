@@ -11,7 +11,6 @@
   </div>
 </template>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 <script>
 import ReviewListItem from '@/components/ReviewListItem.vue'
 
@@ -19,11 +18,6 @@ export default {
   name: 'ReviewList',
   components: {
     ReviewListItem,
-  },
-  data(){
-    return {
-
-    }
   },
   computed: {
     sortedArticles() {
@@ -43,17 +37,9 @@ export default {
       return this.sortedArticles[2]
     }
   },
-  methods:{
-    
-  }
-  
 }
 </script>
 
 <style>
-
-.review-list > .child:first-of-type{
-  background-color: red;
-}
 
 </style>

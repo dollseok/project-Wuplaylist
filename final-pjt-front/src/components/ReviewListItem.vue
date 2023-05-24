@@ -41,7 +41,7 @@ export default {
           this.moviePosters.push(movie.poster_path)
         }
       }
-      console.log(this.moviePosters)
+      
     }
   }
 }
