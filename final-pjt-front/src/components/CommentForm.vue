@@ -43,6 +43,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+div {
+  margin-left: 30px;
+  text-align: start;
+}
 </style>

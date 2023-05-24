@@ -40,7 +40,7 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({ name: 'review' })
+      router.go(-1)
     },
     DELETE_TOKEN(state) {
       state.token = null
@@ -67,7 +67,6 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
-        // console.log(res, context)
         context.commit('GET_ARTICLES', res.data)
       })
       .catch(err => console.log(err))
@@ -78,8 +77,6 @@ export default new Vuex.Store({
       const password = payload.password
       const password2 = payload.password2
       const nickname = payload.nickname
-      console.log(username)
-      console.log(nickname)
 
       axios({
         method: 'post',
@@ -89,8 +86,8 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
-        // console.log(res)
         context.commit('SAVE_TOKEN', res.data.key)
+        alert('회원가입이 완료되었습니다.')
       })
       .catch(err => console.log(err))
     },
@@ -107,7 +104,6 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
-        console.log(res)
         context.commit('SAVE_USER', username)
         context.commit('SAVE_TOKEN', res.data.key)
       })
@@ -119,9 +115,8 @@ export default new Vuex.Store({
         method: 'post',
         url: `${API_URL}/accounts/logout/`
       })
-      .then((res) => {
+      .then(() => {
         context.commit('DELETE_TOKEN') 
-        console.log(res)
       })
       .catch(err => console.log(err))
     },
@@ -146,7 +141,6 @@ export default new Vuex.Store({
       })
       .then((res) => {
         context.commit('GET_ALL_GENRES', res.data)
-        console.log(res)
       })
       .catch(err => console.log(err))
     }
