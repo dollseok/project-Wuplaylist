@@ -17,6 +17,7 @@
       </span>
       <div class="movieList">
         <RecommendItem 
+        class="recommendItem"
         v-for="movie in this.recommendMovies" :key="movie.id"
         :movie="movie"
         />
@@ -120,9 +121,11 @@ export default {
   flex-wrap: wrap;
 }
 .genre_button{
+  font-size: 13px;
+  display: flex;
   margin: 10px;
-  width: 100px;
-  height: 50px;
+  width: 70px;
+  height: 35px;
   border: 1px solid black;
   border-radius: 10px;
   justify-content: center;
@@ -136,5 +139,11 @@ export default {
 
 .movieList {
   display: flex;
+  flex-wrap: wrap;
 }
+
+.recommendItem {
+  margin:5px;
+}
+
 </style>

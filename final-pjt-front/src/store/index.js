@@ -20,6 +20,7 @@ export default new Vuex.Store({
     // 유저 관련
     token: null,
     currentUsername: null,
+    currentUser:null,
     
     // 영화 관련
     movies: [],
@@ -37,6 +38,7 @@ export default new Vuex.Store({
     },
 
     GET_ARTICLES(state, articles) {
+      state.articles
       state.articles = articles
     },
     SAVE_USER(state, currentUsername) {
@@ -59,7 +61,12 @@ export default new Vuex.Store({
     // 장르 전체 리스트
     GET_ALL_GENRES(state, genres){
       state.genres = genres
-    }
+    },
+
+    GET_CURRENT_USER(state, user){
+      state.currentUser = user
+    },
+
   },
   actions: {  // dispatch로 호출하여 사용
     // 리뷰 게시글 불러오는 요청
@@ -83,12 +90,13 @@ export default new Vuex.Store({
       const password = payload.password
       const password2 = payload.password2
       const nickname = payload.nickname
+      const introduce = payload.introduce
 
       axios({
         method: 'post',
         url: `${API_URL}/accounts/user/signup/`,
         data: {
-          username, password, password2, nickname,
+          username, password, password2, nickname, introduce,
         }
       })
       .then((res) => {
@@ -149,7 +157,23 @@ export default new Vuex.Store({
         context.commit('GET_ALL_GENRES', res.data)
       })
       .catch(err => console.log(err))
-    }
+    },
+
+    // 현재 유저 데이터 가져오기
+    getCurrentUser(context){
+      axios({
+          method: 'get',
+          url:`${API_URL}/accounts/user/current/`,
+          headers:{
+              Authorization: `Token ${this.state.token}`
+          }
+      })
+      .then((res) => {
+        context.commit('GET_CURRENT_USER', res.data)
+      })
+      .catch((err) => 
+        console.log(err))
+  },
 
   },
   modules: {
