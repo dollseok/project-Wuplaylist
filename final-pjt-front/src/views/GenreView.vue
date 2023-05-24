@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Main</h1>
     <h1>Select Genre</h1>
     <div class="genre">
       <div
@@ -12,16 +11,15 @@
       </div>
     </div>
     <div>
-      <h1>당신이 선택한 장르는</h1>
+      <h1>당신이 선택한 장르는?</h1>
       <span style="font-size : 30px;" v-for="genrename in selectedGenreNameList" :key="genrename.id">
         {{ genrename }}
       </span>
-      <div class="movieList" >
+      <div class="movieList">
         <RecommendItem 
         v-for="movie in this.recommendMovies" :key="movie.id"
         :movie="movie"
         />
-        <!-- <img v-for="movie in this.recommendMovies" :key="movie.id" :src="`https://image.tmdb.org/t/p/w300/${movie.poster_path}`" alt=""> -->
       </div>
     </div>
   </div>
@@ -62,6 +60,7 @@ export default {
         
         this.GenreRecommendList()
       },
+
       GenreRecommendList(){
         let genreCode = ''
         for (const index in this.selectedGenreList){
@@ -74,18 +73,23 @@ export default {
             genreCode += this.selectedGenreList[index] 
           }
         }
-        axios({
-          method:'get',
-          url : `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-Kr&page=1&sort_by=popularity.desc&with_genres=${genreCode}`,
-          headers :{
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjNlM2FhNjVlOTZlOTVjN2Y0MWZmMDdmY2NkMzAxYiIsInN1YiI6IjYzZDMxYTM4NWEwN2Y1MDA5ZTk4MDM0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.svzZx8RMTp1kjkBzxbvcOuoduFUJjduTqyQf-ufCBfo"
-          },
-        })
-        .then(res=> {
-          this.recommendMovies = res.data.results
-        })
-        .catch(err=>console.log(err))
+        if (genreCode === ''){
+          this.recommendMovies = {}
+        }
+        else {
+          axios({
+            method:'get',
+            url : `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-Kr&page=1&sort_by=popularity.desc&with_genres=${genreCode}`,
+            headers :{
+              "accept": "application/json",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjNlM2FhNjVlOTZlOTVjN2Y0MWZmMDdmY2NkMzAxYiIsInN1YiI6IjYzZDMxYTM4NWEwN2Y1MDA5ZTk4MDM0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.svzZx8RMTp1kjkBzxbvcOuoduFUJjduTqyQf-ufCBfo"
+            },
+          })
+          .then(res=> {
+            this.recommendMovies = res.data.results
+          })
+          .catch(err=>console.log(err))
+        }
       }
     },
   computed:{
