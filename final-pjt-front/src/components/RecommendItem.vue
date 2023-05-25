@@ -4,9 +4,9 @@
     <!-- modal 창 -->
     <div class="movieModal black-bg" v-if="modalopen == true" @click="modalclose">
       <div class="white-bg">
-        <h4>상세 페이지</h4>
+        <h2>{{movie.title}}</h2>
         <img :src="`https://image.tmdb.org/t/p/w300/${movie.poster_path}`" alt="poster">
-        <p> {{movie.title}} </p>
+        <p>  </p>
         <p>{{movie.released_date}}</p>
         <p>{{movie.vote_average}}</p>
         <p>{{movie.genres}}</p>
