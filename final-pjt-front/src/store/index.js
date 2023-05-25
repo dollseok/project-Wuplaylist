@@ -91,6 +91,22 @@ export default new Vuex.Store({
       const password2 = payload.password2
       const nickname = payload.nickname
       const introduce = payload.introduce
+      
+      console.log(username)
+      if (username === null){
+        alert('아이디를 입력해주세요')
+      } 
+      else if (password === null) {
+        alert('비밀번호를 입력해주세요')
+      } 
+      else if (password2 === null) {
+        alert('비밀번호를 확인해주세요')
+      } 
+      else if(nickname === null){
+        alert('이름을 입력해주세요')
+      } else if(password != password2) {
+        alert('비밀번호 확인이 잘못되었습니다')
+      }
 
       axios({
         method: 'post',
@@ -122,8 +138,8 @@ export default new Vuex.Store({
         context.commit('SAVE_TOKEN', res.data.key)
       })
       .catch((err) => { 
+        alert('아이디 혹은 비밀번호가 잘못되었습니다')
         console.log(err)
-        
       })
     },
     // 로그아웃
