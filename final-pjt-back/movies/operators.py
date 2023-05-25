@@ -8,7 +8,6 @@ from .models import *
 # 런서버 할 때(프로그램이 시작될 때) 자동으로 업데이트가 되긴 함
 
 def save_movie_data(total_data):
-    print('이건되나')
     for data in total_data:
         try:
             movie = Movie.objects.get(movie_id=data['fields']['movie_id'])
@@ -66,7 +65,6 @@ def get_movies_data():
                 total_data.append(data)
 
     save_movie_data(total_data)
-    print('데이터 저장')
 
 def save_genre_data(total_genre):
     for data in total_genre:
@@ -104,7 +102,6 @@ def get_genres_data():
         total_genre.append(data)
     
     save_genre_data(total_genre)
-    print('장르 저장')
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, timedelta
