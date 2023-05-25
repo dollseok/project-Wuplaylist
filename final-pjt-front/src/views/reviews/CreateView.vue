@@ -15,7 +15,7 @@
           <div class="searchedMovies" v-for="movie in movielist" :key="movie.id">
             <div class="movie-card">
               <div class="movie-title">{{ movie.title }}</div>
-              <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
+              <img :class="{selected: containedMovie.includes(movie)}" @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
             </div>
           </div>
         </div>
@@ -194,5 +194,9 @@ export default {
     background-color: rgb(245, 245, 245);
     justify-content: center;
     align-items: center;
+  }
+
+  .selected {
+    opacity: 0.5;
   }
 </style>

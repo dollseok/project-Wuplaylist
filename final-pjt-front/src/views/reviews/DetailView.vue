@@ -4,7 +4,7 @@
     <!-- 영화 추가하는 모달 팝업 -->
     <div class="movieModal black-bg" v-if="isModalViewed" @close-modal="isModalViewed=false">
       <div class="white-bg">
-        <h4> 플레이리스트에 영화 추가하기 </h4>
+        <h4> <font-awesome-icon :icon="['fas', 'film']" size="lg" /> 플레이리스트에 영화 추가하기 </h4>
         <label for="searchKeyword">검색어 : </label>
         <input v-model="searchKeyword" @keyup.enter="searchMovie" id="searchKeyword">
         <button class="btn closebtn" @click="isModalViewed=false"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
@@ -13,7 +13,7 @@
         <div class="searchedMovies" v-for="movie in movielist" :key="movie.id">
           <div class="movie-card">
             <div class="movie-title">{{ movie.title }}</div>
-            <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
+            <img :class="{selected:playlist_movies.includes(movie)}" @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
           </div>
         </div>
         </div>
@@ -369,5 +369,9 @@ export default {
 
 .movie-delete-btn {
   padding: 6px 0px;
+}
+
+.selected {
+  opacity: 0.5;
 }
 </style>
