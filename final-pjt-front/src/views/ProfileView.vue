@@ -31,9 +31,8 @@
         </div>
 
 
-        
-        <h3>  <span style="font-weight:bold;">{{ nickname }}</span>의 플레이리스트</h3>
         <hr>
+        <h3>  <span style="font-weight:bold;">{{ nickname }}</span>의 플레이리스트</h3>
         <!-- 작성한 플레이리스트의 id (article.id)를 가져와서 v-for 활용하자 -->
         <!-- 해당 프로필 유저의 작성게시글 출력 -->
         <ReviewListItem 
