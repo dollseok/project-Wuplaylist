@@ -44,7 +44,7 @@ export default {
   },
   mounted() {
     this.getMoviePoster()
-    console.log(this.article)
+    // console.log(this.article)
   },
   methods: {
     // 플레이리스트 미리보기를 위해 담긴 영화들의 포스터 링크 가져오기

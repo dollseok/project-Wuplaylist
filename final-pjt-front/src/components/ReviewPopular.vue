@@ -6,10 +6,10 @@
     <ReviewListItem class="playlist-hot" :article="article1"/>
     <hr>
     <h3>2위 <font-awesome-icon :icon="['fas', 'crown']" style="color: #c0c0c0;" /></h3>
-    <ReviewListItem :article="article2"/>
+    <ReviewListItem class="playlist-hot" :article="article2"/>
     <hr>
     <h3>3위 <font-awesome-icon :icon="['fas', 'crown']" style="color: #8b4513;" /></h3>
-    <ReviewListItem :article="article3"/>
+    <ReviewListItem class="playlist-hot" :article="article3"/>
   </div>
 </template>
 
