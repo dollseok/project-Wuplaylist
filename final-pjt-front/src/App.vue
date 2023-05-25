@@ -2,11 +2,19 @@
   <div id="app">
     <!-- 로고 이미지 -->
     <nav class="d-flex p-2" id="mainNav">
-      <div class="me-auto">
-        <img src="./assets/우플리로고.jpg" alt="로고" style="width:100px;" class="p-2">
+      <div class="me-auto leftnav">
+        <img src="./assets/우플리로고2.jpg" alt="로고" style="height:70px;" class="p-2 m-auto">
+        <nav id="routerNav">
+          <router-link class="routerlink" to="/">홈</router-link>
+          <router-link class="routerlink" to="/genre">장르별 추천</router-link>
+          <router-link class="routerlink" to="/review">영화 리뷰</router-link>
+        </nav>
+      
       </div>
       
       <div class="loginBar my-auto">
+        <!-- 토큰이 있을 때는 로그아웃 버튼 -->
+        <!-- 없을 때는 로그인 버튼 -->
         <div v-if="token">
           <router-link :to="{ name: 'ProfileView', query: { data: JSON.stringify({ username: currentUsername }) } }" class="routerlink">프로필</router-link>
           <span v-if="token" @click="logout" class="routerlink">로그아웃</span> 
@@ -18,13 +26,7 @@
       </div>
     </nav>
 
-    <nav id="routerNav">
-      <router-link class="routerlink" to="/">홈</router-link>
-      <router-link class="routerlink" to="/genre">장르별 추천</router-link>
-      <router-link class="routerlink" to="/review">영화 리뷰</router-link>
-      <!-- 토큰이 있을 때는 로그아웃 버튼 -->
-      <!-- 없을 때는 로그인 버튼 -->
-    </nav>
+    
     <!-- 다른 유저의 프로필에서 나의 프로필로  -->
     <router-view :key="$route.fullPath" />
   </div>
@@ -95,6 +97,10 @@ nav a.router-link-exact-active {
 
 #routerNav {
   text-align: center;
+}
+
+.leftnav {
+  display: flex;
 }
 
 
