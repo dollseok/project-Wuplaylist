@@ -21,13 +21,18 @@ export default {
   components: {
     ReviewListItem,
   },
+  data() {
+    return {
+      articles: this.$store.state.articles,
+    }
+  },
   computed: {
     sortedArticles() {
       const articles = this.$store.state.articles
-      articles.sort(function(a,b){
-        return parseFloat(b.like_user.length)-parseFloat(a.like_user.length)
+      let editArticles = articles.sort(function(a,b){
+        return b.like_user.length - a.like_user.length
       })
-      return articles
+      return editArticles
     },
     article1(){
       return this.sortedArticles[0]
