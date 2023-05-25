@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <!-- 로고 이미지 -->
-    <nav class="d-flex p-2" id="mainNav">
+    <nav class="d-flex p-0 py-3" id="mainNav">
       <div class="me-auto leftnav">
-        <img src="./assets/우플리로고2.jpg" alt="로고" style="height:70px;" class="p-2 m-auto">
+        <img src="./assets/우플리로고2.jpg" alt="로고" style="height:70px;" class="m-auto">
         <nav id="routerNav">
           <router-link class="routerlink" to="/">홈</router-link>
           <router-link class="routerlink" to="/genre">장르별 추천</router-link>
@@ -67,7 +67,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
-  margin: 10px 10px
+  margin: 10px 10px;
+  padding: 2px;
 }
 
 .routerlink{
