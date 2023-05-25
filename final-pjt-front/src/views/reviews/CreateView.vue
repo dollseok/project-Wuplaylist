@@ -14,7 +14,7 @@
         <div class="column">
           <div class="searchedMovies" v-for="movie in movielist" :key="movie.id">
             <div class="movie-card">
-              <p>{{ movie.title }}</p>
+              <div class="movie-title">{{ movie.title }}</div>
               <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
             </div>
           </div>
@@ -185,4 +185,14 @@ export default {
     text-align: center;
   }
 
+  .movie-title {
+    display: flex;
+    width: 200px;
+    height: 50px;
+    /* border: 1px solid grey; */
+    color: black;
+    background-color: rgb(245, 245, 245);
+    justify-content: center;
+    align-items: center;
+  }
 </style>

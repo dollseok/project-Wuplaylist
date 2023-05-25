@@ -73,6 +73,12 @@ div::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 
+.scroll {
+  margin: 0 10px;
+}
 
+h1 {
+  margin: 0;
+}
 
 </style>

@@ -11,8 +11,10 @@
         <br>
         <div class="column">
         <div class="searchedMovies" v-for="movie in movielist" :key="movie.id">
-          <div class="movie-title">{{ movie.title }}</div>
-          <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
+          <div class="movie-card">
+            <div class="movie-title">{{ movie.title }}</div>
+            <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
+          </div>
         </div>
         </div>
       </div>
@@ -35,7 +37,7 @@
         <div class="column">
           <div class="movie-card" v-for="movie in playlist_movies" :key="movie.id">
             <div class="movie-title">{{ movie.title }}</div>
-            <figure><img @click="modalOpen(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
+            <figure><img @click="modalOpen(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px"></figure>
           </div>
         </div>
       </div>
@@ -59,7 +61,7 @@
               <div>{{ movie.title }}</div>
               <div><button class="btn movie-delete-btn" v-if="!updatestatus" @click="deleteFromPlaylist(movie)"><font-awesome-icon :icon="['fas', 'xmark']" /></button></div>
             </div>
-            <figure><img id="movie-image" :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
+            <figure><img id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px"></figure>
             
           </div>
         </div>
@@ -254,8 +256,12 @@ export default {
 
     // 플레이리스트 영화 추가
     addToPlaylist(movie) {
-      this.playlist_movies.push(movie)
-      this.changedContainMoviesId.push(movie.id)
+      if (this.playlist_movies.includes(movie)) {
+        alert('이미 들어있는 영화입니다.')
+      } else {
+        this.playlist_movies.push(movie)
+        this.changedContainMoviesId.push(movie.id)
+      }
     },
     // 게시글 좋아요
     likeArticle() {
@@ -343,7 +349,7 @@ export default {
 
 .movie-title {
   display: flex;
-  width: 150px;
+  width: 200px;
   height: 50px;
   /* border: 1px solid grey; */
   color: black;
