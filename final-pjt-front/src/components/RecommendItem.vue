@@ -102,8 +102,8 @@ div {
 }
 
 .modalImage {
-  width: 300px;
-  height:450px; 
+  width: 265px;
+  height:397.5px; 
   border-radius: 10px;
   cursor: pointer;
 }

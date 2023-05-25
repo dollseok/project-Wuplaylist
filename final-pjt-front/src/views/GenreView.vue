@@ -19,7 +19,7 @@
         {{ genrename }}
       </span> -->
 
-      <div v-if="selectedGenreList.length === 0">선택한 장르가 없습니다</div>
+      <div v-if="selectedGenreList.length === 0" class="message1">선택한 장르가 없습니다</div>
       <div v-else-if="recommendMovies.length===0">관련 영화가 없습니다</div>    
       <div v-else class="movieList">
         <RecommendItem 
@@ -187,5 +187,10 @@ export default {
 
 h1 {
   margin: 0;
+}
+
+.message1 {
+  font-size: 50px;
+  
 }
 </style>
