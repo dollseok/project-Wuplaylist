@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Select Genre</h1>
+    <div class="view-nav">
+      <h1>장르 선택</h1>
+    </div>
     <div class="genre">
       <div
         v-for="genre in genres" :key="genre.id"
@@ -116,6 +118,15 @@ export default {
 </script>
 
 <style scoped>
+.view-nav {
+  margin: 0 10px;
+  padding: 10px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-radius: 1rem;
+
+}
+
 .genre {
   display: flex;
   flex-wrap: wrap;

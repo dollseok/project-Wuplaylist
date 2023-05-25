@@ -6,8 +6,8 @@
         <img src="./assets/우플리로고2.jpg" alt="로고" style="height:70px;" class="m-auto">
         <nav id="routerNav">
           <router-link class="routerlink" to="/">홈</router-link>
-          <router-link class="routerlink" to="/genre">장르별 추천</router-link>
-          <router-link class="routerlink" to="/review">영화 리뷰</router-link>
+          <router-link class="routerlink" to="/genre">장르별로 보기</router-link>
+          <router-link class="routerlink" to="/review">플레이리스트</router-link>
         </nav>
       
       </div>

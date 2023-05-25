@@ -14,7 +14,7 @@
         <div class="column">
           <div class="searchedMovies" v-for="movie in movielist" :key="movie.id">
             <div class="movie-card">
-              {{ movie.title }}
+              <p>{{ movie.title }}</p>
               <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
             </div>
           </div>
@@ -98,7 +98,11 @@ export default {
     },
     // 플레이리스트에 영화를 추가
     addToPlaylist(movie) {
-      this.containedMovie.push(movie)
+      if (this.containedMovie.includes(movie)) {
+        alert('이미 들어있는 영화입니다.')
+      } else {
+        this.containedMovie.push(movie)
+      }
     },
     // 플레이리스트 생성
     createArticle() {
@@ -173,5 +177,12 @@ export default {
   .column {
     display: flex;
     overflow-x: auto;
+    margin-top: 10px;
   }
+
+  .movie-card {
+    margin-right: 10px;
+    text-align: center;
+  }
+
 </style>

@@ -1,7 +1,8 @@
 <template>
 <div>
-
-  <h1>전체 영화</h1>
+  <div class="view-nav">
+    <h1>전체 영화</h1>
+  </div>
   <div class="scroll movieItems">
     <MovieItem 
       v-for="movie in movies" 
@@ -35,6 +36,14 @@ export default {
 </script>
 
 <style scoped>
+
+.view-nav {
+  margin: 0 10px;
+  padding: 10px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-radius: 1rem;  
+}
 
 .movieList {
   margin:0;
