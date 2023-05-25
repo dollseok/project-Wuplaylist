@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="view-nav">
-      <h1>장르 선택</h1>
+      <h1>당신이 선택할 장르는?</h1>
     </div>
     <div class="genre">
       <div
@@ -11,13 +11,17 @@
       >
         {{ genre.genre_name }}
       </div>
+      <div @click="resetGenre" class="resetButton">전체해제</div>
     </div>
     <div>
-      <h1>당신이 선택한 장르는?</h1>
-      <span style="font-size : 30px;" v-for="genrename in selectedGenreNameList" :key="genrename.id">
+      
+      <!-- <span style="font-size : 30px;" v-for="genrename in selectedGenreNameList" :key="genrename.id">
         {{ genrename }}
-      </span>
-      <div class="movieList">
+      </span> -->
+
+      <div v-if="selectedGenreList.length === 0">선택한 장르가 없습니다</div>
+      <div v-else-if="recommendMovies.length===0">관련 영화가 없습니다</div>    
+      <div v-else class="movieList">
         <RecommendItem 
         class="recommendItem"
         v-for="movie in this.recommendMovies" :key="movie.id"
@@ -60,7 +64,8 @@ export default {
         else {
           this.selectedGenreList.push(genre_id)
         }
-        
+        console.log(this.selectedGenreList)
+        console.log(this.recommendMovies)
         this.GenreRecommendList()
       },
 
@@ -93,6 +98,9 @@ export default {
           })
           .catch(err=>console.log(err))
         }
+      },
+      resetGenre(){
+        this.selectedGenreList = []
       }
     },
   computed:{
@@ -112,7 +120,7 @@ export default {
 
     }
     
-  }
+  },
 }
 
 </script>
@@ -132,16 +140,36 @@ export default {
   flex-wrap: wrap;
 }
 .genre_button{
-  font-size: 13px;
+  font-size: 15px;
   display: flex;
   margin: 10px;
-  width: 70px;
+  width: 90px;
   height: 35px;
   border: 1px solid black;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: pointer;
+}
+
+.resetButton {
+  background-color: rgb(253, 62, 62, 0.5);
+  margin: 10px;
+  padding: 10px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-radius: 1rem;
+  font-size: 15px;
+  display: flex;
+  width: 90px;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
 }
 
 .selected {
