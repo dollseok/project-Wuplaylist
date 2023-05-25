@@ -11,7 +11,7 @@ def save_movie_data(total_data):
     print('이건되나')
     for data in total_data:
         try:
-            movie = Movie.objects.filter(movie_id=data['fields']['movie_id'])
+            movie = Movie.objects.get(movie_id=data['fields']['movie_id'])
         except ObjectDoesNotExist:
             movie = Movie(
                 movie_id=data['fields']['movie_id'],
@@ -31,7 +31,7 @@ def save_movie_data(total_data):
 def get_movies_data():
     total_data = []
 
-    for i in range(1,8):
+    for i in range(1,20):
         url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page={i}&sort_by=popularity.desc"
 
         headers = {
@@ -71,7 +71,7 @@ def get_movies_data():
 def save_genre_data(total_genre):
     for data in total_genre:
         try:
-            genre = Genre.objects.filter(genre_id = data['fields']['genre_id'])
+            genre = Genre.objects.get(genre_id = data['fields']['genre_id'])
         except ObjectDoesNotExist:
             genre = Genre(
                 genre_id = data['fields']['genre_id'],

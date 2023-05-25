@@ -51,7 +51,7 @@ def get_user_detail(request, user_id):
         # print(response_data)
         # print('------------')
         # return JsonResponse(response_data)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
     
     except get_user_model().DoesNotExist:

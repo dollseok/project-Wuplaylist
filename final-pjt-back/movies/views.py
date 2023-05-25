@@ -44,8 +44,9 @@ def article_list(request):
     
     elif request.method == 'POST':
         serializer = ArticleSerializer(data=request.data)
-
+        print('글 생성')
         if serializer.is_valid(raise_exception=True):
+            print('유효성 검사를 통과했씁니다.')
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
