@@ -11,9 +11,13 @@
           <button class="btn closebtn" @click="isModalViewed=false"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
         <input v-model="searchKeyword" @keyup.enter="searchMovie" id="searchKeyword">
         <br>
-        <div class="searchedMovies" v-for="movie in movielist" :key="movie.id">
-          {{ movie.title }}
-          <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
+        <div class="column">
+          <div class="searchedMovies" v-for="movie in movielist" :key="movie.id">
+            <div class="movie-card">
+              {{ movie.title }}
+              <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -164,5 +168,10 @@ export default {
 
   .content-form * {
     vertical-align: middle;
+  }
+
+  .column {
+    display: flex;
+    overflow-x: auto;
   }
 </style>

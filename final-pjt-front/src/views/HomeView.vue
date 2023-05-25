@@ -32,6 +32,9 @@ export default {
     this.getAllMovies()
     this.getGenres()
   },
+  computed: {
+
+  },
   methods: {
     getAllMovies(){
       this.$store.dispatch('getAllMovies')
@@ -39,9 +42,6 @@ export default {
     getGenres(){
       this.$store.dispatch('getGenres')
     },
-  },
-
-  computed:{
   },
 }
 </script>
