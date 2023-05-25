@@ -108,13 +108,42 @@
 
 2. 자신이 팔로우한 사람들의 최신 순서로 플레이리스트 추천
 
-```javascript
 
+FollowPlaylist.vue
+- 최근 게시글부터 탐색을 해서 게시글의 작성자가 접속한 유저가 팔로잉한 유저인 경우 게시글의 작성자를 포함한 데이터를 가공하여 리스트에 저장하고 가장 최근의 게시글이 출력되면서 작성한 유저까지 보이도록 만듦 
+
+```javascript
+  getArticles(){
+      // 팔로잉한 사람의 게시글을 최근 게시글부터 탐색
+      const reverse = [...this.Articles].reverse()
+      for (const article of reverse) {
+          if (this.currentUser.followings.includes(article.user)) {
+              this.followingArticles.push(article)
+                axios({
+                    method: 'get',
+                    url: `${API_URL}/accounts/user/detail/${article.user}/`,
+                    headers: {
+                        Authorization: `Token ${ this.token }`,
+                    }    
+                })
+                .then((res) => {
+                    const userInfo = {
+                        ...article,
+                        username: res.data.username
+                    }
+                    this.followingArticlesPlusAuthor.push(userInfo)
+                })
+                .catch(err => console.log(err))
+                
+              }
+              
+          }
+      },
 
 ```
 
 # 서비스 대표 기능에 대한 설명
 
-# 배포 서버 URL (배포했을 경우)
+- 
 
 # 기타 (느낀 점, 후기)
