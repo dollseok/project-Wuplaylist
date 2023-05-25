@@ -45,6 +45,7 @@ export default {
   border-top: 1px solid;
   border-bottom: 1px solid;
   border-radius: 1rem;
+  width:96%;
 
 }
 

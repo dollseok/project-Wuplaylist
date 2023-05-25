@@ -53,16 +53,16 @@ export default {
 
 .recommend-playlist{
   padding: 10px;
-  width:50%;
+  width:47%;
   border: 1px solid black;
-  margin: 10px;
+  margin: 15px;
   border-radius: 10px;
 }
 .follow-playlist{
   padding: 10px;
-  width:50%;
+  width:47%;
   border: 1px solid black;
-  margin: 10px;
+  margin: 15px;
   border-radius: 10px;
 }
 
