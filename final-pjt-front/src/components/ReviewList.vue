@@ -13,9 +13,9 @@ import ReviewListItem from '@/components/ReviewListItem.vue'
 
 export default {
   name: 'ReviewList',
-  computed: {
-    articles() {
-      return this.$store.state.articles
+  data() {
+    return {
+      articles: this.$store.state.articles
     }
   },
   components: {

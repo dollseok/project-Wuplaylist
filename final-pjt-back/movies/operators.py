@@ -11,7 +11,7 @@ def save_movie_data(total_data):
     print('이건되나')
     for data in total_data:
         try:
-            movie = Movie.objects.get(movie_id=data['fields']['movie_id'])
+            movie = Movie.objects.filter(movie_id=data['fields']['movie_id'])
         except ObjectDoesNotExist:
             movie = Movie(
                 movie_id=data['fields']['movie_id'],
@@ -71,7 +71,7 @@ def get_movies_data():
 def save_genre_data(total_genre):
     for data in total_genre:
         try:
-            genre = Genre.objects.get(genre_id = data['fields']['genre_id'])
+            genre = Genre.objects.filter(genre_id = data['fields']['genre_id'])
         except ObjectDoesNotExist:
             genre = Genre(
                 genre_id = data['fields']['genre_id'],

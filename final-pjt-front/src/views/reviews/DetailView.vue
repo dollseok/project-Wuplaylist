@@ -245,6 +245,7 @@ export default {
       .then((res) => {
         this.likeCount = res.data.like_user.length
         this.isLiked = !this.isLiked
+        this.$router.go(0)
       })
       .catch(err => console.log(err))
     },

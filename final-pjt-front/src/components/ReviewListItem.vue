@@ -32,7 +32,7 @@ export default {
       moviePosters: [],
     }
   },
-  created() {
+  mounted() {
     this.getMoviePoster()
   },
   methods: {
