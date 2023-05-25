@@ -28,9 +28,12 @@ export default {
     ReviewPopular,
     FollowPlaylist,
   },
-  created() {
+  mounted() {
     this.getAllMovies()
     this.getGenres()
+  },
+  computed: {
+
   },
   methods: {
     getAllMovies(){
@@ -38,10 +41,7 @@ export default {
     },
     getGenres(){
       this.$store.dispatch('getGenres')
-    }
-  },
-
-  computed:{
+    },
   },
 }
 </script>

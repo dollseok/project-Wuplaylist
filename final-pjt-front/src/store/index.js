@@ -20,6 +20,7 @@ export default new Vuex.Store({
     // 유저 관련
     token: null,
     currentUsername: null,
+    currentUser:null,
     
     // 영화 관련
     movies: [],
@@ -37,6 +38,7 @@ export default new Vuex.Store({
     },
 
     GET_ARTICLES(state, articles) {
+      state.articles
       state.articles = articles
     },
     SAVE_USER(state, currentUsername) {
@@ -59,7 +61,12 @@ export default new Vuex.Store({
     // 장르 전체 리스트
     GET_ALL_GENRES(state, genres){
       state.genres = genres
-    }
+    },
+
+    GET_CURRENT_USER(state, user){
+      state.currentUser = user
+    },
+
   },
   actions: {  // dispatch로 호출하여 사용
     // 리뷰 게시글 불러오는 요청
@@ -84,6 +91,22 @@ export default new Vuex.Store({
       const password2 = payload.password2
       const nickname = payload.nickname
       const introduce = payload.introduce
+      
+      console.log(username)
+      if (username === null){
+        alert('아이디를 입력해주세요')
+      } 
+      else if (password === null) {
+        alert('비밀번호를 입력해주세요')
+      } 
+      else if (password2 === null) {
+        alert('비밀번호를 확인해주세요')
+      } 
+      else if(nickname === null){
+        alert('이름을 입력해주세요')
+      } else if(password != password2) {
+        alert('비밀번호 확인이 잘못되었습니다')
+      }
 
       axios({
         method: 'post',
@@ -114,7 +137,10 @@ export default new Vuex.Store({
         context.commit('SAVE_USER', username)
         context.commit('SAVE_TOKEN', res.data.key)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => { 
+        alert('아이디 혹은 비밀번호가 잘못되었습니다')
+        console.log(err)
+      })
     },
     // 로그아웃
     logout(context) {
@@ -150,7 +176,23 @@ export default new Vuex.Store({
         context.commit('GET_ALL_GENRES', res.data)
       })
       .catch(err => console.log(err))
-    }
+    },
+
+    // 현재 유저 데이터 가져오기
+    getCurrentUser(context){
+      axios({
+          method: 'get',
+          url:`${API_URL}/accounts/user/current/`,
+          headers:{
+              Authorization: `Token ${this.state.token}`
+          }
+      })
+      .then((res) => {
+        context.commit('GET_CURRENT_USER', res.data)
+      })
+      .catch((err) => 
+        console.log(err))
+  },
 
   },
   modules: {

@@ -1,18 +1,42 @@
 <template>
   <div>
     <!-- 현재 접속자 -->
-    <p>hello, {{ currentUser.username }}</p> 
+    <!-- <p v-if="currentUser">hello, {{ currentUser.username }}</p>  -->
     <div v-if="username">
-        <h1>@{{ username }}</h1>
-        <p>팔로워: {{ followerCount }} 팔로잉 : {{ followingCount }}</p>
-        <p>별명 : {{ nickname }}</p>
-        <p>소개 : {{ introduce }}</p>
-        <button v-if="username != currentUser.username " @click="follow">{{ isFollowing? 'Unfollow':'follow'}}</button>
-        <h3>{{username}}의 플레이리스트</h3>
+        <div class="profile-top-bar">
+            <h1>@{{ username }}</h1>
+            <button v-if="username != currentUser.username " @click="follow" :class="{buttonColor: !isFollowing}">
+                {{ isFollowing? '언팔로우':'팔로우'}}
+            </button>
+        </div>
+
+        <div class="count-bar">
+            <div>
+                <p>플레이리스트</p>
+                <p>{{ userArticles.length }}</p>
+            </div>
+            <div>
+                <p>팔로워</p>
+                {{ followerCount }}
+            </div>
+            <div>
+                <p>팔로잉</p>
+                {{ followingCount }}
+            </div>
+        </div>
+        <!-- 자기 소개 파트 -->
+        <div class="introduce-bar my-3">
+            <p style="font-weight: bold;">{{ nickname }}</p>
+            <p>{{ introduce }}</p>
+        </div>
+
+
         <hr>
+        <h3>  <span style="font-weight:bold;">{{ nickname }}</span>의 플레이리스트</h3>
         <!-- 작성한 플레이리스트의 id (article.id)를 가져와서 v-for 활용하자 -->
         <!-- 해당 프로필 유저의 작성게시글 출력 -->
         <ReviewListItem 
+        class="profileReviewListItem"
         v-for="article in userArticles" :key="article.id"
         :article="article"
         />
@@ -59,7 +83,7 @@ export default {
     },
     mounted(){
         if (this.isLogin) {
-            this.getCurrentUser()   
+            this.getCurrentUser() 
             this.paramsData = JSON.parse(this.$route.query.data) // 게시글에서 작성자 UserId를 받아오고
             if (this.paramsData.username) { // username으로 받아오는 경우 
                 this.fetchProfileData(this.paramsData.username)
@@ -70,7 +94,6 @@ export default {
             alert('로그인이 필요한 서비스입니다')
             this.$router.push({ name: 'LogInView '})
         }
-        
     },
     methods:{
         // username을 이용해 프로필 유저의 데이터를 가져오기
@@ -111,7 +134,6 @@ export default {
             })
             .then((res) => {
                 this.currentUser = res.data
-                console.log(res.data)
             })
             .catch(err => console.log(err))
         },
@@ -119,7 +141,7 @@ export default {
         checkIdExists(data, id){
             if (data.indexOf(id) != -1) {
                 return true
-            } else { 
+            } else {  
                 return false
             }
 
@@ -160,4 +182,57 @@ export default {
 
 <style>
 
+.count-bar {
+    display: flex;
+    background-color: rgb(228, 228, 228);
+    justify-content: space-evenly;
+    border-radius: 10px;
+}
+
+.count-bar div {
+    padding: 5px;
+    width: 150px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.count-bar div p {
+    margin: 0;
+    padding : 3px;
+}
+
+.profile-top-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.profile-top-bar button{ 
+    margin-left: 30px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width : 100px;
+    padding:5px;
+    border-radius: 5px;
+    border: 0.5px solid black;
+}
+.profile-top-bar h1{
+    margin: 0;
+}
+
+.buttonColor {
+    background-color: rgba(49, 75, 221, 0.747);
+    color: white;
+}
+
+.profileReviewListItem{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(238, 238, 238, 0.3);
+    border: 1px solid rgb(238, 238, 238);
+    border-radius: 10px;
+    
+}
 </style>

@@ -4,15 +4,17 @@
     <!-- 영화 추가하는 모달 팝업 -->
     <div class="movieModal black-bg" v-if="isModalViewed" @close-modal="isModalViewed=false">
       <div class="white-bg">
-        <h4> 플레이리스트에 영화 추가하기 </h4>
+        <h4> <font-awesome-icon :icon="['fas', 'film']" size="lg" /> 플레이리스트에 영화 추가하기 </h4>
         <label for="searchKeyword">검색어 : </label>
         <input v-model="searchKeyword" @keyup.enter="searchMovie" id="searchKeyword">
         <button class="btn closebtn" @click="isModalViewed=false"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
         <br>
         <div class="column">
         <div class="searchedMovies" v-for="movie in movielist" :key="movie.id">
-          <div class="movie-title">{{ movie.title }}</div>
-          <img @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
+          <div class="movie-card">
+            <div class="movie-title">{{ movie.title }}</div>
+            <img :class="{selected:playlist_movies.includes(movie)}" @click="addToPlaylist(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px">
+          </div>
         </div>
         </div>
       </div>
@@ -24,7 +26,7 @@
       <div class="d-flex">
         <span class="author" @click="goProfile">작성자 : {{ author }}</span>
         <div class="article-time">
-          <p>작성시각 : {{ article?.created_at }}   수정시각 : {{ article?.updated_at }}</p>
+          <p>작성 : {{ article?.created_at | ymdhms }} 수정 : {{ article?.updated_at | ymdhms }}</p>
         </div>
       </div>
       <p class="article-content">{{ article?.content }}</p>
@@ -35,8 +37,7 @@
         <div class="column">
           <div class="movie-card" v-for="movie in playlist_movies" :key="movie.id">
             <div class="movie-title">{{ movie.title }}</div>
-            <figure><img @click="modalOpen(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
-            <button v-if="!updatestatus" @click="deleteFromPlaylist(movie)">삭제</button>
+            <figure><img @click="modalOpen(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px"></figure>
           </div>
         </div>
       </div>
@@ -56,9 +57,12 @@
       <div class="contain-movies">
         <div class="column">
           <div class="movie-card" v-for="movie in playlist_movies" :key="movie.id">
-            <div class="movie-title">{{ movie.title }}</div>
-            <figure><img id="movie-image" :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
-            <button class="btn" v-if="!updatestatus" @click="deleteFromPlaylist(movie)"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
+            <div class="movie-title">
+              <div>{{ movie.title }}</div>
+              <div><button class="btn movie-delete-btn" v-if="!updatestatus" @click="deleteFromPlaylist(movie)"><font-awesome-icon :icon="['fas', 'xmark']" /></button></div>
+            </div>
+            <figure><img id="movie-image" :src="movie.poster_path" alt="movieImage" width="200px" height="300px"></figure>
+            
           </div>
         </div>
       </div>
@@ -112,6 +116,27 @@ export default {
       movielist: [],        // 키워드가 포함된 영화 리스트 (검색마다 초기화)
       containedMovie: []    // 해당 플레이리스트에 추가된 영화 리스트
     }
+
+  },
+  filters: {
+    // (연-월-일 시:분:초) 형태로 날짜 포맷팅
+    ymdhms: function(value) {
+      // 들어오는 값이 공백이면 공백으로 반환
+      if (value == '') return ''
+      // 날짜 데이터를 javascript date 타입으로
+      const js_date = new Date(value)
+
+      // 연, 월, 일, 시, 분, 초 추출
+      const year = String(js_date.getFullYear())
+      const month = String(js_date.getMonth() + 1).padStart(2, "0")
+      const day = String(js_date.getDate()).padStart(2, "0")
+      const hr = String(js_date.getHours()).padStart(2, "0")
+      const min = String(js_date.getMinutes()).padStart(2, "0")
+      const sec = String(js_date.getSeconds()).padStart(2, "0")
+
+      // 한자리 수 값이 있을 때는 공백에 0 처리
+      return year + '-' + month + '-' + day + ' ' + hr + ':' + min + ':' + sec
+    }
   },
   mounted() {
     this.getCurrentUser()
@@ -123,6 +148,7 @@ export default {
       const movies = this.$store.state.movies // 전체 영화 데이터
       if (this.article.contain_movies) {
         for (const movieId of this.article.contain_movies) {
+          console.log(movieId)
           this.playlist_movies.push(movies[movieId-1])
           this.changedContainMoviesId.push(movieId)
         }
@@ -230,8 +256,12 @@ export default {
 
     // 플레이리스트 영화 추가
     addToPlaylist(movie) {
-      this.playlist_movies.push(movie)
-      this.changedContainMoviesId.push(movie.id)
+      if (this.playlist_movies.includes(movie)) {
+        alert('이미 들어있는 영화입니다.')
+      } else {
+        this.playlist_movies.push(movie)
+        this.changedContainMoviesId.push(movie.id)
+      }
     },
     // 게시글 좋아요
     likeArticle() {
@@ -309,19 +339,23 @@ export default {
 }
 
 .article-content {
+  background-color: rgba(253, 250, 244, 0.5);
   padding-left: 20px;
 }
 
 .author {
   cursor: pointer;
+  font-weight: 800;
 }
 
 .movie-title {
   display: flex;
+  width: 200px;
   height: 50px;
-  border: 1px solid grey;
-  background-color: lightgrey;
-  justify-content: center;
+  /* border: 1px solid grey; */
+  color: black;
+  background-color: rgb(245, 245, 245);
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -334,4 +368,11 @@ export default {
   float: right;
 }
 
+.movie-delete-btn {
+  padding: 6px 0px;
+}
+
+.selected {
+  opacity: 0.5;
+}
 </style>

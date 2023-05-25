@@ -1,7 +1,8 @@
 <template>
 <div>
-
-  <h1>All Movie List</h1>
+  <div class="view-nav">
+    <h1>전체 영화</h1>
+  </div>
   <div class="scroll movieItems">
     <MovieItem 
       v-for="movie in movies" 
@@ -36,6 +37,14 @@ export default {
 
 <style scoped>
 
+.view-nav {
+  margin: 0 10px;
+  padding: 10px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-radius: 1rem;  
+}
+
 .movieList {
   margin:0;
   padding:0;
@@ -54,7 +63,7 @@ div::-webkit-scrollbar {
 }
 
 div::-webkit-scrollbar-thumb{
-  background-color: rgb(255, 255, 122);
+  background-color: rgba(34, 194, 119, 0.8);
   border-radius: 10px;
 }
 
@@ -64,6 +73,12 @@ div::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 
+.scroll {
+  margin: 0 10px;
+}
 
+h1 {
+  margin: 0;
+}
 
 </style>
