@@ -114,12 +114,12 @@ FollowPlaylist.vue
 
 ```javascript
   getArticles(){
-      // 팔로잉한 사람의 게시글을 최근 게시글부터 탐색
-      const reverse = [...this.Articles].reverse()
+      // 팔로잉한 사람의 플레이리스트 탐색 
+      const reverse = [...this.Articles].reverse() // 최신글은 배열의 맨 마지막에 위치해있어 역순으로 탐색 
       for (const article of reverse) {
           if (this.currentUser.followings.includes(article.user)) {
               this.followingArticles.push(article)
-                axios({
+                axios({ // 플레이리스트 작성자의 id로부터 작성자 정보를 가져오는 요청
                     method: 'get',
                     url: `${API_URL}/accounts/user/detail/${article.user}/`,
                     headers: {
@@ -127,16 +127,14 @@ FollowPlaylist.vue
                     }    
                 })
                 .then((res) => {
-                    const userInfo = {
+                    const userInfo = { // 기존 플레이리스트 데이터에 username을 추가하고 저장해준다.
                         ...article,
                         username: res.data.username
                     }
                     this.followingArticlesPlusAuthor.push(userInfo)
                 })
                 .catch(err => console.log(err))
-                
               }
-              
           }
       },
 
@@ -245,3 +243,9 @@ javascript 정렬 기능을 제대로 알지 못했음
 ## 이은석
 
 ## 황종인
+
+- 프로젝트에서 Vue를 맡아서 진행했고 Django와 Vue의 데이터 전달 방식을 잘 몰라서 처음에 많이 헤맸었다. 페어인 은석이형과 서로 알아낸 정보를 공유하고 어려운 부분을 설명해주면서 금방 지식을 습득할 수 있었던 것 같다.
+
+- 컴포넌트는 공통된 부분을 재사용할 수 있는 이점이 있는데 이 부분을 잘 살리지 못해서 아쉽다. 컴포넌트에 css를 적용할 때도 다른 컴포넌트에도 적용되면서 꼬일까 걱정돼서 ```<style scoped>```만 썼다.
+
+- 코드를 작성하면서 중복된 함수들이 많았는데 많이 쓰이는 함수들을 store에 정의해두고 호출해서 사용하면 더 편리했을 것 같다. 그리고 내용이 많아질수록 수정할 부분을 찾기가 어려웠는데 기능별로 파일을 정리할 필요성을 느꼈다.
