@@ -28,7 +28,7 @@ export default {
     ReviewPopular,
     FollowPlaylist,
   },
-  created() {
+  mounted() {
     this.getAllMovies()
     this.getGenres()
   },

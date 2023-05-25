@@ -24,7 +24,7 @@
       <div class="d-flex">
         <span class="author" @click="goProfile">작성자 : {{ author }}</span>
         <div class="article-time">
-          <p>작성시각 : {{ article?.created_at }}   수정시각 : {{ article?.updated_at }}</p>
+          <p>작성시각 : {{ article?.created_at | ymdhms }}   수정시각 : {{ article?.updated_at | ymdhms }}</p>
         </div>
       </div>
       <p class="article-content">{{ article?.content }}</p>
@@ -112,6 +112,27 @@ export default {
       movielist: [],        // 키워드가 포함된 영화 리스트 (검색마다 초기화)
       containedMovie: []    // 해당 플레이리스트에 추가된 영화 리스트
     }
+
+  },
+  filters: {
+    // (연-월-일 시:분:초) 형태로 날짜 포맷팅
+    ymdhms: function(value) {
+      // 들어오는 값이 공백이면 공백으로 반환
+      if (value == '') return ''
+      // 날짜 데이터를 javascript date 타입으로
+      const js_date = new Date(value)
+
+      // 연, 월, 일, 시, 분, 초 추출
+      const year = String(js_date.getFullYear())
+      const month = String(js_date.getMonth() + 1).padStart(2, "0")
+      const day = String(js_date.getDate()).padStart(2, "0")
+      const hr = String(js_date.getHours()).padStart(2, "0")
+      const min = String(js_date.getMinutes()).padStart(2, "0")
+      const sec = String(js_date.getSeconds()).padStart(2, "0")
+
+      // 한자리 수 값이 있을 때는 공백에 0 처리
+      return year + '-' + month + '-' + day + ' ' + hr + ':' + min + ':' + sec
+    }
   },
   mounted() {
     this.getCurrentUser()
@@ -123,6 +144,7 @@ export default {
       const movies = this.$store.state.movies // 전체 영화 데이터
       if (this.article.contain_movies) {
         for (const movieId of this.article.contain_movies) {
+          console.log(movieId)
           this.playlist_movies.push(movies[movieId-1])
           this.changedContainMoviesId.push(movieId)
         }
@@ -308,6 +330,7 @@ export default {
 }
 
 .article-content {
+  background-color: rgba(253, 250, 244, 0.5);
   padding-left: 20px;
 }
 
@@ -317,9 +340,11 @@ export default {
 
 .movie-title {
   display: flex;
+  width: 150px;
   height: 50px;
-  border: 1px solid grey;
-  background-color: lightgrey;
+  /* border: 1px solid grey; */
+  color: black;
+  background-color: rgb(245, 245, 245);
   justify-content: center;
   align-items: center;
 }
