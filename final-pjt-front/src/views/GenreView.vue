@@ -20,7 +20,7 @@
       </span> -->
 
       <div v-if="selectedGenreList.length === 0" class="message1">선택한 장르가 없습니다</div>
-      <div v-else-if="recommendMovies.length===0">관련 영화가 없습니다</div>    
+      <div v-else-if="recommendMovies.length===0" class="message1">관련 영화가 없습니다</div>    
       <div v-else class="movieList">
         <RecommendItem 
         class="recommendItem"
@@ -191,6 +191,7 @@ h1 {
 
 .message1 {
   font-size: 50px;
-  
+  margin-top: 100px;
+  text-align: center;
 }
 </style>

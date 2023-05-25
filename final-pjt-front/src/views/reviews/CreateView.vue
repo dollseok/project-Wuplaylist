@@ -26,14 +26,14 @@
     
     <form @submit.prevent="createArticle">
       <div class="container">
-        <div class="title-form">
-        <label for="title">제목 : </label>
-        <input class="input-form" type="text" id="title" v-model="title">
+        <div>
+        <label class="label" for="title">제목 : </label>
+        <input class="title-form" type="text" id="title" v-model="title">
         </div>
-        <div class="content-form">
-        <label for="content">내용 : </label>
+        <div>
+        <label class="label" for="content">내용 : </label>
         <textarea 
-          class="input-form"
+          class="content-form"
           id="content" cols="30" rows="10"
           v-model="content"
         >
@@ -198,5 +198,21 @@ export default {
 
   .selected {
     opacity: 0.5;
+  }
+
+  .title-form {
+    width : 50%;
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
+  .content-form {
+    width: 50%;
+    height: 80px;
+    resize: none;
+    margin-left: 10px;
+  }
+
+  .label {
+    font-size: 17px;
   }
 </style>

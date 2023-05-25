@@ -7,7 +7,7 @@
               articleData: articleData,
             } }"
         >
-        {{ article.title }}
+        # {{ article.title }}
         </router-link>
       </div>
       <div>
