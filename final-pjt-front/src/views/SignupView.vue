@@ -76,6 +76,8 @@ export default {
 <style>
 
 .sign-up-container{
+  position: relative;
+  top: 5vh;
   display: flex;
   justify-content: center;
 }
