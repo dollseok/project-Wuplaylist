@@ -3,7 +3,7 @@
     <h2>인기 플레이리스트</h2>
     <hr>
     <h3>1위 <font-awesome-icon :icon="['fas', 'crown']" style="color: #ffd700;" /></h3>
-    <ReviewListItem :article="article1"/>
+    <ReviewListItem class="playlist-hot" :article="article1"/>
     <hr>
     <h3>2위 <font-awesome-icon :icon="['fas', 'crown']" style="color: #c0c0c0;" /></h3>
     <ReviewListItem :article="article2"/>
@@ -42,6 +42,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.playlist-hot {
+  padding: 10px;
+  border-radius: 1rem;
+  background-color: rgb(230, 230, 230);
+}
 </style>

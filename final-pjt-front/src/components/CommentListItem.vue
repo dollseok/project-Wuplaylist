@@ -175,5 +175,6 @@ li {
 
 .author {
   cursor: pointer;
+  font-weight: 800;
 }
 </style>
