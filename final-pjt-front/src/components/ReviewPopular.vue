@@ -28,8 +28,12 @@ export default {
   },
   computed: {
     sortedArticles() {
-      const articles = this.$store.state.articles
-      let editArticles = articles.sort(function(a,b){
+      const newArticles = []
+      for (const article of this.$store.state.articles) {
+        newArticles.push(article)
+      }
+
+      let editArticles = newArticles.sort(function(a,b){
         return b.like_user.length - a.like_user.length
       })
       return editArticles
