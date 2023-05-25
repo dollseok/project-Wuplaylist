@@ -145,12 +145,12 @@ export default {
   margin: 10px;
   width: 90px;
   height: 35px;
+  cursor: pointer;
   border: 1px solid black;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   text-align: center;
-  cursor: pointer;
 }
 
 .resetButton {

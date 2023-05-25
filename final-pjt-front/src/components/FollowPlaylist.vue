@@ -4,15 +4,28 @@
     <hr>
     <div v-if="token">
         <div v-for="article in followingArticles" :key="article.id">
-            {{ getAuthor(article.user) }}
-            <ReviewListItem :article="article"/>
-            {{ getElapsedTime(article.created_at) }}
+            <div>
+                <h3>
+                {{ getAuthor(article.user) }}
+                </h3>
+            </div>
+            <div class="follow-playlist">
+                <div>
+                <ReviewListItem 
+                    :article="article"
+                />  
+                </div>
+                <div>    
+                    {{ getElapsedTime(article.created_at) }}
+                </div>
+
+            </div>
             <hr>
         </div>
     </div>
-    <div v-else>
-        <p>로그인이 필요합니다</p>
-        <button @click="goLogin">로그인 하러 가기</button>
+    <div v-else class="login-request">
+        <h4 class="mt-5">로그인이 필요합니다</h4>
+        <div class='login-button mx-auto mt-4' @click="goLogin">로그인 하러 가기</div>
     </div>
   </div>
 </template>
@@ -106,6 +119,29 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+
+.login-button {
+  font-size: 15px;
+  display: flex;
+  width: 120px;
+  height: 35px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(228, 228, 228, 0.5);
+}
+
+.login-request{
+    text-align:  center;
+}
+
+.follow-playlist {
+  padding: 10px;
+  border-radius: 1rem;
+  background-color: rgb(228, 228, 228, 0.5);;
+}
 
 </style>

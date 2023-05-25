@@ -22,6 +22,7 @@
     <div class="scroll moviePreview">
       <img id="movie-image" v-for="poster in moviePosters" :key="poster.id" :src="poster" alt="movieimage" width="100px" height="150px">
     </div>
+    <br>
 
   </div>
 </template>
