@@ -37,7 +37,7 @@ export default {
     components:{
         ReviewListItem,
     },
-    created(){
+    mounted(){
         if (this.token) {
             this.getUser()
         }
@@ -48,7 +48,8 @@ export default {
             this.$store.dispatch('getCurrentUser')
         },
         getArticles(){
-            for (const article of this.Articles) {
+            // 팔로잉한 사람의 게시글을 최근 게시글부터 탐색
+            for (const article of this.Articles.reverse()) {
                 if (this.currentUser.followings.includes(article.user)) {
                     this.followingArticles.push(article)
                 }
