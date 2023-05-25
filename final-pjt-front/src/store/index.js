@@ -121,7 +121,10 @@ export default new Vuex.Store({
         context.commit('SAVE_USER', username)
         context.commit('SAVE_TOKEN', res.data.key)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => { 
+        console.log(err)
+        
+      })
     },
     // 로그아웃
     logout(context) {
