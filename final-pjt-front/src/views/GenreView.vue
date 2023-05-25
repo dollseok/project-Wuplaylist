@@ -185,4 +185,7 @@ export default {
   margin:5px;
 }
 
+h1 {
+  margin: 0;
+}
 </style>

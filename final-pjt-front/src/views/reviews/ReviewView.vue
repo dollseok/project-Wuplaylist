@@ -45,7 +45,6 @@ export default {
   border-top: 1px solid;
   border-bottom: 1px solid;
   border-radius: 1rem;
-  background-color: rgba(0, 255, 136, 0.2);
 
 }
 
@@ -54,4 +53,5 @@ a {
   margin-left: 10px;
   font-size: 20px;
 }
+
 </style>
