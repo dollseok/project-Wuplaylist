@@ -19,7 +19,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
   },
   // 장르로 영화 검색하는 페이지
   {

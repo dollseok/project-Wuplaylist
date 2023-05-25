@@ -11,7 +11,7 @@
         </div>
 
         <div class="container">
-          <div class=row>
+  
             <div class="modal-poster">
               <img class="modal-poster" :src="movie.poster_path" alt="poster">
             </div>
@@ -25,7 +25,7 @@
               </p>
               <p>{{movie.overview}}</p>
             </div>
-          </div>
+
         </div>
       </div>
     </div>
