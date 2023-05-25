@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>담은 영화들</h4>
+    <div class="contentViewtitle">담은 영화들</div>
     <div class="playlist-content">
       <div class="movie-card column" v-for="movie in containedMovieList" :key="movie.id">
         <div class="movie-title">{{ movie.title }}</div>
@@ -56,5 +56,10 @@ export default {
 
 .movie-card {
   margin: 10px;
+}
+
+.contentViewtitle {
+  font-size: 25px;
+  margin-left: 12px;
 }
 </style>

@@ -10,8 +10,7 @@
           </div>
         </div>
 
-        <div class="container">
-  
+        <div class="container d-flex">
             <div class="modal-poster">
               <img class="modal-poster" :src="movie.poster_path" alt="poster">
             </div>
@@ -110,11 +109,12 @@ div {
 }
 
 .modal-content{
-  width:60%;
+  padding: 10px;
+  width:65%;
   background-color: rgb(255, 255, 122, 0.1);;
 }
 .modal-content > p{
-  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 </style>

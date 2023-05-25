@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <img v-if="movie.poster_path" @click="modalopen=true" class="modalImage"
+    <img v-if="movie.poster_path" @click="modalopen=true" class="movieImage"
     :src="`https://image.tmdb.org/t/p/w300/${movie.poster_path}`" 
     alt="poster">
   </div>
@@ -101,9 +101,9 @@ div {
   overflow: auto;
 }
 
-.modalImage {
-  width: 300px;
-  height:450px; 
+.movieImage {
+  width: 245px;
+  height:367.5px; 
   border-radius: 10px;
   cursor: pointer;
 }
@@ -120,7 +120,7 @@ div {
 
 .modal-content{
   width:60%;
-  background-color: rgb(255, 255, 122, 0.1);;
+  /* background-color: rgb(255, 255, 122, 0.5); */
 }
 .modal-content > p{
   margin-bottom: 30px;
