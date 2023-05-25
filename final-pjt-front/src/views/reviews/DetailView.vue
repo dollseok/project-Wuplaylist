@@ -24,7 +24,7 @@
       <div class="d-flex">
         <span class="author" @click="goProfile">작성자 : {{ author }}</span>
         <div class="article-time">
-          <p>작성시각 : {{ article?.created_at | ymdhms }}   수정시각 : {{ article?.updated_at | ymdhms }}</p>
+          <p>작성 : {{ article?.created_at | ymdhms }} 수정 : {{ article?.updated_at | ymdhms }}</p>
         </div>
       </div>
       <p class="article-content">{{ article?.content }}</p>
@@ -36,7 +36,6 @@
           <div class="movie-card" v-for="movie in playlist_movies" :key="movie.id">
             <div class="movie-title">{{ movie.title }}</div>
             <figure><img @click="modalOpen(movie)" id="movie-image" :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
-            <button v-if="!updatestatus" @click="deleteFromPlaylist(movie)">삭제</button>
           </div>
         </div>
       </div>
@@ -56,9 +55,12 @@
       <div class="contain-movies">
         <div class="column">
           <div class="movie-card" v-for="movie in playlist_movies" :key="movie.id">
-            <div class="movie-title">{{ movie.title }}</div>
+            <div class="movie-title">
+              <div>{{ movie.title }}</div>
+              <div><button class="btn movie-delete-btn" v-if="!updatestatus" @click="deleteFromPlaylist(movie)"><font-awesome-icon :icon="['fas', 'xmark']" /></button></div>
+            </div>
             <figure><img id="movie-image" :src="movie.poster_path" alt="movieImage" width="150px" height="225px"></figure>
-            <button class="btn" v-if="!updatestatus" @click="deleteFromPlaylist(movie)"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
+            
           </div>
         </div>
       </div>
@@ -336,6 +338,7 @@ export default {
 
 .author {
   cursor: pointer;
+  font-weight: 800;
 }
 
 .movie-title {
@@ -345,7 +348,7 @@ export default {
   /* border: 1px solid grey; */
   color: black;
   background-color: rgb(245, 245, 245);
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -358,4 +361,7 @@ export default {
   float: right;
 }
 
+.movie-delete-btn {
+  padding: 6px 0px;
+}
 </style>

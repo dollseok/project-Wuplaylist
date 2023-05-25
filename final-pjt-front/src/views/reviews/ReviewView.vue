@@ -1,7 +1,9 @@
 <template>
   <div class="review">
-    <h1>무비 플레이리스트</h1>
-    <router-link to="/create">글 작성하기</router-link>
+    <div class="view-nav">
+      <h1>무비 플레이리스트</h1>
+      <router-link to="/create"><font-awesome-icon :icon="['far', 'pen-to-square']" /> 작성하기</router-link>
+    </div>
     <ReviewList/>
   </div>
 </template>
@@ -36,6 +38,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.view-nav {
+  margin: 0 10px;
+  padding: 10px;
+  /* background-color: lightgoldenrodyellow; */
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-radius: 1rem;
+}
 
+a {
+  text-decoration: none;
+  margin-left: 10px;
+  font-size: 20px;
+}
 </style>

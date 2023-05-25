@@ -5,8 +5,9 @@
     <!-- 영화 추가하는 모달 팝업 -->
     <div class="movieModal black-bg" v-if="isModalViewed" @close-modal="isModalViewed=false">
       <div class="white-bg">
-          <h4> 플레이리스트에 영화 추가하기 </h4>
-          <label for="searchKeyword">검색어 : </label>
+          <h4><font-awesome-icon :icon="['fas', 'film']" size="lg" /> 플레이리스트에 영화 담기 </h4>
+          <hr>
+          <label for="searchKeyword">검색어 </label>
           <button class="btn closebtn" @click="isModalViewed=false"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
         <input v-model="searchKeyword" @keyup.enter="searchMovie" id="searchKeyword">
         <br>
@@ -20,20 +21,27 @@
     
     
     <form @submit.prevent="createArticle">
-      <label for="title">제목 : </label>
-      <input type="text" id="title" v-model="title"><br>
-      <label for="content">내용 : </label>
-      <textarea 
-        id="content" cols="30" rows="10"
-        v-model="content"
-      >
-      </textarea>
-
+      <div class="container">
+        <div class="title-form">
+        <label for="title">제목 : </label>
+        <input class="input-form" type="text" id="title" v-model="title">
+        </div>
+        <div class="content-form">
+        <label for="content">내용 : </label>
+        <textarea 
+          class="input-form"
+          id="content" cols="30" rows="10"
+          v-model="content"
+        >
+        </textarea>
+        </div>
+      </div>
+      <br>
       <ContentView 
       :containedMovie="containedMovie"
       />
       <hr v-if="!isModalViewed">
-      <button class="btn" @click.prevent="isModalViewed=true"><font-awesome-icon :icon="['fas', 'film']" size="lg" /> 영화 담기</button>
+      <button class="btn addMoviebtn" @click.prevent="isModalViewed=true"><font-awesome-icon :icon="['fas', 'film']" size="lg" /> 영화 담기</button>
       <input class="btn btn-success" type="submit" id="submit" value="작성">
     </form>
 
@@ -141,4 +149,20 @@ export default {
     cursor: pointer;
   }
 
+  .input-form {
+    width: 95%;
+  }
+
+  .container {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .container * {
+    display: flex;
+  }
+
+  .content-form * {
+    vertical-align: middle;
+  }
 </style>
