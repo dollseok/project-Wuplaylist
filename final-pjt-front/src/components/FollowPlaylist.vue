@@ -3,6 +3,7 @@
     <h2>팔로우 플레이리스트</h2>
     <hr>
     <div v-for="article in followingArticles" :key="article.id">
+        {{ getAuthor(article.user) }}
         <ReviewListItem :article="article"/>
         <hr>
     </div>
@@ -11,6 +12,8 @@
 
 <script>
 import ReviewListItem from '@/components/ReviewListItem.vue'
+import axios from 'axios'
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
     name: 'FollowPlaylist',
@@ -18,7 +21,8 @@ export default {
         return {
             Articles : this.$store.state.articles,
             currentUser : this.$store.state.currentUser,
-            followingArticles : []
+            followingArticles : [],
+            author: null,
         }
     },
     components:{
@@ -38,6 +42,23 @@ export default {
                     this.followingArticles.push(article)
                 }
             }
+        },
+        // userId로 user의 정보를 가져오기
+        getUserDetail(userId){
+            axios({
+                method: 'get',
+                url: `${API_URL}/accounts/user/detail/${userId}/`
+            })
+            .then((res)=>{
+                this.author = res.data.username
+            })
+            .catch(err=>console.log(err))
+        },
+        getAuthor(userId) {
+            let currentAuthor = ''
+            this.getUserDetail(userId)
+            currentAuthor = this.author
+            return currentAuthor
         }
     }
 }
