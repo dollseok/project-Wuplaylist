@@ -42,7 +42,7 @@ export default {
       moviePosters: [],
     }
   },
-  created() {
+  mounted() {
     this.getMoviePoster()
     console.log(this.article)
   },
@@ -54,7 +54,6 @@ export default {
           this.moviePosters.push(movie.poster_path)
         }
       }
-      
     }
   }
 }
